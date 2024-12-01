@@ -1,0 +1,173 @@
+body { /*done for overview! To be removed.*/
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(26, 26, 26);
+} 
+
+.orders-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    height: fit-content;
+    gap: 50px;
+    width: 800px;
+    margin: 50px;
+    border-radius: 30px;
+    border: 1px solid rgb(64, 64, 64);
+    padding: 50px;
+    color: rgb(216, 216, 216);
+    background-color: rgb(34, 34, 34);
+}
+
+.orders-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(0, 228, 137);
+}
+
+.horizental-line {
+    height: 3px;
+    width: 100%;
+    background-color: rgb(64, 64, 64);
+}
+
+.control-panel {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.orders-search-container {
+    display: flex;
+    width: fit-content;
+    gap: 20px;
+    width: 70%;
+}
+
+.orders-search {
+    width: 100%;
+    border: 1px solid rgb(0, 122, 73);
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+.orders-search:focus {
+    outline: 1px solid rgb(0, 228, 137);
+}
+
+.orders-search-btn {
+    padding: 10px 30px;
+    color: white;
+    background-color: rgb(0, 228, 137);
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+}
+
+.orders-search-btn:hover {
+    background-color: rgb(0, 73, 44);
+}
+
+.orders-filter {
+    border: none;
+    border-bottom: 2px solid rgb(0, 122, 73);
+    cursor: pointer;
+    color: white;
+    background: none;
+    outline: none;
+}
+
+.orders-filter:focus {
+    border-bottom: 2px solid rgb(0, 228, 137);
+}
+
+.orders-option {
+    background-color: black;
+    color: white;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.orders-table th, .orders-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: white;
+    font-size: 15px;
+}
+
+.orders-table th {
+    background: white;
+    color: black;
+}
+
+.orders-table tr:hover {
+    background: rgb(60, 60, 60);
+    color: #fff;
+}
+
+.actions-buttons {
+    background: none;
+    border: none;
+    color: rgb(0, 122, 73);
+    cursor: pointer;
+}
+
+.actions-buttons:hover {
+    color: rgb(0, 228, 137);
+}
+
+@media only screen and (max-width: 600px) {
+    .orders-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .orders-title {
+        font-size: 20px;
+    }
+
+    .control-panel {
+        display: flex;
+    }
+
+    .orders-search-container {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
+
+    .orders-search {
+        font-size: 12px;
+    }
+
+    .orders-search-btn {
+        width: 70%;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .orders-filter {
+        padding: 5px;
+        font-size: 12px;
+        height: fit-content;
+    }
+
+    .orders-table th, .orders-table td {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    .actions-buttons {
+        font-size: 12px;
+    }
+}

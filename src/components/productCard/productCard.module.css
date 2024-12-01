@@ -1,0 +1,124 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensures cards stretch to fill the parent container */
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.imageContainer {
+    position: relative;
+    /* height: 200px; */
+    
+    overflow: hidden;
+}
+
+.productImage {
+    width: 100%;
+    height: 100%;
+    transform: scale(.7);
+    object-fit: cover;
+}
+
+.iconsContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.icon {
+    font-size: 28px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+}
+
+.heartIcon:hover {
+    color: #B01E28;
+}
+
+.cartIcon:hover {
+    color: #00ff88;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    flex-grow: 1;
+    /* Makes sure the content area grows and takes remaining space */
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 8px;
+}
+
+.note {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0 0 8px;
+}
+
+.description {
+    font-size: 1rem;
+    margin: 0 0 16px;
+}
+
+.price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: auto;
+    /* Pushes the price to the bottom */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    .title {
+        font-size: 13px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 8px;
+    }
+
+    .title {
+        font-size: 12px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .price {
+        font-size: 15px;
+    }
+}
