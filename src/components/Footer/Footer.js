@@ -48,7 +48,7 @@ const Footer = () => {
                 <div className={styles["footer-brand"]}>
                     <div className={styles["logo"]}><img src="./images/logos/Heatz.png" alt="Logo" /></div>
                     <p className={styles["footer-description"]}>
-                        Heatz® is a registered brand of Ashtelgroup. It is registered in different countries including Saudi Arabia and UAE, Especialy in the middle east. Heatz® is well known for its variety and quality of products launched in every seasons.
+                    Heatz® is a registered brand, now proudly available in Morocco. Known for its wide variety and high-quality products, Heatz® has made its mark globally, especially in the Middle East and North Africa. Our Moroccan customers can experience innovative Heatz® products designed to enhance every season, from top-tier headphones to the latest tech accessories.
                     </p>
                     <form onSubmit={handleSubmit} className={styles["newsletter-form"]}>
                         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className={styles["newsletter-input"]} placeholder="Enter your email" />

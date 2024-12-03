@@ -30,7 +30,7 @@ const ProductPopup = ({ product, onClose, handleEdit, handleDeleteProduct }) => 
         <div className={styles.content}>
           <div className={styles.imageSection}>
             <img 
-              src={editedProduct.image} 
+              src={editedProduct.imageUrl} 
               alt={editedProduct.productName} 
               className={styles.productImage} 
             />

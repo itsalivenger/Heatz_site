@@ -31,9 +31,9 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
 
         <div className={`${styles["linksContainer"]} toggledMenu ${menuIsToggled ? styles.toggledMenu : ''}`}>
           <div className={`${styles["navbar-links"]} ${isSearchActive ? styles['inactive'] : ''}`}>
-            <Link to={'/'}>Home</Link>
+            <Link to={'/'}>Acceuil</Link>
             <Link to={'/boutique'}>Boutique</Link>
-            <Link to={'/'}>Shop</Link>
+            <Link to={'/'}>Categories</Link>
             <Link to={'contact'}>Contact</Link>
           </div>
 
@@ -67,7 +67,8 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {isAdmin && (
               <Link to={'/admin'} className={styles["info-container"]}>
                 <i className="material-symbols-outlined">admin_panel_settings</i>
-                <div className={styles["info-text"]}>Admin Panel</div>
+                <div className={styles["info-text"]}>Panneau d'administration
+                </div>
               </Link>
             )}
 

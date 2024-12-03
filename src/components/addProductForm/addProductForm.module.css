@@ -1,108 +1,112 @@
 /* General container */
 .container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Form title */
-  .title {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #fff;
-  }
-  
-  /* Form group styling */
-  .formGroup {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Labels */
-  .label {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: #fff;
-  }
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-  .icon{
-    position: relative;
-    top: 5px;
-    font-size: 1.5rem;
-  }
+/* Form title */
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
 
-  .success{
-    color: #218838;
-  }
+/* Form group styling */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
 
-  .failure{
-    color: #FF0000;
+/* Labels */
+.label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.icon {
+  position: relative;
+  top: 5px;
+  font-size: 1.5rem;
+}
+
+.success {
+  color: #218838;
+}
+
+.failure {
+  color: #FF0000;
+}
+
+/* Input, select, and textarea styling */
+.input,
+.select,
+.textarea,
+.fileInput {
+  padding: 12px 15px;
+  border: 1px solid #2a5a47;
+  border-radius: 10px;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.select option {
+  background-color: #111111bf;
+  color: white;  /* Ensures text is visible */
+}
+
+/* Focus effect */
+.input:focus,
+.select:focus,
+.textarea:focus,
+.fileInput:focus {
+  border-color: rgb(0, 228, 137);
+  outline: none;
+}
+
+/* Textarea specific */
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Image preview */
+.imagePreview {
+  margin-top: 1rem;
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Submit button */
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect on button */
+.submitButton:hover {
+  background-color: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
   }
-  
-  /* Input, select, and textarea styling */
-  .input,
-  .select,
-  .textarea,
-  .fileInput {
-    padding: 12px 15px;
-    border: 1px solid #2a5a47;
-    border-radius: 10px;
-    background-color: transparent;
-    color: white;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
-  
-  /* Focus effect */
-  .input:focus,
-  .select:focus,
-  .textarea:focus,
-  .fileInput:focus {
-    border-color: rgb(0, 228, 137);
-    outline: none;
-  }
-  
-  /* Textarea specific */
-  .textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  /* Image preview */
-  .imagePreview {
-    margin-top: 1rem;
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-  
-  /* Submit button */
-  .submitButton {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Hover effect on button */
-  .submitButton:hover {
-    background-color: #218838;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .container {
-      padding: 1.5rem;
-    }
-  }
-  
+}

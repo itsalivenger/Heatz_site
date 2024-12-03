@@ -8,6 +8,7 @@ import { serverDomain } from '../../components/other/variables';
 import { getUser } from '../../components/other/usefulFunctions';
 import Popup from '../../components/popup/popup';
 import Gallery from '../../components/imagesCarousel/Gallery';
+import CategoriesSection from './CategoriesSection';
 
 const images = [
     { src: './images/other/img1.jpeg', alt: 'Image 1' },
@@ -20,7 +21,7 @@ const images = [
 
 function Shop() {
     const [products, setProducts] = useState([]);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({user_id: ''});
     const [startIndex, setStartIndex] = useState(0);  // Keep track of the current index
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState({});
@@ -35,11 +36,12 @@ function Shop() {
         async function getProducts() {
             try {
                 // Include the current index in the URL query parameter
-                const response = await sendRequest(`${serverDomain}/shop?n=${startIndex}`, 'GET');
+                const response = await sendRequest(`${serverDomain}/shop?n=${startIndex}?category=earphones`, 'GET');
 
                 if (response.error) {
                     console.log(response.error);
                 } else {
+                    console.log(response);
                     // Append new products to the existing list
                     setProducts(prevProducts => [...prevProducts, ...response.products]);
                 }
@@ -58,25 +60,35 @@ function Shop() {
 
     function togglePopup(content) {
         setIsOpen(true);
-        console.log(content);
         setContent(content);
     }
 
-    if (!products) return <LoadingSpinner />;
+    const handleCategories = async (category) => {
+        const response = await sendRequest(`${serverDomain}/shop?category=${category}`, 'GET');
+        // const prods = response.products;
+        if (response.error) {
+            console.log(response.error);
+        } else {
+            // Append new products to the existing list
+            setProducts(response.products);
+        }
+    }
+
     return (
         <div>
             <div className={styles.container}>
                 {/* hna ghaykun first section */}
                 <ShopHero />
+                <CategoriesSection handleCategories={handleCategories} />
 
                 <div className={styles.titleContainer}>
                     <h2>Headphones for you!</h2>
                 </div>
 
                 <div className={styles.productContainer}>
-                    {products && products.map((product, index) => (
-                        <ProductCard togglePopup={togglePopup} user_id={user._id} key={index} product={product} />
-                    ))}
+                    {products ? products.map((product, index) => {
+                        return <ProductCard togglePopup={togglePopup} user_id={user ? user.user_id : ''} key={index} product={product} />
+                    }) : <LoadingSpinner />}
                 </div>
 
                 <div className={styles.loadMoreContainer}>

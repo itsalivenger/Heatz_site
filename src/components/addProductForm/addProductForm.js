@@ -11,8 +11,8 @@ const AddProductForm = () => {
         price: '',
         category: '',
         description: '',
-        productImage: null, // New state for the image
-        previewImage: null, // Preview image URL
+        productImage: null,
+        previewImage: null
     });
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState('');
@@ -35,21 +35,32 @@ const AddProductForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here (e.g., send data to the backend)
-        const response = await sendRequest(`${serverDomain}/products/addProduct`, 'POST', formData);
+        // Create a FormData object
+        const data = new FormData();
+        data.append('productName', formData.productName);
+        data.append('price', formData.price);
+        data.append('category', formData.category);
+        data.append('description', formData.description);
+        data.append('productImage', formData.productImage);
         
+        for (let pair of data.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+        // Handle form submission logic here (e.g., send data to the backend)
+        const response = await sendRequest(`${serverDomain}/products/addProduct`, 'POST', data, {}, true);
         if (!response.error) {
             // Handle success, e.g., show success message
-            // console.log(response.productId);
             setContent({ title: <><span className={`${styles.icon} ${styles.success} material-symbols-outlined`}>check</span> Ajout effectué</>, content: response.message });
             setIsOpen(true);
         } else {
             // Handle error, e.g., show error message
-            setContent({ title: <><span className={`${styles.icon} ${styles.failure} material-symbols-outlined`}>close</span> Ajout echoué</>, content: response.error});
+            setContent({ title: <><span className={`${styles.icon} ${styles.failure} material-symbols-outlined`}>close</span> Ajout echoué</>, content: response.error });
             setIsOpen(true);
         }
-
     };
+
+    
+    
 
     return (
         <div className={styles.container}>
@@ -104,9 +115,17 @@ const AddProductForm = () => {
                         className={styles.select}
                     >
                         <option value="">Choisir une catégorie</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="food">Food</option>
+                        <option value="Écouteurs">Écouteurs</option>
+                        <option value="Câbles">Câbles</option>
+                        <option value="Chargeurs">chargeurs</option>
+                        <option value="Power banks">Power Banks</option>
+                        <option value="Batteries">Batteries</option>
+                        <option value="Chargeur de voiture">Chargeur de voiture</option>
+                        <option value="Supports">Supports</option>
+                        <option value="Modulateur">Modulateur</option>
+                        <option value="Haut-parleurs">Haut-parleurs</option>
+                        <option value="Montres">Montres</option>
+                        <option value="Powerbank">Powerbank</option>
                     </select>
                 </div>
 

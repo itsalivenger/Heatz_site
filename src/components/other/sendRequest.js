@@ -1,4 +1,4 @@
-async function sendRequest(url, method = 'GET', body = null, headers = {}) {
+async function sendRequest(url, method = 'GET', body = null, headers = {}, isFormData) {
     try {
         const options = {
             method,
@@ -9,8 +9,13 @@ async function sendRequest(url, method = 'GET', body = null, headers = {}) {
         };
 
         // Include body for methods like POST or PUT
-        if (body && (method === 'POST' || method === 'PUT' || method === 'PATCH')) {
+        if (body && (method === 'POST' || method === 'PUT' || method === 'PATCH') && !isFormData) {
             options.body = JSON.stringify(body);
+        }
+
+        if(isFormData){
+            options.body = body;
+            options.headers = {}
         }
 
         const response = await fetch(url, options);

@@ -61,41 +61,41 @@ function Contact() {
             {content && <Popup title={content.title} content={content.content} isOpen={isPopupOpen} onClose={closePopup} />}
             <div className={styles["container-of-all"]}>
                 <div className={styles["feel-free-container"]}>
-                    <span className={styles["send-us-email"]}>Envoyez-nous un Email</span>
+                    <span className={styles["send-us-email"]}>Envoyez-nous un email</span>
                     <span className={styles["feel-free-to-write"]}>N'hésitez pas à nous écrire</span>
                     <div className={styles["input-container"]}>
-                        <input value={name} onChange={(e) => setName(e.target.value)} className={styles["info-input"]} type="text" placeholder="Entrez le nom" required />
-                        <input value={email} onChange={(e) => setEmail(e.target.value)} className={styles["info-input"]} type="email" placeholder="Entrez l'email" required />
+                        <input value={name} onChange={(e) => setName(e.target.value)} className={styles["info-input"]} type="text" placeholder="Entrez votre nom" required />
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} className={styles["info-input"]} type="email" placeholder="Entrez votre e-mail" required />
                     </div>
                     <div className={styles["input-container"]}>
                         <input value={subject} onChange={(e) => setSubject(e.target.value)} className={styles["info-input"]} type="text" placeholder="Entrez le sujet" required />
-                        <input value={phone} onChange={(e) => setPhone(e.target.value)} className={styles["info-input"]} type="number" placeholder="Entrez le téléphone" required />
+                        <input value={phone} onChange={(e) => setPhone(e.target.value)} className={styles["info-input"]} type="number" placeholder="Entrez votre téléphone" required />
                     </div>
-                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={`${styles["info-input"]} ${styles["message-input"]}`} placeholder="Entrez le message"></textarea>
+                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={`${styles["info-input"]} ${styles["message-input"]}`} placeholder="Entrez votre message"></textarea>
                     <div className={styles["feel-free-buttons-container"]}>
                         <button onClick={handleSubmit} className={styles["send-btn"]}>ENVOYER LE MESSAGE</button>
                         <button onClick={resetInputs} className={styles["reset-btn"]}>RÉINITIALISER</button>
                     </div>
                 </div>
                 <div className={styles["get-in-touch-container"]}>
-                    <span className={styles["need-any-help"]}>Besoin d'aide</span>
+                    <span className={styles["need-any-help"]}>Besoin d'aide ?</span>
                     <span className={styles["get-in-touch-with-us"]}>Contactez-nous</span>
                     <p className={styles["get-in-touch-paragraph"]}>
-                        Lorem ipsum est un texte simplement disponible dolor sit amet
+                        Lorem ipsum est un texte simplement disponible dolor sit amet,
                         consectetur noté adipisicing elit sed do eiusmod tempor
-                        incididunt simplement dolore magna.
+                        incididunt simplement dolore magna aliqua.
                     </p>
                     <div className={styles["media-container"]}>
-                        <i className={`${styles["media-icons"]} material-symbols-outlined`}>Call</i>
+                        <i className={`${styles["media-icons"]} material-symbols-outlined`}>call</i>
                         <div className={styles["media-text-container"]}>
-                            <span className={styles["get-in-touch-span0"]}>Avez-vous des questions</span>
-                            <span className={styles["get-in-touch-span1"]}>Gratuit +92 (020)-9850</span>
+                            <span className={styles["get-in-touch-span0"]}>Avez-vous des questions ?</span>
+                            <span className={styles["get-in-touch-span1"]}>Appel gratuit : +92 (020)-9850</span>
                         </div>
                     </div>
                     <div className={styles["media-container"]}>
                         <i className={`${styles["media-icons"]} material-symbols-outlined`}>mail</i>
                         <div className={styles["media-text-container"]}>
-                            <span className={styles["get-in-touch-span0"]}>Écrire un email</span>
+                            <span className={styles["get-in-touch-span0"]}>Écrivez-nous un e-mail</span>
                             <span className={styles["get-in-touch-span1"]}>besoinaide@entreprise.com</span>
                         </div>
                     </div>
@@ -103,7 +103,7 @@ function Contact() {
                         <i className={`${styles["media-icons"]} material-symbols-outlined`}>location_on</i>
                         <div className={styles["media-text-container"]}>
                             <span className={styles["get-in-touch-span0"]}>Visitez-nous à tout moment</span>
-                            <span className={styles["get-in-touch-span1"]}>66 rue dorée de Brooklyn, New York</span>
+                            <span className={styles["get-in-touch-span1"]}>66 rue Dorée, Brooklyn, New York</span>
                         </div>
                     </div>
                 </div>
@@ -111,6 +111,7 @@ function Contact() {
             <Location />
         </div>
     );
+    
 }
 
 export default Contact;

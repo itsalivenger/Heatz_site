@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './AdminDashboard.module.css'; // Assuming modular CSS is used
 import AddProductForm from '../../components/addProductForm/addProductForm';
 import ColoredDivider from '../../components/coloredHr/coloredDivider';
@@ -23,11 +23,26 @@ const Dashboard = () => {
     };
 
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const response = await sendRequest(`${serverDomain}/products/adminTable`, 'GET');
+            if (response.error) {
+                console.log(response.error);
+                setContent({ title: "Error", content: response.error });
+                setIsOpen(true);
+            } else {
+                setFoundProducts(response ? response : []);
+            }
+        }
+        fetchProducts();
+    }, []);
+
+
     const handleSearch = async () => {
         // to submit value
         const encodedName = encodeURIComponent(name);
         const response = await sendRequest(`${serverDomain}/products/getProducts/${encodedName}`, 'GET');
-
+        console.log(response, 'handleSearch function');
 
         if (!response.error) {
             setFoundProducts(response);
@@ -42,7 +57,7 @@ const Dashboard = () => {
     const handleUpdateProduct = async (editedProduct, _id) => {
         // to submit value
         const response = await sendRequest(`${serverDomain}/products/updateProduct`, 'PUT', editedProduct);
-        console.log(response);
+        console.log(response, 'handleUpdateProduct function');
         if (!response.error) {
             setContent({ title: "Success", content: response.message });
         } else {
@@ -65,7 +80,7 @@ const Dashboard = () => {
             setContent({ title: "Error", content: response.error });
         }
         setIsOpen(true);
-        setFoundProducts([]);
+        setFoundProducts(foundProducts.filter(product => product._id !== _id));
         setShowPopup(false)
     }
 
@@ -140,7 +155,7 @@ const Dashboard = () => {
                                         <th>Id</th>
                                         <th>Nom</th>
                                         <th>Prix</th>
-                                        <th>Stock</th>
+                                        <th>Category</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -194,11 +209,11 @@ const Dashboard = () => {
 };
 
 
-function ProductInTable({ setPreviewProduct, setShowPopup, product: { _id, productName, price, description, category, imageUrl, stock } }) {
+function ProductInTable({ setPreviewProduct, setShowPopup, product: { _id, productName, price, description, category, imageUrl } }) {
 
     // Utility function to trim long strings
     const trimString = (str, maxLength) => {
-        return str.length > maxLength ? `${str.slice(0, maxLength)}...` : str;
+        if(str) return str.length > maxLength ? `${str.slice(0, maxLength)}...` : str;
     };
 
     return (
@@ -206,7 +221,7 @@ function ProductInTable({ setPreviewProduct, setShowPopup, product: { _id, produ
             <td>{trimString(_id, 8)}</td>
             <td>{trimString(productName, 20)}</td>
             <td>{price}</td>
-            <td>{stock}</td>
+            <td>{category}</td>
             <td>
                 <button
                     onClick={() => {

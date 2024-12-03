@@ -4,22 +4,23 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 const slides = [
   {
-    title: "Boost Up Your Audio Experience",
-    description: "Discover amazing products and browse throught a huge collection.",
-    buttonText: "Learn More",
+    title: "Améliorez Votre Expérience Audio",
+    description: "Découvrez des produits incroyables et parcourez une vaste collection.",
+    buttonText: "En Savoir Plus",
     backgroundImage: "./images/flayers/mouse.jpeg"
   }, {
-    title: "Boost Up Your Audio Experience",
-    description: "Discover amazing products and browse throught a huge collection.",
-    buttonText: "Learn More",
+    title: "Améliorez Votre Expérience Audio",
+    description: "Découvrez des produits incroyables et parcourez une vaste collection.",
+    buttonText: "En Savoir Plus",
     backgroundImage: "./images/flayers/queen.jpeg"
   }, {
-    title: "Boost Up Your Audio Experience",
-    description: "Discover amazing products and browse throught a huge collection.",
-    buttonText: "Learn More",
+    title: "Améliorez Votre Expérience Audio",
+    description: "Découvrez des produits incroyables et parcourez une vaste collection.",
+    buttonText: "En Savoir Plus",
     backgroundImage: "./images/flayers/mouse.jpeg"
   },
 ];
+
 
 const Slide = ({ title, description, buttonText, backgroundImage }) => {
   return (
