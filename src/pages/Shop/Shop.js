@@ -43,7 +43,7 @@ function Shop() {
                 } else {
                     console.log(response);
                     // Append new products to the existing list
-                    setProducts(prevProducts => [...prevProducts, ...response.products]);
+                    setProducts(response.products);
                 }
             } catch (error) {
                 console.error('Error fetching products:', error);
