@@ -26,7 +26,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
     <>
       <nav className={`${styles.navbar}`}>
         <Link to={'/'} className={styles["navbar-logo"]}>
-          <img src={"./public/images/logos/vector.svg"} alt='this is the company logo dedrno2' />
+          <img src={"./images/logos/vector.svg"} alt='this is the company logo' />
         </Link>
 
         <div className={`${styles["linksContainer"]} toggledMenu ${menuIsToggled ? styles.toggledMenu : ''}`}>
