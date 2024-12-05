@@ -1,5 +1,11 @@
-const domain = 'http://localhost:3000';
-// 
-const serverDomain = 'http://localhost:5000';
+// localhost
+const localhostFront = 'http://localhost:3000';
+const localhostBack = 'http://localhost:5000';
+// deploy
+const serverDeploy = 'https://heatz-server.vercel.app/';
+const clientDeploy = '';
+
+const domain = localhostFront;
+const serverDomain = serverDeploy;
 
 export { domain, serverDomain };
