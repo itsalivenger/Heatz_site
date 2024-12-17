@@ -11,26 +11,21 @@ import Gallery from '../../components/imagesCarousel/Gallery';
 import CategoriesSection from './CategoriesSection';
 
 const images = [
-    { src: './images/other/img1.jpeg', alt: 'Image 1' },
-    { src: './images/other/img2.png', alt: 'Image 2' },
-    { src: './images/other/img3.jpeg', alt: 'Image 3' },
-    { src: './images/other/img5.png', alt: 'Image 5' },
-    { src: './images/other/img6.png', alt: 'Image 6' },
-    { src: './images/other/img7.jpeg', alt: 'Image 6' },
+    { src: './images/other/img1.jpeg' },
+    { src: './images/other/img2.png' },
+    { src: './images/other/img3.jpeg' },
+    { src: './images/other/img5.png' },
+    { src: './images/other/img6.png' },
+    { src: './images/other/img7.jpeg' },
   ];
 
 function Shop() {
     const [products, setProducts] = useState([]);
-    const [user, setUser] = useState({user_id: ''});
+    const [user] = useState({user_id: getUser()._id});
     const [startIndex, setStartIndex] = useState(0);  // Keep track of the current index
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState({});
     const loadLimit = 5;  // Match this with backend's loadLimit
-
-    useEffect(() => {
-        // Fetch the first batch of products when the component mounts
-        setUser(getUser());
-    }, []);
 
     useEffect(() => {
         async function getProducts() {

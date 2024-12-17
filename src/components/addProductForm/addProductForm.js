@@ -11,24 +11,27 @@ const AddProductForm = () => {
         price: '',
         category: '',
         description: '',
+        SKU: '',
         productImage: null,
         previewImage: null
     });
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState('');
+    const [onConfirm, setOnConfirm] = useState(() => { });
+    const [features, setFeatures] = useState([""]);
 
-    const handleChange = (e) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
     const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
+        const files = Array.from(e.target.files); // Convert FileList to an array
+        if (files.length > 0) {
             setFormData((prevData) => ({
                 ...prevData,
-                productImage: file,
-                previewImage: URL.createObjectURL(file),
+                productImages: files, // Store all files
+                previewImages: files.map((file) => URL.createObjectURL(file)), // Create preview URLs for all files
             }));
         }
     };
@@ -39,10 +42,12 @@ const AddProductForm = () => {
         const data = new FormData();
         data.append('productName', formData.productName);
         data.append('price', formData.price);
+        data.append('SKU', formData.SKU);
         data.append('category', formData.category);
         data.append('description', formData.description);
         data.append('productImage', formData.productImage);
-        
+        data.append('features', features);
+
         for (let pair of data.entries()) {
             console.log(pair[0] + ': ' + pair[1]);
         }
@@ -52,6 +57,7 @@ const AddProductForm = () => {
             // Handle success, e.g., show success message
             setContent({ title: <><span className={`${styles.icon} ${styles.success} material-symbols-outlined`}>check</span> Ajout effectué</>, content: response.message });
             setIsOpen(true);
+            setOnConfirm(() => () => { setFormData({ productName: '', price: '', category: '', description: '', SKU: '', productImage: null, previewImage: null, features: [""] }) });
         } else {
             // Handle error, e.g., show error message
             setContent({ title: <><span className={`${styles.icon} ${styles.failure} material-symbols-outlined`}>close</span> Ajout echoué</>, content: response.error });
@@ -59,13 +65,28 @@ const AddProductForm = () => {
         }
     };
 
-    
-    
+    const handleAddFeature = () => {
+        setFeatures([...features, ""]);
+    };
+
+    // Handle removing a feature
+    const handleRemoveFeature = (index) => {
+        setFeatures(features.filter((_, i) => i !== index));
+    };
+
+    // Handle feature input change
+    const handleFeatureChange = (value, index) => {
+        const updatedFeatures = [...features];
+        updatedFeatures[index] = value;
+        setFeatures(updatedFeatures);
+    };
+
+
 
     return (
         <div className={styles.container}>
-            <Popup title={content.title} content={content.content} isOpen={isOpen} onClose={() => { setIsOpen(false); setContent('') }} />
-            <h2 className={styles.title}>Add New Product</h2>
+            <Popup onConfirm={onConfirm} title={content.title} content={content.content} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            <h2 className={styles.title}>Ajouter un produit</h2>
             <form className={styles.form} onSubmit={handleSubmit}>
                 {/* Product Name */}
                 <div className={styles.formGroup}>
@@ -77,7 +98,7 @@ const AddProductForm = () => {
                         id="productName"
                         name="productName"
                         value={formData.productName}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                         required
                         className={styles.input}
                         placeholder='Entrer le nom du produit...'
@@ -94,10 +115,58 @@ const AddProductForm = () => {
                         id="price"
                         name="price"
                         value={formData.price}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                         required
                         className={styles.input}
                         placeholder='Entrer le prix du produit...'
+                    />
+                </div>
+
+                {/* Features */}
+                <div className={styles.formGroup}>
+                    <label htmlFor="Features" className={styles.label}>
+                        Attribus:
+                    </label>
+                    {features.map((feature, index) => (
+                        <div key={index} className={styles.featureRow}>
+                            <input
+                                type="text"
+                                value={feature}
+                                onChange={(e) => handleFeatureChange(e.target.value, index)}
+                                placeholder={`Attribut ${index + 1}`}
+                                className={styles.input}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => handleRemoveFeature(index)}
+                                className={styles.removeButton}
+                            >
+                                <i className='material-symbols-outlined'>close</i>
+                            </button>
+                        </div>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={handleAddFeature}
+                        className={styles.addButton}
+                    >
+                        Ajouter des attribus
+                    </button>
+                </div>
+
+                <div className={styles.formGroup}>
+                    <label htmlFor="SKU" className={styles.label}>
+                        SKU:
+                    </label>
+                    <input
+                        type="number"
+                        id="SKU"
+                        name="SKU"
+                        value={formData.SKU}
+                        onChange={handleInputChange}
+                        required
+                        className={styles.input}
+                        placeholder='eg: 348121032'
                     />
                 </div>
 
@@ -110,7 +179,7 @@ const AddProductForm = () => {
                         id="category"
                         name="category"
                         value={formData.category}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                         required
                         className={styles.select}
                     >
@@ -126,6 +195,8 @@ const AddProductForm = () => {
                         <option value="Haut-parleurs">Haut-parleurs</option>
                         <option value="Montres">Montres</option>
                         <option value="Powerbank">Powerbank</option>
+                        <option value="Tablette">Tablette</option>
+                        <option value="Phone Case">Phone Case</option>
                     </select>
                 </div>
 
@@ -138,7 +209,7 @@ const AddProductForm = () => {
                         id="description"
                         name="description"
                         value={formData.description}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                         required
                         className={styles.textarea}
                         placeholder='Entrer la description du produit...'
@@ -146,26 +217,30 @@ const AddProductForm = () => {
                 </div>
 
                 {/* Product Image */}
-                <div className={styles.formGroup}>
-                    <label htmlFor="productImage" className={styles.label}>
-                        Image du produit:
+                <div className={styles.fileUpload}>
+                    <label htmlFor="productImages" className={styles.fileLabel}>
+                        Drag & drop your images here, or <span>browse</span>
                     </label>
                     <input
                         type="file"
-                        id="productImage"
+                        id="productImages"
                         accept="image/*"
+                        multiple // Allow multiple file selection
                         onChange={handleImageChange}
                         className={styles.fileInput}
                     />
-                    {/* Image Preview */}
-                    {formData.previewImage && (
-                        <img
-                            src={formData.previewImage}
-                            alt="Product Preview"
-                            className={styles.imagePreview}
-                        />
-                    )}
+                    {/* Display all image previews */}
+                    {formData.previewImages &&
+                        formData.previewImages.map((preview, index) => (
+                            <img
+                                key={index}
+                                src={preview}
+                                alt={`Preview ${index + 1}`}
+                                className={styles.imagePreview}
+                            />
+                        ))}
                 </div>
+                <br />
 
                 {/* Submit Button */}
                 <button type="submit" className={styles.submitButton}>

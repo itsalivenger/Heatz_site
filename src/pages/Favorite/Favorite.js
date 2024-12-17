@@ -10,7 +10,6 @@ function Favorite() {
         const getItems = async () => {
             const favoriteItems = await getFavoriteItems();
             setItems(favoriteItems.favorite ? favoriteItems.favorite : []);
-            console.log(favoriteItems);
         }
         getItems();
     }, []);

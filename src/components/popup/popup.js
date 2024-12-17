@@ -74,12 +74,4 @@ function Popup({ isOpen, onClose, title, content, onConfirm }) {
     );
 }
 
-Popup.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onConfirm: PropTypes.func,
-    title: PropTypes.string,
-    content: PropTypes.node
-};
-
 export default Popup;

@@ -5,6 +5,8 @@ import { serverDomain } from "./variables";
 async function getCart() {
     const user = getUser();
     const cart = await sendRequest(`${serverDomain}/cart/${user._id}`, 'GET');
+
+    // mochkil f connexion mora signup
     return cart;
 }
 

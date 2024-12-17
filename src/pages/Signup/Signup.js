@@ -66,11 +66,11 @@ function SignupPage() {
   
       console.log(response);
   
-      if (response.token) {
-        // Store JWT token in localStorage for future authenticated requests
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('userRole', response.role);  // Store user role, if necessary
-      }
+      // if (response.token) {
+      //   // Store JWT token in localStorage for future authenticated requests
+      //   localStorage.setItem('token', response.token);
+      //   localStorage.setItem('userRole', response.role);  // Store user role, if necessary
+      // }
   
       // Display success message and open the popup
       setContent({ title: "Success", content: "Account created successfully!" });

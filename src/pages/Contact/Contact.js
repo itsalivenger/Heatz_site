@@ -4,8 +4,9 @@ import { useState } from 'react';
 import sendRequest from '../../components/other/sendRequest';
 import { serverDomain } from '../../components/other/variables';
 import Popup from '../../components/popup/popup';
+import SocialMedia from '../../components/socialMedia/socialMedia';
 
-function Contact() {
+function Contact({ contactInfo }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
@@ -80,6 +81,7 @@ function Contact() {
                 <div className={styles["get-in-touch-container"]}>
                     <span className={styles["need-any-help"]}>Besoin d'aide ?</span>
                     <span className={styles["get-in-touch-with-us"]}>Contactez-nous</span>
+                    <SocialMedia />
                     <p className={styles["get-in-touch-paragraph"]}>
                         Lorem ipsum est un texte simplement disponible dolor sit amet,
                         consectetur noté adipisicing elit sed do eiusmod tempor
@@ -89,21 +91,21 @@ function Contact() {
                         <i className={`${styles["media-icons"]} material-symbols-outlined`}>call</i>
                         <div className={styles["media-text-container"]}>
                             <span className={styles["get-in-touch-span0"]}>Avez-vous des questions ?</span>
-                            <span className={styles["get-in-touch-span1"]}>Appel gratuit : +92 (020)-9850</span>
+                            <span className={styles["get-in-touch-span1"]}>Appel gratuit : {contactInfo.phoneNumber}</span>
                         </div>
                     </div>
                     <div className={styles["media-container"]}>
                         <i className={`${styles["media-icons"]} material-symbols-outlined`}>mail</i>
                         <div className={styles["media-text-container"]}>
                             <span className={styles["get-in-touch-span0"]}>Écrivez-nous un e-mail</span>
-                            <span className={styles["get-in-touch-span1"]}>besoinaide@entreprise.com</span>
+                            <span className={styles["get-in-touch-span1"]}>{contactInfo.email}</span>
                         </div>
                     </div>
                     <div className={styles["media-container"]}>
                         <i className={`${styles["media-icons"]} material-symbols-outlined`}>location_on</i>
                         <div className={styles["media-text-container"]}>
                             <span className={styles["get-in-touch-span0"]}>Visitez-nous à tout moment</span>
-                            <span className={styles["get-in-touch-span1"]}>66 rue Dorée, Brooklyn, New York</span>
+                            <span className={styles["get-in-touch-span1"]}>{contactInfo.address}</span>
                         </div>
                     </div>
                 </div>

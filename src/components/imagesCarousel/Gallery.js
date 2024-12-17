@@ -47,7 +47,7 @@ const Gallery = ({ images }) => {
           <div key={index} className={styles.carouselItem}>
             <img
               src={image.src}
-              alt={image.alt}
+              alt={`image ${index}`}
               className={styles.carouselImage}
             />
           </div>

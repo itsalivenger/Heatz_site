@@ -30,7 +30,7 @@
     color: #00ff9c;
     border-radius: 50%;
     padding: 1rem;
-    /* transform: scale(3); */
+    transform: scale(3);
 }
 
 .confirmationIcon .material-symbols-outlined {

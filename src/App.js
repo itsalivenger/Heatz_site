@@ -18,6 +18,8 @@ import Shop from './pages/Shop/Shop';
 import NotFound from './pages/NotFound/NotFound';
 import Success from './pages/Success/Success';
 import ProductPage from './pages/Product/ProductPage.js';
+import AdminPage from './pages/AdminPage/AdminPage.js';
+import ProfilePage from './pages/ProfilePage/ProfilePage/ProfilePage.jsx';
 
 // Protected Route wrapper for authenticated users
 const ProtectedRoute = ({ children, isAuthenticated }) => {
@@ -41,12 +43,18 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const contactInfo = {
+    email: 'contact@heatz.ma',
+    phoneNumber: '+92 (020)-9850',
+    address: 'Maroc'
+  }
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decoded = jwtDecode(token); // Use jwtDecode instead of jwt_decode
+        const decoded = jwtDecode(token);
         const isTokenExpired = decoded.exp * 1000 < Date.now();
         if (!isTokenExpired) {
           setIsAuthenticated(true);
@@ -92,9 +100,9 @@ function App() {
 
   return (
     <div className="App">
-      {content && <Popup onConfirm={() => redirectTo('login')} isOpen={isOpen} onClose={() =>{ 
-      setIsOpen(false);
-      redirectTo('login');
+      {content && <Popup onConfirm={() => redirectTo('login')} isOpen={isOpen} onClose={() => {
+        setIsOpen(false);
+        redirectTo('login');
       }} title={content.title} content={content.content} />}
       <Router>
         <Navbar
@@ -105,7 +113,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact contactInfo={contactInfo} />} />
           <Route
             path="/login"
             element={
@@ -158,7 +166,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <>profile page</>
+                <ProfilePage handleLogout={handleLogout} />
               </ProtectedRoute>
             }
           />
@@ -168,7 +176,7 @@ function App() {
             path="/admin"
             element={
               <AdminRoute isAdmin={isAdmin}>
-                <AdminDashboard />
+                <AdminPage />
               </AdminRoute>
             }
           />

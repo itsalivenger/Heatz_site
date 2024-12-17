@@ -13,11 +13,11 @@ function Success() {
         <div className={styles.success}>
             <div className={styles.container}>
                 <section className={styles.orderConfirmation}>
+                    <div className={styles.logo}>
+                        <img src="./images/logos/heatz.png" alt="Company Logo" />
+                    </div>
                     <div className={styles.confirmationIcon}>
                         <span className="material-symbols-outlined">check_circle</span>
-                    </div>
-                    <div className={styles.logo}>
-                        <img src="company-logo.svg" alt="Company Logo" />
                     </div>
                     <h1 className={styles.title}>Félicitations</h1>
                     <h2 className={styles.subtitle}>Votre commande est confirmée</h2>

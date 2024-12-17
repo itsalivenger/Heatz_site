@@ -85,7 +85,7 @@ function CheckoutPage() {
   const handleSubmit = async () => {
     // Handle form submission here
     console.log('Form Submitted:', formData);
-    const response = await sendRequest(`${serverDomain}/checkout`, 'POST', { formData, user: getUser(), cart: cart });
+    const response = await sendRequest(`${serverDomain}/checkout`, 'POST', { formData, user: getUser(), cart });
 
     if (!response.error) {
       window.location.href = `${domain}/success`;
