@@ -34,7 +34,7 @@ function  AdminSideNav({ handleContent }) {
             </div>
 
             <div className={styles.logo}>
-                <img alt='Heatz logo' src='./images/logos/heatz.png' className={styles.logoText} />
+                <img alt='Heatz logo' src='./images/logos/HeatzLogo.png' className={styles.logoText} />
                 <i className={`${styles.icon} material-symbols-outlined`}></i>
             </div>
             <nav className={styles.navMenu}>
