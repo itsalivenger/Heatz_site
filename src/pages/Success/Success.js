@@ -1,14 +1,7 @@
-import { useEffect, useState } from 'react';
 import styles from './Success.module.css';
-import { getUser } from '../../components/other/usefulFunctions';
 import { Link } from 'react-router-dom';
 
 function Success() {
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        setUser(getUser());
-    }, []);
     return (
         <div className={styles.success}>
             <div className={styles.container}>

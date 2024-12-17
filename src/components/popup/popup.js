@@ -1,7 +1,6 @@
 // Popup.jsx
 import { useState, useEffect } from "react";
 import styles from "./popup.module.css";
-import PropTypes from 'prop-types';
 
 function Popup({ isOpen, onClose, title, content, onConfirm }) {
     const [isActive, setIsActive] = useState(false);

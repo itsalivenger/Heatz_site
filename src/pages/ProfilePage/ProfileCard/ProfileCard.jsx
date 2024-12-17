@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../ui/Card/Card';
+import { Card } from '../Card/Card';
 import { Button } from '../ui/Button/Button';
 import { Icon } from '../ui/Icon/Icon';
 import styles from './ProfileCard.module.css';

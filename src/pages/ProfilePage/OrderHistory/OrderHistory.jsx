@@ -1,10 +1,9 @@
 import { getTotal } from '../../../components/other/usefulFunctions';
-import { Card } from '../../../components/tempo/ui/Card/Card';
+import { Card } from '../Card/Card';
 import styles from './OrderHistory.module.css';
 
 export function OrderHistory({ orders }) {
 
-  console.log(orders);
   return (
     <Card className={styles.container}>
       <div className={styles.header}>

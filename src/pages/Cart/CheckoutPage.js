@@ -3,7 +3,7 @@ import styles from './CheckoutPage.module.css';
 import Cart from './cart.js';
 import Checkout from './checkout.js';
 import Finalize from './finalize.js';
-import { getUser, isFormFilled, clearCart, updateCartInServer } from '../../components/other/usefulFunctions.js';
+import { getUser, isFormFilled, updateCartInServer } from '../../components/other/usefulFunctions.js';
 import { serverDomain, domain } from '../../components/other/variables.js';
 import sendRequest from '../../components/other/sendRequest.js';
 import Popup from '../../components/popup/popup.js';

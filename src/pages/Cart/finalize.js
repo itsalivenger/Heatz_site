@@ -1,4 +1,5 @@
-import { getCart, getTotal, getUser } from "../../components/other/usefulFunctions";
+import { Link } from "react-router-dom";
+import { getTotal, getUser } from "../../components/other/usefulFunctions";
 import styles from "./finalize.module.css";
 import { useEffect, useState } from "react";
 
@@ -11,7 +12,7 @@ function Finalize({ handleSubmit, cart }) {
         // Assuming `getCart` fetches data from local storage or API
         setTotal(getTotal(cart || []));
         setUser(getUser());
-        console.log(user);
+        // console.log(user);
     }, []);
     return (
         <div className={styles["finalize"]}>
@@ -49,7 +50,7 @@ function Finalize({ handleSubmit, cart }) {
                 <span className={styles["confirmation-title"]}>Confirmation</span>
                 <div className={styles["check-container"]}>
                     <div className={styles["check-input"]}></div>
-                    <span className={styles["accept-conditions"]}>J'accepte les <a className={styles["condition-and-terms"]} href="#">conditions générales</a>.</span>
+                    <span className={styles["accept-conditions"]}>J'accepte les <Link to={'/conditions'} className={styles["condition-and-terms"]}>conditions générales</Link>.</span>
                 </div>
             </div>
 

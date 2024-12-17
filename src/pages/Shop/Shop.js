@@ -36,7 +36,7 @@ function Shop() {
                 if (response.error) {
                     console.log(response.error);
                 } else {
-                    console.log(response);
+                    // console.log(response);
                     // Append new products to the existing list
                     setProducts(response.products);
                 }
