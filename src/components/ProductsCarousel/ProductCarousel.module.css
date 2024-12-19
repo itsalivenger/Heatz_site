@@ -16,13 +16,6 @@
   }
 
 
-  :global(.slick-slide) {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-
-
   :global(.slick-track) {
     display: flex !important;
     gap: 0;
