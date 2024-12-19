@@ -58,7 +58,7 @@ const ParticlesBackground = () => {
                         events: {
                             onHover: {
                                 enable: true,
-                                mode: "pull" // attract
+                                mode: "grab"
                             },
                             onClick: {
                                 enable: true,

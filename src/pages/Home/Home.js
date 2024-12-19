@@ -53,7 +53,7 @@ function Home() {
         console.log(response.error);
       } else {
         console.log(response);
-        setProducts(response.products);
+        setProducts(response.products ? response.products : []);
       }
     }
 
