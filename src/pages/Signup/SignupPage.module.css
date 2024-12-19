@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(26, 26, 26);
-    padding: 150px 0;
+    /* background-color: rgb(26, 26, 26); */
+    padding: 50px 0;
 }
 
 .registration-container {
@@ -62,12 +62,14 @@
 .registration-container .form-group input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #2a5a47;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: transparent;
+    border: 1px solid #2a5a47;
     color: white;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    background: rgb(26, 26, 26);
+    transition: border 0.3s ease;
+    box-sizing: border-box;
 }
 
 .registration-container .form-group input:focus {

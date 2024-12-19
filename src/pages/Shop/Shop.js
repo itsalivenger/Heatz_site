@@ -21,7 +21,7 @@ const images = [
 
 function Shop() {
     const [products, setProducts] = useState([]);
-    const [user] = useState({user_id: getUser()._id});
+    const [user] = useState({user_id: getUser()});
     const [startIndex, setStartIndex] = useState(0);  // Keep track of the current index
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState({});

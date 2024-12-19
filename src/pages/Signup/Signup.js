@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 // import { isValidEmail, isValidPassword, isValidPhoneNumber } from "../../components/other/formChecker";
 import { domain, serverDomain } from "../../components/other/variables";
+import { formValidation } from "../../components/other/usefulFunctions";
 
 function SignupPage() {
   const [fullName, setFullName] = useState("");
@@ -50,9 +51,12 @@ function SignupPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!isFormValid) {
-      alert("Veuillez remplir tous les champs requis et accepter les termes.");
+    
+    const result = formValidation({ email, password, phoneNumber })
+
+    if (!result.success) {
+      setContent({ title: "Error", content: result.errors });
+      setIsPopupOpen(true);
       return;
     }
   

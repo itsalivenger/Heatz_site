@@ -6,8 +6,12 @@ import ImageAndVideo from "../../components/ImageAndVideo/imageAndVideo";
 import ProductsCardsCarousel from "../../components/ProductsCardsCarousel/productsCardsCarousel";
 import ProductsCarousel from "../../components/ProductsCarousel/productsCarousel";
 import VideoCarousel from "../../components/ImageGallery/videoCarousel";
+import { useEffect, useState } from "react";
+import sendRequest from "../../components/other/sendRequest";
+import { serverDomain } from "../../components/other/variables";
+import Popup from "../../components/popup/popup";
 
-const products = [
+const productsMockup = [
   {
     id: 1,
     imageSrc: './images/products/headset1.png',
@@ -36,22 +40,48 @@ const products = [
 ];
 
 function Home() {
+  const [products, setProducts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [content, setContent] = useState({});
+
+
+
+  useEffect(() => {
+    const getProductsSamples = async () => {
+      const response = await sendRequest(`${serverDomain}/products/carouselSamples`, 'GET');
+      if (response.error) {
+        console.log(response.error);
+      } else {
+        console.log(response);
+        setProducts(response.products);
+      }
+    }
+
+    getProductsSamples();
+  }, [])
+
+  const togglePopup = (content) => {
+    setIsOpen(!isOpen);
+    setContent(content);
+  }
+
   return (
     <div>
       <HeroSection />
       <TitleAndText title={"Améliorez Votre Expérience de Jeu"} text={`Découvrez nos produits de pointe conçus pour une immersion totale et des performances optimales. Profitez d'un son immersif, d'une précision accrue, et d'un confort exceptionnel.`} />
       <HeroCarousel />
-      <ProductsCardsCarousel />
-      <ProductsCarousel products={products} />
+      <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
+      <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
       <ColoredDivider />
       <ImageAndVideo img={"./images/flayers/gaming.jpeg"} vid={"./videos/hero2.mp4"} />
       <TitleAndText title={"Améliorez Votre Expérience de Jeu"} text={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`} />
       <HeroCarousel />
-      <ProductsCardsCarousel />
-      <ProductsCarousel products={products} />
+      <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
+      <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
       <ColoredDivider />
       <ImageAndVideo img={"./images/flayers/watch.jpeg"} vid={"./videos/hero2.mp4"} />
       <TitleAndText title={"Produits Tendance"} text={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`} />
+      <Popup onClose={() => setIsOpen(false)} isOpen={isOpen} content={content.content} title={content.title} />
       <VideoCarousel />
     </div>
   );

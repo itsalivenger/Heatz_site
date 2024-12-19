@@ -20,6 +20,7 @@ import Success from './pages/Success/Success';
 import ProductPage from './pages/Product/ProductPage.js';
 import AdminPage from './pages/AdminPage/AdminPage.js';
 import ProfilePage from './pages/ProfilePage/ProfilePage/ProfilePage.jsx';
+import ParticlesBackground from './components/particles/Particle.js';
 
 // Protected Route wrapper for authenticated users
 const ProtectedRoute = ({ children, isAuthenticated }) => {
@@ -100,6 +101,7 @@ function App() {
 
   return (
     <div className="App">
+      <ParticlesBackground />
       {content && <Popup onConfirm={() => redirectTo('login')} isOpen={isOpen} onClose={() => {
         setIsOpen(false);
         redirectTo('login');

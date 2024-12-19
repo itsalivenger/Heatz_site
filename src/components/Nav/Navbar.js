@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import SearchBar from './searchBar';
 import { searchItems } from '../other/usefulFunctions';
@@ -8,6 +8,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [menuIsToggled, setMenuIsToggled] = useState(false);
   const [setDropdownItems] = useState([]);
+  const location = useLocation();
 
   const handleSubmit = async (val) => {
     // to submit value
@@ -24,14 +25,14 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
 
   return (
     <>
-      <nav className={`${styles.navbar}`}>
+      <nav className={`${styles.navbar} ${location.pathname === '/' ? styles["navbar-home"] : ''}`}>
         <Link to={'/'} className={styles["navbar-logo"]}>
           <img src={"./images/logos/Vector.svg"} alt='this is the company logo' />
         </Link>
 
         <div className={`${styles["linksContainer"]} toggledMenu ${menuIsToggled ? styles.toggledMenu : ''}`}>
           <div className={`${styles["navbar-links"]} ${isSearchActive ? styles['inactive'] : ''}`}>
-            <Link to={'/'}>Acceuil</Link>
+            <a href="/">Accueil</a>
             <Link to={'/boutique'}>Boutique</Link>
             <Link to={'/'}>Categories</Link>
             <Link to={'contact'}>Contact</Link>

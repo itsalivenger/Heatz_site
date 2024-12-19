@@ -8,7 +8,7 @@ import { serverDomain } from '../other/variables';
 
 const ProductCard = ({ product, user_id, togglePopup }) => {
 
-  console.log(product.imageUrl, user_id);
+  // console.log(product.imageUrl, user_id);
   const isConnected = () => {
     if (!user_id) {
       togglePopup({ title: 'Error', content: 'Vous devez vous connecter d\'abord.' });

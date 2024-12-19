@@ -46,4 +46,47 @@ const searchItems = async function(query){
     return response
 }
 
-export { getCart, getTotal, getUser, isFormFilled, updateCartInServer, getFavoriteItems, searchItems };
+// Function to handle and validate form data
+// Function to handle and validate form data
+function formValidation(formData) {
+    const { email, password, phoneNumber } = formData;
+
+    // Validation results
+    const errors = [];
+
+    // Validate email
+    if (!email) {
+        errors.push("L'email est requis.");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errors.push("Format d'email invalide.");
+    }
+
+    // Validate password
+    if (!password) {
+        errors.push("Le mot de passe est requis.");
+    } else if (password.length < 8) {
+        errors.push("Le mot de passe doit comporter au moins 8 caractères.");
+    }
+
+    // Validate phone number
+    if (!phoneNumber) {
+        errors.push("Le numéro de téléphone est requis.");
+    } else if (!/^\+?\d{10,15}$/.test(phoneNumber)) {
+        errors.push("Format de numéro de téléphone invalide.");
+    }
+
+    // Return results
+    return {
+        success: errors.length === 0,
+        errors: (
+            <ul>
+                {errors.map((error, index) => (
+                    <li key={index}>{error}</li>
+                ))}
+            </ul>
+        ),
+    };
+}
+
+
+export { getCart, getTotal, getUser, isFormFilled, updateCartInServer, getFavoriteItems, searchItems, formValidation };

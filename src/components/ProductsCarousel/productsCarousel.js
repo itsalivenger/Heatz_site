@@ -5,16 +5,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProductCarousel.module.css';
 
-const ProductCarousel = ({ products, itemsToShow = 4 }) => {
+const ProductCarousel = ({ products, itemsToShow = 3, togglePopup }) => {
   const settings = {
     dots: false,
     arrows: false,
     infinite: true,
-    speed: 2000,
+    speed: 6000,
     autoplay: true,
     autoplaySpeed: 3000,
     slidesToShow: itemsToShow,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     draggable: true,
     responsive: [
       {
@@ -44,7 +44,7 @@ const ProductCarousel = ({ products, itemsToShow = 4 }) => {
         {products.map((product, index) => (
           <div key={index} className={styles.carouselItem}>
             <div className={styles.carouselItemInner}>
-              <ProductCard product={product} />
+              <ProductCard product={product} togglePopup={togglePopup} />
             </div>
           </div>
         ))}
