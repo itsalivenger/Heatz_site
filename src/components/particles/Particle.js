@@ -4,12 +4,12 @@ import { loadFull } from "tsparticles";
 
 const ParticlesBackground = () => {
     const particlesInit = useCallback(async (engine) => {
-        console.log('Initializing particles...');
+        // console.log('Initializing particles...');
         await loadFull(engine);
     }, []);
 
     const particlesLoaded = useCallback(async (container) => {
-        console.log('Particles loaded!');
+        // console.log('Particles loaded!');
     }, []);
 
     return (
@@ -48,7 +48,7 @@ const ParticlesBackground = () => {
                         },
                         move: {
                             enable: true,
-                            speed: 3
+                            speed: 2
                         },
                         opacity: {
                             value: 0.5

@@ -10,7 +10,7 @@ import SignupPage from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import Contact from "./pages/Contact/Contact";
 import CheckoutPage from "./pages/Cart/CheckoutPage";
-import Favorite from "./pages/Favorite/Favorite";
+import Favorite from "./pages/favorites/FavoritesPage/FavoritesPage.jsx";
 // import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import Popup from './components/popup/popup';
 import LoadingSpinner from './components/LoadingSpinner/loadingSpinner';

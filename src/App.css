@@ -31,6 +31,7 @@ input:focus {
 
 :root {
   --color-green: rgb(0, 228, 137);
+  --color-greenHover: rgb(1, 146, 88);
   --color-gray: rgba(255, 255, 255, 0.1);
   --color-white: #ffffff;
   --color-black: #000000;

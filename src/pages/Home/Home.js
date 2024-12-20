@@ -79,7 +79,7 @@ function Home() {
       <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
       <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
       <ColoredDivider />
-      <ImageAndVideo img={"./images/flayers/watch.jpeg"} vid={"./videos/hero2.mp4"} />
+      <ImageAndVideo img={"./images/flayers/watch.jpeg"} vid={"./videos/handWatch.mp4"} />
       <TitleAndText title={"Produits Tendance"} text={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`} />
       <Popup onClose={() => setIsOpen(false)} isOpen={isOpen} content={content.content} title={content.title} />
       <VideoCarousel />

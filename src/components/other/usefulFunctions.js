@@ -20,14 +20,14 @@ function getTotal(cart) {
 
 function getUser() {
     const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    return user ? JSON.parse(user) : {};
 }
 
-const isFormFilled = function(formData){
+const isFormFilled = function (formData) {
     return Object.values(formData).every(val => val !== '')
 }
 
-const updateCartInServer = async function(cart){
+const updateCartInServer = async function (cart) {
     const user = getUser();
     const response = await sendRequest(`${serverDomain}/cart`, 'PUT', { cart, user });
     user.cart = cart;
@@ -35,13 +35,14 @@ const updateCartInServer = async function(cart){
     return response
 }
 
-const getFavoriteItems = async function(){
+const getFavoriteItems = async function () {
     const user = getUser();
+    if (!user) return {}
     const response = await sendRequest(`${serverDomain}/favorite/${user._id}`, 'GET');
     return response
 }
 
-const searchItems = async function(query){
+const searchItems = async function (query) {
     const response = await sendRequest(`${serverDomain}/products/getProducts/${query}`, 'GET');
     return response
 }
@@ -88,5 +89,23 @@ function formValidation(formData) {
     };
 }
 
+const addToCart = async (user_id, togglePopup, product) => {
+    if (!user_id) {
+        togglePopup({ title: 'Error', content: 'Vous devez vous connecter d\'abord.' });
+        return false;
+    };
 
-export { getCart, getTotal, getUser, isFormFilled, updateCartInServer, getFavoriteItems, searchItems, formValidation };
+    const response = await sendRequest(`${serverDomain}/cart`, 'POST', { product_Id: product._id, user_id });
+    if (!response.error) {
+        togglePopup({ title: 'Success', content: response.message });
+        const user = JSON.parse(localStorage.getItem('user'));
+        user.cart.push({ ...product, quantity: 1 });
+        localStorage.setItem('user', JSON.stringify(user));
+    } else {
+        togglePopup({ title: 'Error', content: response.error });
+    }
+};
+
+
+
+export { addToCart, getCart, getTotal, getUser, isFormFilled, updateCartInServer, getFavoriteItems, searchItems, formValidation };

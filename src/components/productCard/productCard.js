@@ -33,8 +33,9 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
   };
 
   const addToFavorite = async () => {
+    console.log(user_id);
     if (!isConnected()) return;
-    const response = await sendRequest(`${serverDomain}/favorite`, 'POST', { product_Id: product._id, user_id });
+    const response = await sendRequest(`${serverDomain}/favorite`, 'POST', { product_Id: product._id, user_id: user_id._id });
     if (!response.error) {
       togglePopup({ title: 'Success', content: response.message });
     } else {
