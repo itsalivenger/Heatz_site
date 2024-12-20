@@ -18,7 +18,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
 
     // setDropdownItems(dropdownItems);
   }
-  
+
   const toggleSearchInput = () => {
     setIsSearchActive(!isSearchActive);
   };
@@ -41,25 +41,29 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
           <div className={`${styles["navbar-icons"]} ${isSearchActive ? styles['inactive'] : ''}`}>
             {/* Cart Link */}
             <Link to={'cart'} className={styles["info-container"]}>
-              <i className="material-symbols-outlined">shopping_bag</i>
+              {/* <i className="material-symbols-outlined">shopping_bag</i> */}
+              <img src='./images/icons/cart.svg' alt='cart icon' />
               <div className={styles["info-text"]}>Panier</div>
             </Link>
 
             {/* Favorite Link */}
             <Link to={'favorite'} className={styles["info-container"]}>
-              <i className="material-symbols-outlined">favorite</i>
+              {/* <i className="material-symbols-outlined">favorite</i> */}
+              <img src='./images/icons/heart.svg' alt='heart icon' />
               <div className={styles["info-text"]}>Favoris</div>
             </Link>
 
             {/* Profile Link */}
             {isAuthenticated ? (
               <Link to={'/profile'} className={styles["info-container"]}>
-                <i className="material-symbols-outlined">person</i>
+                {/* <i className="material-symbols-outlined">person</i> */}
+                <img src='./images/icons/person.svg' alt='person icon' />
                 <div className={styles["info-text"]}>Profile</div>
               </Link>
             ) : (
               <Link to={'/signup'} className={styles["info-container"]}>
-                <i className="material-symbols-outlined">person</i>
+                {/* <i className="material-symbols-outlined">person</i> */}
+                <img src='./images/icons/person.svg' alt='person icon' />
                 <div className={styles["info-text"]}>Créer un compte</div>
               </Link>
             )}
@@ -67,7 +71,8 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {/* Admin Link */}
             {isAdmin && (
               <Link to={'/admin'} className={styles["info-container"]}>
-                <i className="material-symbols-outlined">admin_panel_settings</i>
+                {/* <i className="material-symbols-outlined">admin_panel_settings</i> */}
+                <img src='./images/icons/admin_panel.svg' alt='admin_panel icon' />
                 <div className={styles["info-text"]}>Panneau d'administration
                 </div>
               </Link>
@@ -76,36 +81,41 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {/* Logout or Login Link */}
             {isAuthenticated ? (
               <div className={styles["info-container"]} onClick={onLogout}>
-                <i className="material-symbols-outlined">logout</i>
+                {/* <i className="material-symbols-outlined">logout</i> */}
+                <img src='./images/icons/logout.svg' alt='logout icon' />
                 <div className={styles["info-text"]}>Déconnexion</div>
               </div>
             ) : (
               <Link to={'/login'} className={styles["info-container"]}>
-                <i className="material-symbols-outlined">login</i>
+                {/* <i className="material-symbols-outlined">login</i> */}
+                <img src='./images/icons/login.svg' alt='login icon' />
                 <div className={styles["info-text"]}>Connexion</div>
               </Link>
             )}
 
             {/* Search Input (optional, as you have a toggle here) */}
             <div onClick={toggleSearchInput} className={styles["info-container"]}>
-              <i className="material-symbols-outlined">search</i>
+              {/* <i className="material-symbols-outlined">search</i> */}
+              <img src='./images/icons/search.svg' alt='search icon' />
             </div>
           </div>
 
-          <div className={`${styles["closeIcon"]} ${styles.closeBtnContainer}`}>
-            <i onClick={() => setMenuIsToggled(!menuIsToggled)} className={`material-symbols-outlined`}>
+          <div onClick={() => setMenuIsToggled(!menuIsToggled)} className={`${styles["closeIcon"]} ${styles.closeBtnContainer}`}>
+            <img src='./images/icons/close.svg' alt='close icon' />
+            <div className={styles["info-text"]}>Fermer</div>
+            {/* <i className={`material-symbols-outlined`}>
               close
-              <div className={styles["info-text"]}>Fermer</div>
-            </i>
+            </i> */}
           </div>
         </div>
 
         <div className={styles["mobile-logo"]}>
-          <img src='./images/logos/HeatzLogo.png' alt='Heatz Logo'  />
+          <img src='./images/logos/HeatzLogo.png' alt='Heatz Logo' />
         </div>
         <SearchBar handleSubmit={handleSubmit} toggleSearchInput={toggleSearchInput} isActive={isSearchActive} />
         <div onClick={() => setMenuIsToggled(!menuIsToggled)} className={`${styles.hamburger} ${styles["info-container"]}`}>
-          <i className={`material-symbols-outlined`}>menu</i>
+          {/* <i className={`material-symbols-outlined`}>menu</i> */}
+          <img src='./images/icons/menu.svg' alt='menu icon' />
           <div className={styles["info-text"]}>Menu</div>
         </div>
       </nav>

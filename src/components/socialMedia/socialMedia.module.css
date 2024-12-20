@@ -2,10 +2,7 @@
 
 .iconContainer {
     display: flex;
-    justify-content: center;
-    /* Centrer les icônes horizontalement */
     gap: 20px;
-    /* Espacement entre les icônes */
     padding: 10px;
 }
 
