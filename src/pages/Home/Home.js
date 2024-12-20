@@ -10,6 +10,9 @@ import { useEffect, useState } from "react";
 import sendRequest from "../../components/other/sendRequest";
 import { serverDomain } from "../../components/other/variables";
 import Popup from "../../components/popup/popup";
+import CategoriesSection from "../Shop/CategoriesSection";
+import HomeCategories from "../../components/homeCategories/homeCategories";
+import { ShippingFeatures } from "../../components/shippingFeature/shippingFeature";
 
 const productsMockup = [
   {
@@ -68,8 +71,10 @@ function Home() {
   return (
     <div>
       <HeroSection />
+      <HomeCategories />
       <TitleAndText title={"Améliorez Votre Expérience de Jeu"} text={`Découvrez nos produits de pointe conçus pour une immersion totale et des performances optimales. Profitez d'un son immersif, d'une précision accrue, et d'un confort exceptionnel.`} />
       <HeroCarousel />
+      <ShippingFeatures />
       <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
       <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
       <ColoredDivider />

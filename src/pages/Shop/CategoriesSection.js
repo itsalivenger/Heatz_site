@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './CategoriesSection.module.css';
+import { useLocation } from 'react-router-dom';
 
 const categories = [
     { name: 'Chargeurs', imgSrc: './images/categories/adaptors.png' },
@@ -17,18 +18,40 @@ const categories = [
 ];
 
 function CategoriesSection({ handleCategories }) {
-    const [activeCategory, setActiveCategory] = useState(categories[4].name);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const categoryFromUrl = queryParams.get('category');
+    const [activeCategory, setActiveCategory] = useState(
+        categories.find((category) => category.name === categoryFromUrl).name || categories[0].name
+    );
 
+    console.log(categories.find((category) => category.name === categoryFromUrl) || categories[0].name);
     useState(() => {
         handleCategories(activeCategory);
-    })
+
+        // Extract category from URL
+        const queryParams = new URLSearchParams(location.search);
+        const categoryFromUrl = queryParams.get('category');
+
+        if (categoryFromUrl) {
+            // Use setTimeout to defer execution until after rendering
+            setTimeout(() => {
+                const element = document.getElementById('categories');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    console.warn(`Element with ID "${categoryFromUrl}" not found.`);
+                }
+            }, 0); // Delay ensures the DOM is fully updated
+        }
+    }, [])
     const handleCategoryClick = (categoryName) => {
         setActiveCategory(categoryName);
         handleCategories(categoryName);
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} id='categories'>
             {categories.map((category, i) => (
                 <div
                     key={category.name}

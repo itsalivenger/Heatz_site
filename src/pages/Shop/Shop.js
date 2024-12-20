@@ -25,6 +25,7 @@ function Shop() {
     const [startIndex, setStartIndex] = useState(0);  // Keep track of the current index
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState({});
+    const [currentCategory, setCurrentCategory] = useState('');
     const loadLimit = 5;  // Match this with backend's loadLimit
 
     useEffect(() => {
@@ -44,6 +45,7 @@ function Shop() {
                 console.error('Error fetching products:', error);
             }
         }
+        
 
         getProducts();
     }, [startIndex]);
@@ -67,6 +69,7 @@ function Shop() {
             // Append new products to the existing list
             setProducts(response.products);
         }
+        setCurrentCategory(category);
     }
 
     return (
@@ -77,7 +80,7 @@ function Shop() {
                 <CategoriesSection handleCategories={handleCategories} />
 
                 <div className={styles.titleContainer}>
-                    <h2>Headphones for you!</h2>
+                    <h2>{currentCategory} Pour Vous!</h2>
                 </div>
 
                 <div className={styles.productContainer}>
