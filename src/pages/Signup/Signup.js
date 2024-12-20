@@ -113,7 +113,7 @@ function SignupPage() {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 type="text"
-                placeholder="John Doe"
+                placeholder="Prenom Nom"
                 required
               />
             </div>

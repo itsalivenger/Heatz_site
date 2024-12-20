@@ -17,6 +17,7 @@
     max-width: 48%;
     max-height: 550px;  /* Limit the height */
     object-fit: cover;
+    pointer-events: none; /* Disable interactions */
 }
 
 
