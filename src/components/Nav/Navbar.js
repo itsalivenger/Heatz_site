@@ -115,7 +115,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
         <SearchBar handleSubmit={handleSubmit} toggleSearchInput={toggleSearchInput} isActive={isSearchActive} />
         <div onClick={() => setMenuIsToggled(!menuIsToggled)} className={`${styles.hamburger} ${styles["info-container"]}`}>
           {/* <i className={`material-symbols-outlined`}>menu</i> */}
-          <img src='./images/icons/menu.svg' alt='menu icon' />
+          <img src='./images/icons/Menu.svg' alt='menu icon' />
           <div className={styles["info-text"]}>Menu</div>
         </div>
       </nav>
