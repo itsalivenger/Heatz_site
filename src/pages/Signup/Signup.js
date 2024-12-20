@@ -18,6 +18,7 @@ function SignupPage() {
   // Form validity state to track if the button should be enabled
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [visibility, setVisibility] = useState(false);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -51,7 +52,7 @@ function SignupPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const result = formValidation({ email, password, phoneNumber })
 
     if (!result.success) {
@@ -59,7 +60,7 @@ function SignupPage() {
       setIsPopupOpen(true);
       return;
     }
-  
+
     try {
       // Sending the request to the backend
       const response = await sendRequest(
@@ -67,33 +68,33 @@ function SignupPage() {
         "POST",
         { fullName, email, phoneNumber, password, termsAccepted }
       );
-  
+
       console.log(response);
-  
+
       // if (response.token) {
       //   // Store JWT token in localStorage for future authenticated requests
       //   localStorage.setItem('token', response.token);
       //   localStorage.setItem('userRole', response.role);  // Store user role, if necessary
       // }
-  
+
       // Display success message and open the popup
       setContent({ title: "Success", content: "Account created successfully!" });
       openPopup();
-  
+
       // Reset form fields
       setFullName("");
       setEmail("");
       setPhoneNumber("");
       setPassword("");
       setTermsAccepted(false);
-  
+
     } catch (error) {
       console.error("Signup failed:", error);
       setContent({ title: "Error", content: "Failed to create account." });
       openPopup();
     }
   };
-  
+
 
   return (
     <div className={styles["container"]}>
@@ -158,10 +159,15 @@ function SignupPage() {
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                type="password"
+                type={visibility ? "text" : "password"}
                 placeholder="Mot de passe"
                 required
               />
+              {visibility ? (
+                <img onClick={()=> setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibilityOff.svg" alt="hide password" />
+              ) : (
+                <img onClick={()=> setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibility.svg" alt="show password" />
+              )}
             </div>
           </div>
 

@@ -34,6 +34,7 @@
 
 .registration-container .form-group {
     margin-bottom: 20px;
+    position: relative;
 }
 
 .registration-container .form-row {
@@ -158,6 +159,18 @@
     text-decoration: none;
 }
 
+.show-password{
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.show-password:hover{
+    transform: scale(1.2) translateY(-50%);
+}
 
 @media (max-width: 600px) {
     .registration-container {

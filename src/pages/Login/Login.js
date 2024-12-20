@@ -11,6 +11,7 @@ function LoginPage() {
     const [password, setPassword] = useState("");
     const [content, setContent] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [visibility, setVisibility] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -67,7 +68,12 @@ function LoginPage() {
                             </div>
                             <div className={styles.inputContainer}>
                                 <label>Mot de passe <span>*</span></label>
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Mot de passe" required />
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} type={visibility ? "text" : "password"} placeholder="Mot de passe" required />
+                                {visibility ? (
+                                    <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibilityOff.svg" alt="hide password" />
+                                ) : (
+                                    <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibility.svg" alt="show password" />
+                                )}
                             </div>
                         </div>
 
