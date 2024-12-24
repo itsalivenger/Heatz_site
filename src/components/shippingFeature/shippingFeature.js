@@ -6,23 +6,24 @@ export function ShippingFeatures() {
         {
             icon: <img src='./images/icons/truck.svg' className={styles.icon} alt='truck' />,
             title: 'Livraison Gratuite',
-            description: 'Pour toute commande de plus de 50€'
+            description: 'Bénéficiez de la livraison gratuite pour toute commande supérieure à 50€.'
         },
         {
             icon: <img src='./images/icons/package.svg' className={styles.icon} alt='package' />,
             title: 'Retours Gratuits',
-            description: 'Sous 30 jours'
+            description: 'Retournez vos produits gratuitement dans les 30 jours suivant votre achat.'
         },
         {
             icon: <img src='./images/icons/clock.svg' className={styles.icon} alt='clock' />,
             title: 'Livraison Express',
-            description: 'Sous 24-48h'
-        },
+            description: 'Recevez votre commande en 24 à 48 heures, selon votre localisation.'
+        },        
         {
             icon: <img src='./images/icons/shield.svg' className={styles.icon} alt='shield' />,
             title: 'Paiement Sécurisé',
-            description: 'Par carte ou PayPal'
+            description: 'Optez pour un paiement sécurisé par Cash on Delivery lors de la réception de votre commande.'
         }
+
     ];
 
     return (

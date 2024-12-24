@@ -46,8 +46,8 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const contactInfo = {
     email: 'contact@heatz.ma',
-    phoneNumber: '+92 (020)-9850',
-    address: 'Maroc'
+    phoneNumber: '+212 (020)-9850',
+    address: 'Maroc - Casablanca'
   }
 
 

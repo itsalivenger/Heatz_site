@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import sendRequest from "../../components/other/sendRequest";
 import { serverDomain } from "../../components/other/variables";
 import Popup from "../../components/popup/popup";
-import CategoriesSection from "../Shop/CategoriesSection";
+// import CategoriesSection from "../Shop/CategoriesSection";
 import HomeCategories from "../../components/homeCategories/homeCategories";
 import { ShippingFeatures } from "../../components/shippingFeature/shippingFeature";
 
@@ -79,13 +79,13 @@ function Home() {
       <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
       <ColoredDivider />
       <ImageAndVideo img={"./images/flayers/gaming.jpeg"} vid={"./videos/hero2.mp4"} />
-      <TitleAndText title={"Améliorez Votre Expérience de Jeu"} text={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`} />
+      <TitleAndText title={"Améliorez Votre Expérience de Jeu"} text={`Optimisez votre expérience de jeu avec des accessoires performants, des casques audio immersifs et des périphériques conçus pour offrir précision et confort lors de vos sessions gaming.`} />
       <HeroCarousel />
       <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
       <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
       <ColoredDivider />
       <ImageAndVideo img={"./images/flayers/watch.jpeg"} vid={"./videos/hero2.mp4"} />
-      <TitleAndText title={"Produits Tendance"} text={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`} />
+      <TitleAndText title={"Produits Tendance"} text={`Découvrez notre sélection de produits innovants, des accessoires tech de qualité pour améliorer votre quotidien.`} />
       <Popup onClose={() => setIsOpen(false)} isOpen={isOpen} content={content.content} title={content.title} />
       <VideoCarousel />
     </div>

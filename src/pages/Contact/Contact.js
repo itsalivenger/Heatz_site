@@ -83,9 +83,7 @@ function Contact({ contactInfo }) {
                     <span className={styles["get-in-touch-with-us"]}>Contactez-nous</span>
                     <SocialMedia />
                     <p className={styles["get-in-touch-paragraph"]}>
-                        Lorem ipsum est un texte simplement disponible dolor sit amet,
-                        consectetur noté adipisicing elit sed do eiusmod tempor
-                        incididunt simplement dolore magna aliqua.
+                        Vous avez une question ou besoin d'aide avec l'un de nos produits ? Notre équipe est là pour vous aider. N'hésitez pas à nous contacter via les réseaux sociaux ou par e-mail. Nous nous engageons à répondre rapidement à toutes vos demandes.
                     </p>
                     <div className={styles["media-container"]}>
                         <i className={`${styles["media-icons"]} material-symbols-outlined`}>call</i>
@@ -113,7 +111,7 @@ function Contact({ contactInfo }) {
             <Location />
         </div>
     );
-    
+
 }
 
 export default Contact;

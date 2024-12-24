@@ -59,13 +59,13 @@ function Popup({ isOpen, onClose, title, content, onConfirm }) {
                         onClick={handleClose} 
                         className={`${styles["popup-button"]} ${styles["cancel-button"]}`}
                     >
-                        Cancel
+                        Annuler
                     </button>
                     <button 
                         onClick={handleConfirm} 
                         className={`${styles["popup-button"]} ${styles["confirm-button"]}`}
                     >
-                        Confirm
+                        Confirmer
                     </button>
                 </div>
             </div>

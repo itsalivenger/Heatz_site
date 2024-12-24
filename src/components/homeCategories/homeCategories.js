@@ -11,7 +11,7 @@ const categories = [
     { name: 'tablettes', imgSrc: './images/categories/tablette.png' },
     { name: 'Montres', imgSrc: './images/categories/watches.png' },
     { name: 'Powerbank', imgSrc: './images/categories/powerbank.png' },
-    { name: 'phone Case', imgSrc: './images/categories/phonecase.png' },
+    { name: 'phone Case', imgSrc: './images/categories/phoneCase.png' },
     { name: 'Haut-parleurs', imgSrc: './images/categories/speaker.png' },
     { name: 'Chargeur de voiture', imgSrc: './images/categories/car-charger.png' },
 ];

@@ -12,7 +12,7 @@ const categories = [
     { name: 'tablettes', imgSrc: './images/categories/tablette.png' },
     { name: 'Montres', imgSrc: './images/categories/watches.png' },
     { name: 'Powerbank', imgSrc: './images/categories/powerbank.png' },
-    { name: 'phone Case', imgSrc: './images/categories/phonecase.png' },
+    { name: 'phone Case', imgSrc: './images/categories/phoneCase.png' },
     { name: 'Haut-parleurs', imgSrc: './images/categories/speaker.png' },
     { name: 'Chargeur de voiture', imgSrc: './images/categories/car-charger.png' },
 ];
@@ -21,8 +21,8 @@ function CategoriesSection({ handleCategories }) {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const categoryFromUrl = queryParams.get('category');
-    const [activeCategory, setActiveCategory] = useState(
-        categories.find((category) => category.name === categoryFromUrl).name || categories[0].name
+    const [activeCategory, setActiveCategory] = useState(categoryFromUrl ?
+        categories.find((category) => category.name === categoryFromUrl).name : categories[0].name
     );
 
     console.log(categories.find((category) => category.name === categoryFromUrl) || categories[0].name);
@@ -54,7 +54,7 @@ function CategoriesSection({ handleCategories }) {
         <div className={styles.container} id='categories'>
             {categories.map((category, i) => (
                 <div
-                    key={category.name}
+                    key={i}
                     className={`${styles.category} ${(activeCategory === category.name) ? styles.active : ''}`}
                     onClick={() => handleCategoryClick(category.name)}
                 >
