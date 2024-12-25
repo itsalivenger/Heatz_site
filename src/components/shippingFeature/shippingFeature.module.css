@@ -17,9 +17,14 @@
   
   .icon {
     color: var(--color-green);
-    width: 2rem;
-    height: 2rem;
+    width: 4rem;
+    height: 4rem;
     margin-bottom: 0.75rem;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .icon:hover {
+    transform: scale(1.1) rotate3d(0, 1, 0, 360deg);
   }
   
   .title {

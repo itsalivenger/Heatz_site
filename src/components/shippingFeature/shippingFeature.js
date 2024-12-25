@@ -19,7 +19,7 @@ export function ShippingFeatures() {
             description: 'Recevez votre commande en 24 à 48 heures, selon votre localisation.'
         },        
         {
-            icon: <img src='./images/icons/shield.svg' className={styles.icon} alt='shield' />,
+            icon: <img src='./images/icons/pod.svg' className={styles.icon} alt='shield' />,
             title: 'Paiement Sécurisé',
             description: 'Optez pour un paiement sécurisé par Cash on Delivery lors de la réception de votre commande.'
         }

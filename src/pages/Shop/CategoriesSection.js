@@ -4,16 +4,16 @@ import { useLocation } from 'react-router-dom';
 
 const categories = [
     { name: 'Chargeurs', imgSrc: './images/categories/adaptors.png' },
-    { name: 'Batteries', imgSrc: './images/categories/battery.png' },
     { name: 'Câbles', imgSrc: './images/categories/cables.png' },
     { name: 'Écouteurs', imgSrc: './images/categories/earphone.png' },
+    { name: 'Haut-parleurs', imgSrc: './images/categories/speaker.png' },
+    { name: 'Batteries', imgSrc: './images/categories/battery.png' },
     { name: 'Modulateur', imgSrc: './images/categories/fm.png' },
     { name: 'Supports', imgSrc: './images/categories/holder.png' },
     { name: 'tablettes', imgSrc: './images/categories/tablette.png' },
     { name: 'Montres', imgSrc: './images/categories/watches.png' },
     { name: 'Powerbank', imgSrc: './images/categories/powerbank.png' },
     { name: 'phone Case', imgSrc: './images/categories/phoneCase.png' },
-    { name: 'Haut-parleurs', imgSrc: './images/categories/speaker.png' },
     { name: 'Chargeur de voiture', imgSrc: './images/categories/car-charger.png' },
 ];
 
