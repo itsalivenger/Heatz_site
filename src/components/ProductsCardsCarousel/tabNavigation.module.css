@@ -24,12 +24,12 @@
 
 .tab.active {
   background-color: #00ff88;
-  color: black;
+  color: #111;
   border-radius: 20px;
 }
 
 .tab:hover {
-  color: black;
+  color: #fff;
 }
 
 /* Responsive Adjustments */

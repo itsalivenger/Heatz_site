@@ -164,21 +164,23 @@ function SignupPage() {
                 required
               />
               {visibility ? (
-                <img onClick={()=> setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibilityOff.svg" alt="hide password" />
+                <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibilityOff.svg" alt="hide password" />
               ) : (
-                <img onClick={()=> setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibility.svg" alt="show password" />
+                <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibility.svg" alt="show password" />
               )}
             </div>
           </div>
 
           <div className={styles["terms"]}>
-            <input
-              checked={termsAccepted}
-              onChange={(e) => setTermsAccepted(e.target.checked)}
-              type="checkbox"
-              id="terms"
-              required
-            />
+            <div className={styles["terms-checkbox"]}>
+              <input
+                checked={termsAccepted}
+                onChange={(e) => setTermsAccepted(e.target.checked)}
+                type="checkbox"
+                id="terms"
+                required
+              />
+            </div>
             <label htmlFor="terms">
               En créant un compte, vous acceptez les Conditions Générales & la
               Politique de Confidentialité.

@@ -8,6 +8,12 @@
   margin-bottom: 1rem;
 }
 
+.formGroup input, .formGroup textarea {
+  box-sizing: border-box;
+  resize: none;
+  padding: 0.5rem;
+}
+
 .label {
   display: block;
   font-size: 0.875rem;

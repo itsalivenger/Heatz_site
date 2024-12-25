@@ -112,7 +112,7 @@ function CheckoutPage() {
       case 3:
         return <Finalize cart={cart} handleSubmit={handleSubmit} />;
       default:
-        return <Cart />;
+        return <Cart cart={cart} setCart={setCart} />;
     }
   };
 

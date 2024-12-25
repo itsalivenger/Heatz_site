@@ -1,12 +1,13 @@
 .container{
   padding: 1.5rem;
+  display: grid;
 }
 
 .avatar {
   width: 120px;
   height: 120px;
+  justify-self: center;
   border-radius: 50%;
-  margin: 0 auto 1rem;
   border: 3px solid var(--color-green);
 }
 

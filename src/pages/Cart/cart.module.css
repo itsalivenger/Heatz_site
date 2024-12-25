@@ -5,6 +5,11 @@
     margin: 0px 20px;
 }
 
+.add-address{
+    color: rgb(0, 228, 137);
+    text-decoration: underline;
+}
+
 .sub-container-of-all {
     display: flex;
     justify-content: space-between;

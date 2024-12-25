@@ -12,26 +12,26 @@ function DashboardAdmin() {
 
       if (response.error) {
         console.log(response.error);
-      }else{
+      } else {
         // console.log(response);
         setData(response);
       }
     }
     getData();
   }, [])
-    return (
-        <div>
-            <SalesSummary data={data} />
-            <div className={styles.contentContainer}>
-                <SalesTable />
-                <Earnings />
-            </div>
-            {/* <OrdersAdmin /> */}
-        </div>
-    );
+  return (
+    <div>
+      <SalesSummary data={data} />
+      <div className={styles.contentContainer}>
+        <SalesTable />
+        <Earnings />
+      </div>
+      {/* <OrdersAdmin /> */}
+    </div>
+  );
 }
 
-const SalesSummary = ({ data: { salesOfToday, numOfOrders, nombreDesProduitsVendus, usersThisLastWeek}}) => {
+const SalesSummary = ({ data: { salesOfToday, numOfOrders, nombreDesProduitsVendus, usersThisLastWeek } }) => {
   const data = [
     {
       // statistique icon
@@ -127,13 +127,21 @@ const SalesTable = () => {
 };
 
 const Earnings = () => {
+
+  const convertToK = (value) => {
+    if (value >= 1000) {
+      return (value / 1000).toFixed(1).replace(/\.0$/, '') + ' k'; // Handles decimals
+    }
+    return value.toString(); // Return as is if less than 1000
+  };
+
   return (
     <div className={styles.earningsContainer}>
       <h2 className={styles.heading}>Revenus</h2>
       <div className={styles.earningsDetails}>
         <div className={styles.earningsItem}>
           <span className={styles.label}>Revenus totals:</span>
-          <span className={styles.value}>6078.76 DH</span>
+          <span className={styles.value}>{convertToK(6078.76)} DH</span>
         </div>
         <div className={styles.earningsItem}>
           <span className={styles.label}>Profit:</span>

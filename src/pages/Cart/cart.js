@@ -82,11 +82,10 @@ function Cart({ cart, setCart }) {
                     <span className={styles["address-title"]}>Adresse de Livraison</span>
                     <div className={styles["address-type-container"]}>
                         <div className={styles["no-address-container"]}>
-                            Aucune adresse trouvée. Veuillez &nbsp;
-                            <span className={styles["add-new-address"]}>ajouter une nouvelle adresse</span>
-                        </div>
-                        <div className={styles["address-container"]}>
-
+                            Aucune adresse trouvée. <div className={styles["add-address"]}>
+                                Veuillez
+                                ajouter une adresse de livraison dans la prochaine page.
+                            </div>
                         </div>
 
                     </div>

@@ -1,9 +1,8 @@
-import { getTotal } from '../../../components/other/usefulFunctions';
+import { getTotal, getDate } from '../../../components/other/usefulFunctions';
 import { Card } from '../Card/Card';
 import styles from './OrderHistory.module.css';
 
 export function OrderHistory({ orders }) {
-
   return (
     <Card className={styles.container}>
       <div className={styles.header}>
@@ -15,7 +14,7 @@ export function OrderHistory({ orders }) {
           <div key={order.id} className={styles.orderCard}>
             <div className={styles.orderHeader}>
               <span className={styles.orderNumber}>Commande #{order._id}</span>
-              <span className={styles.orderDate}>{order.createdAt}</span>
+              <span className={styles.orderDate}>{getDate(order.createdAt)}</span>
             </div>
 
             <div className={styles.orderItems}>
@@ -30,7 +29,7 @@ export function OrderHistory({ orders }) {
             </div>
 
             <div className={styles.orderTotal}>
-              Total: {getTotal(order.cart)}€
+              Total: {getTotal(order.cart)} DH
             </div>
           </div>
         )) : (

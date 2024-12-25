@@ -37,11 +37,6 @@ const VideoCarousel = () => {
 
   const videos = [
     { src: './videos/crossroad.mp4', title: 'Video 1' },
-    { src: './videos/handWatch.mp4', title: 'Video 2' },
-    { src: './videos/watch2.mp4', title: 'Video 3' },
-    { src: './videos/crossroad.mp4', title: 'Video 4' },
-    { src: './videos/handWatch.mp4', title: 'Video 2' },
-    { src: './videos/watch2.mp4', title: 'Video 3' },
     { src: './videos/crossroad.mp4', title: 'Video 4' }
   ];
 

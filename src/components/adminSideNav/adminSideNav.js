@@ -73,7 +73,7 @@ function  AdminSideNav({ handleContent }) {
                         <span>Promouvoir vos produits</span>
                     </a>
                     <a href="#statements" className={`${styles.navItem}`} onClick={() => { handleContent(<></>) }}>
-                        <i className={`${styles.icon} material-symbols-outlined`}></i>
+                        <i className={`${styles.icon} material-symbols-outlined`}>description</i>
                         <span>Relevés de compte</span>
                     </a>
                 </div>

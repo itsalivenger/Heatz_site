@@ -106,9 +106,13 @@
     color: #888;
 }
 
+.registration-container .terms label {
+    font-size: 0.8rem;
+}
+
 .registration-container .terms input[type="checkbox"] {
-    width: 25px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     accent-color: #00ff9d;
     appearance: none;
     -webkit-appearance: none;
@@ -130,7 +134,8 @@
     content: '✓';
     color: black;
     position: absolute;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: bolder;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -142,9 +147,9 @@
     background-color: #00ff9d;
     border: none;
     border-radius: 10px;
-    color: black;
+    color: #fff;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: bolder;
     cursor: pointer;
     margin-bottom: 20px;
 }
@@ -186,9 +191,5 @@
 @media screen and (max-width: 400px) {
     .registration-container {
         padding: 25px;
-    }
-
-    .registration-container .terms input[type="checkbox"] {
-        width: 40px;
     }
 }

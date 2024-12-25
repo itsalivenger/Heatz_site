@@ -47,6 +47,12 @@ const searchItems = async function (query) {
     return response
 }
 
+const getDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('fr-FR', options);
+}
+
 // Function to handle and validate form data
 // Function to handle and validate form data
 function formValidation(formData) {
@@ -108,4 +114,5 @@ const addToCart = async (user_id, togglePopup, product) => {
 
 
 
-export { addToCart, getCart, getTotal, getUser, isFormFilled, updateCartInServer, getFavoriteItems, searchItems, formValidation };
+export { addToCart, getCart, getTotal, getUser, isFormFilled, updateCartInServer,
+    getFavoriteItems, searchItems, formValidation, getDate };
