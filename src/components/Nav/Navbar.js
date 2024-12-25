@@ -34,7 +34,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
           <div className={`${styles["navbar-links"]} ${isSearchActive ? styles['inactive'] : ''}`}>
             <a href="/">Accueil</a>
             <Link to={'/boutique'}>Boutique</Link>
-            <Link to={'/'}>Categories</Link>
+            <Link to={'/about'}>A propos</Link>
             <Link to={'contact'}>Contact</Link>
           </div>
 
