@@ -31,16 +31,17 @@ export default function AboutTestimonials() {
         <div className={styles.header}>
           <h2 className={styles.subtitle}>Témoignages</h2>
           <p className={styles.title}>
-            Adoré par les passionnés de tech du monde entier
+            Adoré par les passionnés de tech du Maroc entier
           </p>
         </div>
         <div className={styles.grid}>
           {testimonials.map((testimonial) => (
             <div key={testimonial.name} className={styles.card}>
               <div className={styles.rating}>
-                {[...Array(5)].map((_, i) => (
-                  <img src="./images/icons/star.svg" alt="star" />
-                ))}
+                {[...Array(5)].map((_, i) => {
+                    return <img src="./images/icons/star.svg" alt="star" />;
+                  
+                })}
               </div>
               <blockquote className={styles.content}>
                 <p>"{testimonial.content}"</p>
