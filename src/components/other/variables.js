@@ -5,7 +5,7 @@ const localhostBack = 'http://localhost:5000';
 const serverDeploy = 'https://heatz-server.vercel.app';
 const clientDeploy = 'https://heatzheatz.vercel.app/';
 
-const domain = clientDeploy;
+const domain = localhostFront;
 const serverDomain = serverDeploy;
 
 export { domain, serverDomain };

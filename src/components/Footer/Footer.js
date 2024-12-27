@@ -47,7 +47,7 @@ const Footer = () => {
                 {content && <Popup isOpen={isOpen} onClose={closePopup} title={content.title} content={content.content} setContent={setContent} />}
                 <div className={styles["footer-top"]}>
                     <div className={styles["footer-brand"]}>
-                        <div className={styles["logo"]}><img src="./images/logos/Heatz.png" alt="Logo" /></div>
+                        <div className={styles["logo"]}><img src="./images/logos/HeatzLogo.png" alt="Logo" /></div>
 
                         <SocialMedia />
 
