@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./contactSocieteForm.module.css";
 import sendRequest from "../other/sendRequest";
 import { serverDomain } from "../other/variables";
+import Popup from "../popup/popup";
 
 function SellerForm({ flipCard }) {
   const [societe, setSociete] = useState("");
@@ -11,8 +12,10 @@ function SellerForm({ flipCard }) {
   const [numeroTelephone, setNumeroTelephone] = useState("");
   const [email, setEmail] = useState("");
   const [besoin, setBesoin] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [content, setContent] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({
       societe,
@@ -23,12 +26,25 @@ function SellerForm({ flipCard }) {
       email,
       besoin,
     });
-    const response = sendRequest(
+    const response = await sendRequest(
       `${serverDomain}/contactSociete`,
-      "POST")
-      if(response.status === 200){
-        
+      "POST",
+      {
+        societe,
+        ice,
+        ville,
+        numeroFix,
+        numeroTelephone,
+        email,
+        besoin,
       }
+    );
+    // console.log(response);
+    if(response.error){
+      console.log(response.error);
+    } else {
+      console.log(response);
+    }
     resetInputs();
   };
 
@@ -120,6 +136,7 @@ function SellerForm({ flipCard }) {
             Individuel
           </button>
         </div>
+        <Popup content={content.content} title={content.title} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </form>
     </div>
   );

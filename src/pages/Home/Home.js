@@ -78,7 +78,7 @@ function Home() {
       <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
       <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
       <ColoredDivider />
-      <ImageAndVideo img={"./images/flayers/gaming.jpeg"} vid={"./videos/hero2.mp4"} />
+      <ImageAndVideo img={"./images/flayers/gaming.jpeg"} vid={"./videos/watchLast.mp4"} />
       <TitleAndText title={"Améliorez Votre Expérience de Jeu"} text={`Optimisez votre expérience de jeu avec des accessoires performants, des casques audio immersifs et des périphériques conçus pour offrir précision et confort lors de vos sessions gaming.`} />
       <HeroCarousel />
       <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />

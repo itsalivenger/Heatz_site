@@ -17,7 +17,7 @@ const slides = [
     title: "Améliorez Votre Expérience Audio",
     description: "Découvrez des produits incroyables et parcourez une vaste collection.",
     buttonText: "En Savoir Plus",
-    backgroundImage: "./images/flayers/mouse.jpeg"
+    backgroundImage: "./images/flayers/lastWatch.jpg"
   },
 ];
 
