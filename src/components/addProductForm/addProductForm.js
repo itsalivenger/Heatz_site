@@ -12,7 +12,7 @@ const AddProductForm = () => {
         category: '',
         description: '',
         SKU: '',
-        productImage: null,
+        productImages: null,
         previewImage: null
     });
     const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +30,7 @@ const AddProductForm = () => {
         if (files.length > 0) {
             setFormData((prevData) => ({
                 ...prevData,
-                productImages: files, // Store all files
+                productImages: files,
                 previewImages: files.map((file) => URL.createObjectURL(file)), // Create preview URLs for all files
             }));
         }
@@ -45,13 +45,21 @@ const AddProductForm = () => {
         data.append('SKU', formData.SKU);
         data.append('category', formData.category);
         data.append('description', formData.description);
-        data.append('productImage', formData.productImage);
         data.append('features', features);
+
+        // Append files one by one
+        if (formData.productImages && formData.productImages.length > 0) {
+            formData.productImages.forEach((file) => {
+                data.append('productImages', file);
+            });
+        }
 
         for (let pair of data.entries()) {
             console.log(pair[0] + ': ' + pair[1]);
         }
+        
         // Handle form submission logic here (e.g., send data to the backend)
+        console.log(data);
         const response = await sendRequest(`${serverDomain}/products/addProduct`, 'POST', data, {}, true);
         if (!response.error) {
             // Handle success, e.g., show success message

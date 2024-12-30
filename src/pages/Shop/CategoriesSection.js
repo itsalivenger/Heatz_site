@@ -25,7 +25,6 @@ function CategoriesSection({ handleCategories }) {
         categories.find((category) => category.name === categoryFromUrl).name : categories[0].name
     );
 
-    console.log(categories.find((category) => category.name === categoryFromUrl) || categories[0].name);
     useState(() => {
         handleCategories(activeCategory);
 

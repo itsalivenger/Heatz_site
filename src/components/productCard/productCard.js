@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from './productCard.module.css';
 import sendRequest from '../other/sendRequest';
@@ -8,7 +8,6 @@ import { serverDomain } from '../other/variables';
 
 const ProductCard = ({ product, user_id, togglePopup }) => {
 
-  // console.log(product.imageUrl, user_id);
   const isConnected = () => {
     if (!user_id) {
       togglePopup({ title: 'Error', content: 'Vous devez vous connecter d\'abord.' });
@@ -32,8 +31,25 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
     }
   };
 
+  const shortenText = (text, maxLength = 100, suffix = '...') => {
+    // Return original text if it's shorter than max length
+    if (!text || text.length <= maxLength) {
+      return text;
+    }
+
+    // Find the last space before maxLength to avoid cutting words
+    const lastSpace = text.lastIndexOf(' ', maxLength);
+
+    // If no space found, just cut at maxLength
+    if (lastSpace === -1) {
+      return text.substring(0, maxLength) + suffix;
+    }
+
+    // Cut at the last space and add suffix
+    return text.substring(0, lastSpace) + suffix;
+  };
+
   const addToFavorite = async () => {
-    console.log(user_id);
     if (!isConnected()) return;
     const response = await sendRequest(`${serverDomain}/favorite`, 'POST', { product_Id: product._id, user_id: user_id._id });
     if (!response.error) {
@@ -49,16 +65,19 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
+    slidesToScroll: 1, // Add this
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000
+    autoplaySpeed: 3000,
+    centerMode: false, // Add this
+    variableWidth: false // Add this
   };
 
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
         <Slider {...settings} className={styles.carousel}>
-          {product.imageUrl && product.imageUrl.map((image, index) => (
+          {product.imageUrls && product.imageUrls.map((image, index) => (
             <div key={index} className={styles.carouselSlide}>
               <img src={image} alt={`${product.productName} ${index + 1}`} className={styles.productImage} />
             </div>
@@ -76,7 +95,7 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
       <div className={styles.cardContent}>
         <p className={styles.title}>{product.productName}</p>
         <p className={styles.note}>{product.note}</p>
-        <p className={styles.description}>{product.description}</p>
+        <p className={styles.description}>{shortenText(product.description)}</p>
         <p className={styles.price}>{product.price} DH</p>
       </div>
     </div>
