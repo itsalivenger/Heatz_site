@@ -167,14 +167,14 @@ const AddProductForm = () => {
                         SKU:
                     </label>
                     <input
-                        type="number"
+                        type="text"
                         id="SKU"
                         name="SKU"
                         value={formData.SKU}
                         onChange={handleInputChange}
                         required
                         className={styles.input}
-                        placeholder='eg: 348121032'
+                        placeholder='eg: Hb-1234'
                     />
                 </div>
 
