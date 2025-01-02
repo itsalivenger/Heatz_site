@@ -45,6 +45,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const launchDate = new Date('2025-01-31');
   const contactInfo = {
     email: 'contact@heatz.ma',
     phoneNumber: '+212 (020)-9850',
@@ -95,6 +96,13 @@ function App() {
   const redirectTo = (to) => {
     window.location.href = `/${to}`;
   };
+
+  const today = new Date();
+
+  if (today > launchDate) {
+    return <h1>Website is unavailable. Please contact support.</h1>;
+  }
+
 
   if (loading) {
     return <LoadingSpinner />;

@@ -195,6 +195,7 @@ const AddProductForm = () => {
                         <option value="Écouteurs">Écouteurs</option>
                         <option value="Câbles">Câbles</option>
                         <option value="Chargeurs">chargeurs</option>
+                        <option value="Adapter">Adapter</option>
                         <option value="Power banks">Power Banks</option>
                         <option value="Batteries">Batteries</option>
                         <option value="Chargeur de voiture">Chargeur de voiture</option>
