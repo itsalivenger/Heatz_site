@@ -193,8 +193,9 @@ function App() {
             }
           />
 
+          
           {/* Catch all route - 404 */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>
