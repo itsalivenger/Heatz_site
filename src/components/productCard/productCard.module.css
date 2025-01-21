@@ -48,8 +48,11 @@
 
 .icon {
     font-size: 28px;
-    /* background-color: rgba(255, 255, 255, 0.8); */
+    background-color: whitesmoke;
     padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -74,8 +77,16 @@
 
 .title {
     font-size: 1.2rem;
+    text-decoration: none;
+    color: #111;
     font-weight: bold;
     margin: 0 0 8px;
+    transition: transform .2s ease, color .2s ease;
+}
+
+.title:hover{
+    transform: scale(1.01);
+    color: #00ad5c;
 }
 
 .note {

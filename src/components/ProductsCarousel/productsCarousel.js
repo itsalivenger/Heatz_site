@@ -9,8 +9,7 @@ const ProductCarousel = ({ products, itemsToShow = 3, togglePopup }) => {
   const settings = {
     dots: false,
     arrows: false,
-    infinite: true,
-    speed: 6000,
+    speed: 1000,
     autoplay: true,
     autoplaySpeed: 3000,
     slidesToShow: itemsToShow,

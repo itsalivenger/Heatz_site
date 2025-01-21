@@ -1,10 +1,10 @@
-import React from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from './productCard.module.css';
 import sendRequest from '../other/sendRequest';
 import { serverDomain } from '../other/variables';
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, user_id, togglePopup }) => {
 
@@ -59,18 +59,17 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
     }
   };
 
-  // Carousel settings for react-slick
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1, // Add this
+    slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
-    centerMode: false, // Add this
-    variableWidth: false // Add this
+    centerMode: false,
+    variableWidth: false
   };
 
   return (
@@ -93,7 +92,9 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
         </div>
       </div>
       <div className={styles.cardContent}>
-        <p className={styles.title}>{product.productName}</p>
+        <Link to={`/productPrview/${product._id}`} className={styles.title}>
+          {product.productName}
+        </Link>
         <p className={styles.note}>{product.note}</p>
         <p className={styles.description}>{shortenText(product.description)}</p>
         <p className={styles.price}>{product.price} DH</p>

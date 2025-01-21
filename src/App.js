@@ -22,6 +22,7 @@ import AdminPage from './pages/AdminPage/AdminPage.js';
 import ProfilePage from './pages/ProfilePage/ProfilePage/ProfilePage.jsx';
 import ParticlesBackground from './components/particles/Particle.js';
 import AboutPage from './pages/About/AboutPage.js';
+import PreviewProduct from './pages/PreviewProduct/PreviewProduct.js';
 
 // Protected Route wrapper for authenticated users
 const ProtectedRoute = ({ children, isAuthenticated }) => {
@@ -133,6 +134,7 @@ function App() {
                 <LoginPage onLogin={handleLogin} />
             }
           />
+          <Route path="/productPrview/:id" element={<PreviewProduct />} />
           <Route path='/about' element={<AboutPage />} />
           <Route
             path="/signup"

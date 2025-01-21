@@ -9,6 +9,7 @@ import { getUser } from '../../components/other/usefulFunctions';
 import Popup from '../../components/popup/popup';
 import Gallery from '../../components/imagesCarousel/Gallery';
 import CategoriesSection from './CategoriesSection';
+import { useLocation } from 'react-router-dom';
 
 const images = [
     { src: './images/other/img1.jpeg' },
@@ -17,48 +18,20 @@ const images = [
     { src: './images/other/img5.png' },
     { src: './images/other/img6.png' },
     { src: './images/other/img7.jpeg' },
-  ];
+];
 
 function Shop() {
     const [products, setProducts] = useState([]);
-    const [user] = useState({user_id: getUser()});
+    const [user] = useState({ user_id: getUser() });
     const [startIndex, setStartIndex] = useState(0);  // Keep track of the current index
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState({});
     const [currentCategory, setCurrentCategory] = useState('');
     const loadLimit = 5;  // Match this with backend's loadLimit
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const categoryFromUrl = queryParams.get('category');
 
-    useEffect(() => {
-        async function getProducts() {
-            try {
-                // Include the current index in the URL query parameter
-                const response = await sendRequest(`${serverDomain}/shop?n=${startIndex}?category=earphones`, 'GET');
-
-                if (response.error) {
-                    console.log(response.error);
-                } else {
-                    // console.log(response);
-                    // Append new products to the existing list
-                    setProducts(response.products);
-                }
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        }
-        
-
-        getProducts();
-    }, [startIndex]);
-
-    // Function to load more products
-    const loadMoreProducts = () => {
-        setStartIndex(prevIndex => prevIndex + loadLimit);  // Increment the start index
-    };
-
-    function togglePopup(content) {
-        setIsOpen(true);
-        setContent(content);
-    }
 
     const handleCategories = async (category) => {
         const response = await sendRequest(`${serverDomain}/shop?category=${category}`, 'GET');
@@ -70,6 +43,20 @@ function Shop() {
             setProducts(response.products);
         }
         setCurrentCategory(category);
+    }
+
+    useEffect(() => {
+        handleCategories(categoryFromUrl ? categoryFromUrl : 'earphones')
+    }, []);
+
+    // Function to load more products
+    const loadMoreProducts = () => {
+        setStartIndex(prevIndex => prevIndex + loadLimit);  // Increment the start index
+    };
+
+    function togglePopup(content) {
+        setIsOpen(true);
+        setContent(content);
     }
 
     return (
@@ -97,7 +84,7 @@ function Shop() {
                 </div>
             </div>
             <Gallery images={images} />
-            <Popup isOpen={isOpen} onClose={()=> setIsOpen(false)} title={content.title} content={content.content} />
+            <Popup isOpen={isOpen} onClose={() => setIsOpen(false)} title={content.title} content={content.content} />
         </div>
     );
 }
