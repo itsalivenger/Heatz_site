@@ -21,20 +21,21 @@ export default function FavoritesPage() {
     getItems();
   }, [content]);
 
-  const togglePopup = ({title, content}) => {
+  const togglePopup = ({ title, content }) => {
     setIsOpen(!isOpen);
     setContent({ title, content });
   }
 
-    const removeItemFromFavorite = async (id) => {
-      const response = await sendRequest(`${serverDomain}/favorite/delete`, 'POST', { user_id: user._id, product_Id: id });
-  
-      if (!response.error) {
-        togglePopup({ title: 'Success', content: response.message });
-      } else {
-        togglePopup({ title: 'Error', content: response.error });
-      }
+  const removeItemFromFavorite = async (id) => {
+    const response = await sendRequest(`${serverDomain}/favorite/delete`, 'POST', { user_id: user._id, product_Id: id });
+    if (!response.error) {
+      togglePopup({ title: 'Success', content: response.message });
+      user.favorite = user.favorite.filter(item => item.toString() !== id);
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      togglePopup({ title: 'Error', content: response.error });
     }
+  }
   const hasFavorites = items.length > 0;
 
   return (

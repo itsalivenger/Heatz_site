@@ -32,7 +32,7 @@ const updateCartInServer = async function (cart) {
     const response = await sendRequest(`${serverDomain}/cart`, 'PUT', { cart, user });
     user.cart = cart;
     localStorage.setItem('user', JSON.stringify(user));
-    return response
+    return response;
 }
 
 const getFavoriteItems = async function () {
@@ -53,7 +53,6 @@ const getDate = (dateString) => {
     return date.toLocaleDateString('fr-FR', options);
 }
 
-// Function to handle and validate form data
 // Function to handle and validate form data
 function formValidation(formData) {
     const { email, password, phoneNumber } = formData;
@@ -112,7 +111,20 @@ const addToCart = async (user_id, togglePopup, product) => {
     }
 };
 
+const addToFavorite = async (product_Id, user_id, togglePopup) => {
+    // if (!isConnected()) return;
+    const response = await sendRequest(`${serverDomain}/favorite`, 'POST', { product_Id, user_id });
+    if (!response.error) {
+        togglePopup({ title: 'Success', content: response.message });
+        const user = JSON.parse(localStorage.getItem('user'));
+        user.favorite.push(product_Id);
+        localStorage.setItem('user', JSON.stringify(user));
+    } else {
+        togglePopup({ title: 'Error', content: response.error });
+    }
+};
 
-
-export { addToCart, getCart, getTotal, getUser, isFormFilled, updateCartInServer,
-    getFavoriteItems, searchItems, formValidation, getDate };
+export {
+    addToCart, addToFavorite, getCart, getTotal, getUser, isFormFilled, updateCartInServer,
+    getFavoriteItems, searchItems, formValidation, getDate
+};

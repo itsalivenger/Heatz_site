@@ -34,6 +34,33 @@
       color: #fff;
   }
 
+  .goBackContainer{
+    padding: 1em 0;
+  }
+
+  .go-back {
+      display: inline-block;
+      padding: 5px 10px;
+      font-size: 24px;
+      font-weight: bolder;
+      color: #ffffff;
+      background-color: rgb(0, 228, 137);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .go-back:hover {
+      transform: scale(1.05);
+  }
+
+  .go-back:active {
+      transform: scale(0.95);
+  }
+
   .product-price {
       font-size: 1.8rem;
       font-weight: bold;
@@ -87,57 +114,59 @@
       gap: 1rem;
       margin-top: 2rem;
   }
+
   .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: .7em 1.2em;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: .7em 1.2em;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-.button-cart {
-    background-color: var(--color-green);
-    color: white;
-    flex: 2;
-}
+  .button-cart {
+      background-color: var(--color-green);
+      color: white;
+      flex: 2;
+  }
 
-.button-cart:hover {
-    background-color: rgb(0, 208, 127);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
+  .button-cart:hover {
+      background-color: rgb(0, 208, 127);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
 
-.button-wishlist {
-    background-color: #B01E28;
-    color: #fff;
-    flex: 2;
-    /* border: 2px solid #e5e7eb; */
-    position: relative;
-    overflow: hidden;
-}
+  .button-wishlist {
+      background-color: #B01E28;
+      color: #fff;
+      flex: 2;
+      /* border: 2px solid #e5e7eb; */
+      position: relative;
+      overflow: hidden;
+  }
 
-.button-wishlist:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+  .button-wishlist:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-.button-wishlist--active {
-    background-color: #fef2f2;
-    color: #dc2626;
-    border-color: #fecaca;
-}
+  .button-wishlist--active {
+      background-color: #fef2f2;
+      color: #dc2626;
+      border-color: #fecaca;
+  }
 
-.button-wishlist--active:hover {
-    background-color: #fee2e2;
-    border-color: #fca5a5;
-}
+  .button-wishlist--active:hover {
+      background-color: #fee2e2;
+      border-color: #fca5a5;
+  }
+
   /* Slick Carousel Customization */
   .slick-dots {
       bottom: 20px;

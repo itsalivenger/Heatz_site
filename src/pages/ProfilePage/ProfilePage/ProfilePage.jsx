@@ -8,7 +8,7 @@ import { serverDomain } from '../../../components/other/variables';
 
 export default function ProfilePage({ handleLogout }) {
   const [orders, setOrders] = useState([]);
-  const user = getUser();
+  const [user, setUser] = useState(getUser());
 
   useEffect(() => {
     const getOrderHistory = async () => {
@@ -26,6 +26,7 @@ export default function ProfilePage({ handleLogout }) {
     }
 
     getOrderHistory();
+    setUser(getUser());
   }, [])
 
   return (

@@ -3,6 +3,7 @@ import { Card } from '../Card/Card';
 import styles from './OrderHistory.module.css';
 
 export function OrderHistory({ orders }) {
+  console.log(orders);
   return (
     <Card className={styles.container}>
       <div className={styles.header}>
@@ -10,8 +11,8 @@ export function OrderHistory({ orders }) {
       </div>
 
       <div className={styles.orderGrid}>
-        {orders.length ? orders.map((order) => (
-          <div key={order.id} className={styles.orderCard}>
+        {orders.length ? orders.map((order, index) => (
+          <div key={index} className={styles.orderCard}>
             <div className={styles.orderHeader}>
               <span className={styles.orderNumber}>Commande #{order._id}</span>
               <span className={styles.orderDate}>{getDate(order.createdAt)}</span>

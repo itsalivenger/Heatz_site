@@ -46,7 +46,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const launchDate = new Date('2025-01-31');
+  const launchDate = new Date('2025-02-05');
   const contactInfo = {
     email: 'contact@heatz.ma',
     phoneNumber: '+212 (020)-9850',
@@ -134,7 +134,7 @@ function App() {
                 <LoginPage onLogin={handleLogin} />
             }
           />
-          <Route path="/productPrview/:id" element={<PreviewProduct />} />
+          <Route path="/productPreview" element={<PreviewProduct />} />
           <Route path='/about' element={<AboutPage />} />
           <Route
             path="/signup"

@@ -11,7 +11,7 @@ export function FavoritesList({ items, togglePopup, user, removeItemFromFavorite
       {items.map((item, index) => (
         <Card key={index} className={styles.card}>
           <div className={styles.imageContainer}>
-            <img src={item.imageUrl} alt={item.productName} className={styles.image} />
+            <img src={item.imageUrls[0]} alt={item.productName} className={styles.image} />
             <button className={styles.removeButton}>
               <Icon onClick={() => removeItemFromFavorite(item._id)} name="close" />
             </button>

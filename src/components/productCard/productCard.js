@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from './productCard.module.css';
 import sendRequest from '../other/sendRequest';
 import { serverDomain } from '../other/variables';
-import { Link } from "react-router-dom";
+import { addToFavorite } from "../other/usefulFunctions";
 
 const ProductCard = ({ product, user_id, togglePopup }) => {
 
@@ -49,16 +49,6 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
     return text.substring(0, lastSpace) + suffix;
   };
 
-  const addToFavorite = async () => {
-    if (!isConnected()) return;
-    const response = await sendRequest(`${serverDomain}/favorite`, 'POST', { product_Id: product._id, user_id: user_id._id });
-    if (!response.error) {
-      togglePopup({ title: 'Success', content: response.message });
-    } else {
-      togglePopup({ title: 'Error', content: response.error });
-    }
-  };
-
   const settings = {
     dots: false,
     infinite: true,
@@ -83,7 +73,7 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
           ))}
         </Slider>
         <div className={styles.iconsContainer}>
-          <span onClick={addToFavorite} className={`material-symbols-outlined ${styles.icon} ${styles.heartIcon}`}>
+          <span onClick={()=> addToFavorite(product._id, user_id, togglePopup)} className={`material-symbols-outlined ${styles.icon} ${styles.heartIcon}`}>
             favorite
           </span>
           <span onClick={addToCart} className={`material-symbols-outlined ${styles.icon} ${styles.cartIcon}`}>
@@ -92,9 +82,9 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
         </div>
       </div>
       <div className={styles.cardContent}>
-        <Link to={`/productPrview/${product._id}`} className={styles.title}>
+        <a href={`/productPreview?_id=${product._id}`} className={styles.title}>
           {product.productName}
-        </Link>
+        </a>
         <p className={styles.note}>{product.note}</p>
         <p className={styles.description}>{shortenText(product.description)}</p>
         <p className={styles.price}>{product.price} DH</p>

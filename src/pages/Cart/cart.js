@@ -106,11 +106,11 @@ function Cart({ cart, setCart }) {
 }
 
 function ProductInCart({ product, onQuantityChange, onRemoveItem }) {
-    const { _id, productName, price, quantity, imageSrc } = product;
+    const { _id, productName, price, quantity, imageUrls } = product;
     return (
         <div className={styles["order-summary-item"]}>
             <div className={styles["order-summary-image-container"]}>
-                <img alt="product display" className={styles["order-summary-image"]} src={imageSrc} />
+                <img alt="product display" className={styles["order-summary-image"]} src={imageUrls[0]} />
             </div>
             <div className={styles["order-summary-item-details"]}>
                 <div className={styles["order-summary-item-text-content"]}>
