@@ -24,7 +24,6 @@ function PreviewProduct() {
         setContent({ title: 'Error', content: response.error });
         setIsOpen(true);
       } else {
-        console.log(response);
         setProduct(response);
         setUser(getUser());
       }
@@ -54,6 +53,9 @@ function PreviewProduct() {
     <div className={styles["product-container"]}>
       <div onClick={() => window.history.back()} className={styles.goBackContainer}>
         <button class={`${styles["go-back"]} material-symbols-outlined`}>arrow_back</button>
+      </div>
+      <div className={styles["product-category"]}>
+        {product.category}
       </div>
       <div className={styles["product-preview"]}>
         <div className={styles["image-carousel"]}>
