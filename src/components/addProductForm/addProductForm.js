@@ -65,7 +65,7 @@ const AddProductForm = () => {
             // Handle success, e.g., show success message
             setContent({ title: <><span className={`${styles.icon} ${styles.success} material-symbols-outlined`}>check</span> Ajout effectué</>, content: response.message });
             setIsOpen(true);
-            // setOnConfirm(() => () => { setFormData({ productName: '', price: '', category: '', description: '', SKU: '', productImage: null, previewImage: null, features: [""] }) });
+            setOnConfirm(() => () => { setFormData({ productName: '', price: '', category: '', description: '', SKU: '', productImage: null, previewImage: null, features: [""] }) });
         } else {
             // Handle error, e.g., show error message
             setContent({ title: <><span className={`${styles.icon} ${styles.failure} material-symbols-outlined`}>close</span> Ajout echoué</>, content: response.error });
