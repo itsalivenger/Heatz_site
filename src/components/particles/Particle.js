@@ -4,7 +4,6 @@ import { loadFull } from "tsparticles";
 
 const ParticlesBackground = () => {
     const particlesInit = useCallback(async (engine) => {
-        // console.log('Initializing particles...');
         await loadFull(engine);
     }, []);
 
@@ -31,7 +30,7 @@ const ParticlesBackground = () => {
                             width: 1
                         },
                         number: {
-                            value: 60,
+                            value: 50,
                             density: {
                                 enable: true,
                                 value_area: 800
@@ -61,8 +60,7 @@ const ParticlesBackground = () => {
                                 mode: "grab"
                             },
                             onClick: {
-                                enable: true,
-                                mode: "push"
+                                enable: false 
                             }
                         }
                     },
