@@ -89,7 +89,7 @@ function PreviewProduct() {
           <div className={styles["product-features"]}>
             <h2 className={styles["features-title"]}>Caractéristiques Principales</h2>
             <ul className={styles["features-list"]}>
-              {features.map((feature, index) => (
+              {product.features.map((feature, index) => (
                 <li key={index} className={styles["feature-item"]}>{feature}</li>
               ))}
             </ul>

@@ -37,7 +37,7 @@ const EditPreview = ({ product, toggleBack }) => {
     const toggleEditMode = () => {
         setIsEditing(!isEditing);
     };
-    const features = product.features ? product.features.split(',') : '';
+    const features = product.features ? product.features : '';
 
     return (
         <div>

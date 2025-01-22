@@ -45,7 +45,7 @@ const AddProductForm = () => {
         data.append('SKU', formData.SKU);
         data.append('category', formData.category);
         data.append('description', formData.description);
-        data.append('features', features);
+        data.append('featuresStr', features.join('$dedrno')); {/*this because when appended it transforms into a string and we want it as an array in the backend*/}
 
         // Append files one by one
         if (formData.productImages && formData.productImages.length > 0) {
@@ -65,7 +65,7 @@ const AddProductForm = () => {
             // Handle success, e.g., show success message
             setContent({ title: <><span className={`${styles.icon} ${styles.success} material-symbols-outlined`}>check</span> Ajout effectué</>, content: response.message });
             setIsOpen(true);
-            setOnConfirm(() => () => { setFormData({ productName: '', price: '', category: '', description: '', SKU: '', productImage: null, previewImage: null, features: [""] }) });
+            // setOnConfirm(() => () => { setFormData({ productName: '', price: '', category: '', description: '', SKU: '', productImage: null, previewImage: null, features: [""] }) });
         } else {
             // Handle error, e.g., show error message
             setContent({ title: <><span className={`${styles.icon} ${styles.failure} material-symbols-outlined`}>close</span> Ajout echoué</>, content: response.error });
