@@ -24,7 +24,8 @@ function PreviewProduct() {
         setContent({ title: 'Error', content: response.error });
         setIsOpen(true);
       } else {
-        setProduct(response)
+        console.log(response);
+        setProduct(response);
         setUser(getUser());
       }
     }
@@ -42,22 +43,13 @@ function PreviewProduct() {
     arrows: true,
     centerMode: false
   };
-
-  const features = [
-    "Qualité sonore exceptionnelle avec technologie de réduction de bruit active",
-    "Autonomie de batterie jusqu'à 30 heures",
-    "Connexion Bluetooth 5.0 avec portée de 10 mètres",
-    "Design ergonomique avec coussinets en mousse à mémoire de forme",
-    "Commandes tactiles intuitives",
-    "Compatible avec les assistants vocaux",
-    "Microphone intégré pour les appels",
-    "Pliable pour un transport facile"
-  ];
+  
 
   const togglePopup = (content) => {
     setIsOpen(!isOpen);
     setContent(content)
   }
+
   return (
     <div className={styles["product-container"]}>
       <div onClick={() => window.history.back()} className={styles.goBackContainer}>
@@ -89,7 +81,7 @@ function PreviewProduct() {
           <div className={styles["product-features"]}>
             <h2 className={styles["features-title"]}>Caractéristiques Principales</h2>
             <ul className={styles["features-list"]}>
-              {product.features.map((feature, index) => (
+              {product.features && product.features.map((feature, index) => (
                 <li key={index} className={styles["feature-item"]}>{feature}</li>
               ))}
             </ul>
