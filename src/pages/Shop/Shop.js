@@ -27,7 +27,7 @@ function Shop() {
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState({});
     const [currentCategory, setCurrentCategory] = useState('');
-    const loadLimit = 5;  // Match this with backend's loadLimit
+    const loadLimit = 24;  // Match this with backend's loadLimit
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const categoryFromUrl = queryParams.get('category');

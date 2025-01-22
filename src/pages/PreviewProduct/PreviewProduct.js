@@ -69,7 +69,7 @@ function PreviewProduct() {
         </div>
 
         <div className={styles["product-info"]}>
-          <h1 className={styles["product-title"]}>{product.name && product.productName}</h1>
+          <h1 className={styles["product-title"]}>{product && product.productName}</h1>
           <div className={styles["product-price"]}>{product.price} DH</div>
 
           <div className={styles["product-description"]}>
