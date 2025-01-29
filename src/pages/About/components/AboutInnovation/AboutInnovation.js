@@ -1,3 +1,4 @@
+import LazyMedia from '../../../../components/lazyMedia/LazyMedia';
 import styles from './AboutInnovation.module.css';
 
 const innovations = [
@@ -32,7 +33,7 @@ export default function AboutInnovation() {
           {innovations.map((item) => (
             <div key={item.title} className={styles.card}>
               <div className={styles.imageContainer}>
-                <img src={item.image} alt={item.title} className={styles.image} />
+                <LazyMedia type={'image'} src={item.image} alt={item.title} className={styles.image} />
                 <div className={styles.gradient} />
                 <div className={styles.content}>
                   <div className={styles.iconTitle}>

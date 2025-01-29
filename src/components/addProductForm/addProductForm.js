@@ -3,6 +3,7 @@ import styles from './addProductForm.module.css';
 import sendRequest from '../../components/other/sendRequest';
 import Popup from '../../components/popup/popup';
 import { serverDomain } from '../../components/other/variables';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 
 const AddProductForm = () => {
@@ -241,12 +242,7 @@ const AddProductForm = () => {
                     {/* Display all image previews */}
                     {formData.previewImages &&
                         formData.previewImages.map((preview, index) => (
-                            <img
-                                key={index}
-                                src={preview}
-                                alt={`Preview ${index + 1}`}
-                                className={styles.imagePreview}
-                            />
+                            <LazyMedia type={'image'} key={index} src={preview} alt={`Preview ${index + 1}`} className={styles.imagePreview} />
                         ))}
                 </div>
                 <br />

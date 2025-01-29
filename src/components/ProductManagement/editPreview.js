@@ -3,6 +3,7 @@ import styles from './editPreview.module.css';
 import Popup from '../popup/popup';
 import { serverDomain } from '../other/variables';
 import sendRequest from '../other/sendRequest';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const EditPreview = ({ product, toggleBack }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -47,10 +48,7 @@ const EditPreview = ({ product, toggleBack }) => {
             </div>
             <div className={styles.productContainer}>
                 <div className={styles.productImage}>
-                    <img
-                        src={product.imageUrl}
-                        alt="Wireless Noise-Canceling Headphones"
-                    />
+                    <LazyMedia type={'image'} src={product.imageUrl} alt="Wireless Noise-Canceling Headphones" />
                 </div>
                 <div className={styles.productDetails}>
                     <div className={styles.productCategory}>{product.category}</div>

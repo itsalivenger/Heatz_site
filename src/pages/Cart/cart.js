@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './cart.module.css';
 import { getCart, getTotal, updateCartInServer } from '../../components/other/usefulFunctions';
+import LazyMedia from '../../components/lazyMedia/LazyMedia';
 
 function Cart({ cart, setCart }) {
     const [total, setTotal] = useState(0);
@@ -110,7 +111,7 @@ function ProductInCart({ product, onQuantityChange, onRemoveItem }) {
     return (
         <div className={styles["order-summary-item"]}>
             <div className={styles["order-summary-image-container"]}>
-                <img alt="product display" className={styles["order-summary-image"]} src={imageUrls[0]} />
+                <LazyMedia alt="product display" className={styles["order-summary-image"]} src={imageUrls[0]} />
             </div>
             <div className={styles["order-summary-item-details"]}>
                 <div className={styles["order-summary-item-text-content"]}>

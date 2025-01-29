@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './imageBesidesText.module.css';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const ProductFeature = ({ imageSrc, title, subtitle, description, reverse }) => {
   return (
     <div className={`${styles.featureContainer} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.imageContainer}>
-        <img src={imageSrc} alt={title} className={styles.image} />
+        <LazyMedia type={'image'} src={imageSrc} alt={title} className={styles.image} />
       </div>
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{title}</h1>

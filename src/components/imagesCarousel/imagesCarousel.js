@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import styles from './imageCarousel.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const ImageCarousel = ({ images }) => {
   const settings = {
@@ -41,6 +42,7 @@ const ImageCarousel = ({ images }) => {
         {images.map((src, index) => (
           <div key={index} className={styles.slide}>
             <img src={src} alt={`Slide ${index + 1}`} className={styles.image} />
+            <LazyMedia type={'image'} src={src} alt={`Slide ${index + 1}`} className={styles.image} />
           </div>
         ))}
       </Slider>

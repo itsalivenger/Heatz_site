@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './CategoriesSection.module.css';
 import { useLocation } from 'react-router-dom';
+import LazyMedia from '../../components/lazyMedia/LazyMedia';
 
 const categories = [
     { name: 'Chargeurs', imgSrc: './images/categories/adaptors.png' },
@@ -57,7 +58,7 @@ function CategoriesSection({ handleCategories }) {
                     className={`${styles.category} ${(activeCategory === category.name) ? styles.active : ''}`}
                     onClick={() => handleCategoryClick(category.name)}
                 >
-                    <img src={category.imgSrc} alt={category.name} className={`${styles.icon}`} />
+                    <LazyMedia type={'image'} src={category.imgSrc} alt={category.name} className={`${styles.icon}`} />
                     <span className={styles.name}>{category.name}</span>
                 </div>
             ))}

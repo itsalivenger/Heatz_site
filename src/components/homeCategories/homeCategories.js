@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './homeCategories.module.css';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const categories = [
     { name: 'Chargeurs', imgSrc: './images/categories/adaptors.png' },
@@ -25,7 +26,7 @@ function HomeCategories() {
                     className={`${styles.category}`}
                     onClick={() => {window.location.href = `/boutique?category=${category.name}`}}
                 >
-                    <img src={category.imgSrc} alt={category.name} className={`${styles.icon}`} />
+                    <LazyMedia type={'image'} src={category.imgSrc} alt={category.name} className={`${styles.icon}`} />
                     <span className={styles.name}>{category.name}</span>
                 </div>
             ))}

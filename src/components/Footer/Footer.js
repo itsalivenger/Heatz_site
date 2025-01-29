@@ -4,6 +4,7 @@ import sendRequest from "../../components/other/sendRequest";
 import { serverDomain } from "../../components/other/variables";
 import Popup from "../../components/popup/popup";
 import SocialMedia from "../socialMedia/socialMedia";
+import LazyMedia from "../lazyMedia/LazyMedia";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -47,7 +48,9 @@ const Footer = () => {
                 {content && <Popup isOpen={isOpen} onClose={closePopup} title={content.title} content={content.content} setContent={setContent} />}
                 <div className={styles["footer-top"]}>
                     <div className={styles["footer-brand"]}>
-                        <div className={styles["logo"]}><img src="./images/logos/HeatzLogo.png" alt="Logo" /></div>
+                        <div className={styles["logo"]}>
+                            <LazyMedia type="image" src="./images/logos/HeatzLogo.png" alt="Logo" />
+                        </div>
 
                         <SocialMedia />
 

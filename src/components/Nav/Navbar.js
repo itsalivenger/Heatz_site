@@ -5,6 +5,7 @@ import SearchBar from './searchBar';
 import { searchItems } from '../other/usefulFunctions';
 import sendRequest from '../other/sendRequest';
 import { serverDomain } from '../other/variables';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 function Navbar({ isAuthenticated, isAdmin, onLogout }) {
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -25,7 +26,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
     <>
       <nav className={`${styles.navbar} ${location.pathname === '/' ? styles["navbar-home"] : ''}`}>
         <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'/'} className={styles["navbar-logo"]}>
-          <img src={"./images/logos/Vector.svg"} alt='this is the company logo' />
+          <LazyMedia type={'image'} src={"./images/logos/Vector.svg"} alt='this is the company logo' />
         </Link>
 
         <div className={`${styles["linksContainer"]} toggledMenu ${menuIsToggled ? styles.toggledMenu : ''}`}>
@@ -40,14 +41,14 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {/* Cart Link */}
             <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'cart'} className={styles["info-container"]}>
               {/* <i className="material-symbols-outlined">shopping_bag</i> */}
-              <img src='./images/icons/cart.svg' alt='cart icon' />
+              <LazyMedia type={'image'} src='./images/icons/cart.svg' alt='cart icon' />
               <div className={styles["info-text"]}>Panier</div>
             </Link>
 
             {/* Favorite Link */}
             <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'favorite'} className={styles["info-container"]}>
               {/* <i className="material-symbols-outlined">favorite</i> */}
-              <img src='./images/icons/heart.svg' alt='heart icon' />
+              <LazyMedia type={'image'} src='./images/icons/heart.svg' alt='heart icon' />
               <div className={styles["info-text"]}>Favoris</div>
             </Link>
 
@@ -55,13 +56,13 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {isAuthenticated ? (
               <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'/profile'} className={styles["info-container"]}>
                 {/* <i className="material-symbols-outlined">person</i> */}
-                <img src='./images/icons/person.svg' alt='person icon' />
+                <LazyMedia type={'image'} src='./images/icons/person.svg' alt='person icon' />
                 <div className={styles["info-text"]}>Profile</div>
               </Link>
             ) : (
               <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'/signup'} className={styles["info-container"]}>
                 {/* <i className="material-symbols-outlined">person</i> */}
-                <img src='./images/icons/person.svg' alt='person icon' />
+                <LazyMedia type={'image'} src='./images/icons/person.svg' alt='person icon' />
                 <div className={styles["info-text"]}>Créer un compte</div>
               </Link>
             )}
@@ -70,7 +71,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {isAdmin && (
               <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'/admin'} className={styles["info-container"]}>
                 {/* <i className="material-symbols-outlined">admin_panel_settings</i> */}
-                <img src='./images/icons/admin_panel.svg' alt='admin_panel icon' />
+                <LazyMedia type={'image'} src='./images/icons/admin_panel.svg' alt='admin_panel icon' />
                 <div className={styles["info-text"]}>Panneau d'administration
                 </div>
               </Link>
@@ -80,13 +81,13 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {isAuthenticated ? (
               <div className={styles["info-container"]} onClick={onLogout}>
                 {/* <i className="material-symbols-outlined">logout</i> */}
-                <img src='./images/icons/logout.svg' alt='logout icon' />
+                <LazyMedia type={'image'} src='./images/icons/logout.svg' alt='logout icon' />
                 <div className={styles["info-text"]}>Déconnexion</div>
               </div>
             ) : (
               <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'/login'} className={styles["info-container"]}>
                 {/* <i className="material-symbols-outlined">login</i> */}
-                <img src='./images/icons/login.svg' alt='login icon' />
+                <LazyMedia type={'image'} src='./images/icons/login.svg' alt='login icon' />
                 <div className={styles["info-text"]}>Connexion</div>
               </Link>
             )}
@@ -94,12 +95,12 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
             {/* Search Input (optional, as you have a toggle here) */}
             <div onClick={toggleSearchInput} className={styles["info-container"]}>
               {/* <i className="material-symbols-outlined">search</i> */}
-              <img src='./images/icons/search.svg' alt='search icon' />
+              <LazyMedia type={'image'} src='./images/icons/search.svg' alt='search icon' />
             </div>
           </div>
 
           <div onClick={() => setMenuIsToggled(!menuIsToggled)} className={`${styles["closeIcon"]} ${styles.closeBtnContainer}`}>
-            <img src='./images/icons/close.svg' alt='close icon' />
+            <LazyMedia type={'image'} src='./images/icons/close.svg' alt='close icon' />
             <div className={styles["info-text"]}>Fermer</div>
             {/* <i className={`material-symbols-outlined`}>
               close
@@ -108,12 +109,12 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
         </div>
 
         <div className={styles["mobile-logo"]}>
-          <img src='./images/logos/HeatzLogo.png' alt='Heatz Logo' />
+          <LazyMedia type={'image'} src='./images/logos/HeatzLogo.png' alt='Heatz Logo' />
         </div>
         <SearchBar handleSubmit={handleSubmit} toggleSearchInput={toggleSearchInput} isActive={isSearchActive} />
         <div onClick={() => setMenuIsToggled(!menuIsToggled)} className={`${styles.hamburger} ${styles["info-container"]}`}>
           {/* <i className={`material-symbols-outlined`}>menu</i> */}
-          <img src='./images/icons/Menu.svg' alt='menu icon' />
+          <LazyMedia type={'image'} src='./images/icons/Menu.svg' alt='menu icon' />
           <div className={styles["info-text"]}>Menu</div>
         </div>
       </nav>

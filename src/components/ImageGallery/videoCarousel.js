@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';  // Assuming 'react-slick' is installed
 import styles from './videoCarousel.module.css';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const VideoCarousel = () => {
   const settings = {
@@ -45,10 +46,7 @@ const VideoCarousel = () => {
       <Slider {...settings}>
         {videos.map((video, index) => (
           <div key={index} className={styles['video-wrapper']}>
-            <video className={styles['carousel-video']}>
-              <source src={video.src} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <LazyMedia type={'video'} src={video.src} alt={video.title} className={styles['carousel-video']} />
           </div>
         ))}
       </Slider>

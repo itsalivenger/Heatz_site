@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './productPopup.module.css';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const ProductPopup = ({ product, onClose, handleEdit, handleDeleteProduct }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -29,11 +30,7 @@ const ProductPopup = ({ product, onClose, handleEdit, handleDeleteProduct }) => 
         <button className={styles.closeBtn} onClick={onClose}>&times;</button>
         <div className={styles.content}>
           <div className={styles.imageSection}>
-            <img 
-              src={editedProduct.imageUrl} 
-              alt={editedProduct.productName} 
-              className={styles.productImage} 
-            />
+            <LazyMedia type={'image'} src={editedProduct.imageUrl} alt={editedProduct.productName} className={styles.productImage} />
           </div>
           <div className={styles.detailsSection}>
             {isEditing ? (

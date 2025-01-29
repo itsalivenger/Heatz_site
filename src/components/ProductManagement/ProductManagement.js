@@ -4,6 +4,7 @@ import { serverDomain } from '../other/variables';
 import EditPreview from './editPreview';
 import sendRequest from '../other/sendRequest';
 import Popup from '../popup/popup';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 
 const maxLength = 10;
@@ -132,7 +133,7 @@ const ProductManagement = () => {
                     {foundProducts.map((product) => (
                         <tr key={product._id}>
                             <td>
-                                <img src={product.imageUrl} alt={product.name} className={styles.productImage} />
+                                <LazyMedia type={'image'} src={product.imageUrl} alt={product.name} className={styles.productImage} />
                             </td>
                             <td>{product.productName.slice(0, maxLength) + '...'}</td>
                             <td>{product.SKU.slice(0, maxLength) + '...'}</td>

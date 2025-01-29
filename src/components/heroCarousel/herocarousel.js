@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import styles from './heroCarousel.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LazyMedia from '../lazyMedia/LazyMedia';
 const slides = [
   {
     title: "Améliorez Votre Expérience Audio",
@@ -25,7 +26,7 @@ const slides = [
 const Slide = ({ title, description, buttonText, backgroundImage }) => {
   return (
     <div className={styles.contentBlock}>
-      <img src={backgroundImage} alt="Background" className={styles.backgroundImage} />
+      <LazyMedia type={'image'} src={backgroundImage} alt="Background" className={styles.backgroundImage} />
       <div className={styles.overlay}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.description}>{description}</p>

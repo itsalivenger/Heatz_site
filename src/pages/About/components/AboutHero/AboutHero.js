@@ -1,3 +1,4 @@
+import LazyMedia from '../../../../components/lazyMedia/LazyMedia';
 import styles from './AboutHero.module.css';
 
 export default function AboutHero() {
@@ -6,7 +7,8 @@ export default function AboutHero() {
       <div className={styles.overlay} />
       <div className={styles.content}>
         <div className={styles.header}>
-          <span>A Propos de</span><img src="./images/logos/HeatzLogo.png" alt="logo" />
+          <span>A Propos de</span>
+          <LazyMedia type={'image'} src={'./images/logos/HeatzLogo.png'} alt="logo" />
         </div>
         <p>
           Alimentez votre style de vie numérique avec des accessoires électroniques haut de gamme. 

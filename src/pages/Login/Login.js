@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import sendRequest from "../../components/other/sendRequest";
 import { serverDomain } from "../../components/other/variables";
 import Popup from "../../components/popup/popup";
+import LazyMedia from "../../components/lazyMedia/LazyMedia";
 
 
 function LoginPage() {
@@ -70,9 +71,9 @@ function LoginPage() {
                                 <label>Mot de passe <span>*</span></label>
                                 <input value={password} onChange={(e) => setPassword(e.target.value)} type={visibility ? "text" : "password"} placeholder="Mot de passe" required />
                                 {visibility ? (
-                                    <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibilityOff.svg" alt="hide password" />
+                                    <LazyMedia type={'image'} src="./images/icons/visibilityOff.svg" alt="hide password" onClick={() => setVisibility(!visibility)} className={styles["show-password"]} />
                                 ) : (
-                                    <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibility.svg" alt="show password" />
+                                    <LazyMedia type={'image'} src="./images/icons/visibility.svg" alt="show password" onClick={() => setVisibility(!visibility)} className={styles["show-password"]} />
                                 )}
                             </div>
                         </div>

@@ -3,11 +3,12 @@ import { Card } from '../Card/Card';
 import { Button } from '../ui/Button/Button';
 import { Icon } from '../ui/Icon/Icon';
 import styles from './ProfileCard.module.css';
+import LazyMedia from '../../../components/lazyMedia/LazyMedia';
 
 export function ProfileCard({ user, handleLogout }) {
   return (
     <Card className={styles.container}>
-      <img src={'./images/icons/user.png'} alt={user.name} className={styles.avatar} />
+      <LazyMedia type={'image'} src={'./images/icons/user.png'} alt={user.name} className={styles.avatar} />
       <h2 className={styles.name}>{user.fullName}</h2>
       <p className={styles.email}>{user.email}</p>
 

@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './Gallery.module.css';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 
 const Gallery = ({ images }) => {
@@ -45,11 +46,7 @@ const Gallery = ({ images }) => {
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} className={styles.carouselItem}>
-            <img
-              src={image.src}
-              alt={`gallery Item ${index}`}
-              className={styles.carouselImage}
-            />
+            <LazyMedia type={'image'} src={image.src} alt={`gallery Item ${index}`} className={styles.carouselImage} />
           </div>
         ))}
       </Slider>

@@ -1,3 +1,4 @@
+import LazyMedia from '../../components/lazyMedia/LazyMedia';
 import styles from './Success.module.css';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ function Success() {
             <div className={styles.container}>
                 <section className={styles.orderConfirmation}>
                     <div className={styles.logo}>
-                        <img src="./images/logos/heatz.png" alt="Company Logo" />
+                        <LazyMedia type={'image'} src="./images/logos/heatz.png" alt="Company Logo" />
                     </div>
                     <div className={styles.confirmationIcon}>
                         <span className="material-symbols-outlined">check_circle</span>

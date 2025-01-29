@@ -1,3 +1,4 @@
+import LazyMedia from '../../../components/lazyMedia/LazyMedia';
 import { getTotal, getDate } from '../../../components/other/usefulFunctions';
 import { Card } from '../Card/Card';
 import styles from './OrderHistory.module.css';
@@ -20,12 +21,7 @@ export function OrderHistory({ orders }) {
 
             <div className={styles.orderItems}>
               {order.cart.map((item, index) => (
-                <img
-                  key={index}
-                  src={item.imageUrl}
-                  alt={item.productName}
-                  className={styles.itemImage}
-                />
+                <LazyMedia type={'image'} key={index} className={styles.itemImage} src={item.imageUrl} alt={item.productName} />
               ))}
             </div>
 

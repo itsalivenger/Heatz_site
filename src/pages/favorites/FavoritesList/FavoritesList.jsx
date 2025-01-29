@@ -4,6 +4,7 @@ import { Button } from '../ui/Button';
 import { Icon } from '../ui/Icon/Icon';
 import styles from './FavoritesList.module.css';
 import { addToCart } from '../../../components/other/usefulFunctions';
+import LazyMedia from '../../../components/lazyMedia/LazyMedia';
 
 export function FavoritesList({ items, togglePopup, user, removeItemFromFavorite }) {
   return (
@@ -11,7 +12,7 @@ export function FavoritesList({ items, togglePopup, user, removeItemFromFavorite
       {items.map((item, index) => (
         <Card key={index} className={styles.card}>
           <div className={styles.imageContainer}>
-            <img src={item.imageUrls[0]} alt={item.productName} className={styles.image} />
+            <LazyMedia type={'image'} src={item.imageUrls[0]} alt={item.productName} className={styles.image} />
             <button className={styles.removeButton}>
               <Icon onClick={() => removeItemFromFavorite(item._id)} name="close" />
             </button>

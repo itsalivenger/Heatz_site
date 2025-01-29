@@ -8,6 +8,7 @@ import { useSearchParams } from 'react-router-dom';
 import { serverDomain } from '../../components/other/variables';
 import { addToCart, addToFavorite, getUser } from '../../components/other/usefulFunctions';
 import Popup from '../../components/popup/popup';
+import LazyMedia from '../../components/lazyMedia/LazyMedia';
 
 function PreviewProduct() {
   const [product, setProduct] = useState({});
@@ -63,7 +64,7 @@ function PreviewProduct() {
             <Slider {...sliderSettings}>
               {product.imageUrls.map((url, index) => (
                 <div key={index} className={styles["carousel-slide"]}>
-                  <img className={styles["carousel-image"]} src={url} alt={`Vue ${index + 1} du produit`} />
+                  <LazyMedia type={'image'} alt={`Vue ${index + 1} du produit`} className={styles["carousel-image"]} src={url} />
                 </div>
               ))}
             </Slider>

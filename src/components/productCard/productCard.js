@@ -5,6 +5,7 @@ import styles from './productCard.module.css';
 import sendRequest from '../other/sendRequest';
 import { serverDomain } from '../other/variables';
 import { addToFavorite } from "../other/usefulFunctions";
+import LazyMedia from "../lazyMedia/LazyMedia";
 
 const ProductCard = ({ product, user_id, togglePopup }) => {
 
@@ -68,7 +69,7 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
         <Slider {...settings} className={styles.carousel}>
           {product.imageUrls && product.imageUrls.map((image, index) => (
             <div key={index} className={styles.carouselSlide}>
-              <img src={image} alt={`${product.productName} ${index + 1}`} className={styles.productImage} />
+              <LazyMedia type={'image'} src={image} alt={`${product.productName} ${index + 1}`} className={styles.productImage} />
             </div>
           ))}
         </Slider>

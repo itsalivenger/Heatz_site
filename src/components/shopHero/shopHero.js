@@ -1,12 +1,13 @@
 import styles from './shopHero.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 function ShopHero() {
     return (
         <div>
             `<div className={styles["container-of-all"]}>
-                <img alt='background' className={styles["item-image"]} src="./images/flayers/shopBackground.png" />
+                <LazyMedia type={'image'} alt='background' className={styles["item-image"]} src="./images/flayers/shopBackground.png" />
 
                 <div className={styles["video-stylish-container"]}>
                     <div className={styles["stylich-container"]}>

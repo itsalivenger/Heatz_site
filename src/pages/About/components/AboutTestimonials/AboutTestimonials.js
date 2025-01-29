@@ -1,3 +1,4 @@
+import LazyMedia from '../../../../components/lazyMedia/LazyMedia';
 import styles from './AboutTestimonials.module.css';
 
 const testimonials = [
@@ -39,15 +40,14 @@ export default function AboutTestimonials() {
             <div key={testimonial.name} className={styles.card}>
               <div className={styles.rating}>
                 {[...Array(5)].map((_, i) => {
-                    return <img src="./images/icons/star.svg" alt="star" />;
-                  
+                    return <LazyMedia type={'image'} src={"./images/icons/star.svg"} alt="star" />;
                 })}
               </div>
               <blockquote className={styles.content}>
                 <p>"{testimonial.content}"</p>
               </blockquote>
               <div className={styles.author}>
-                <img src={testimonial.image} alt="" className={styles.avatar} />
+                <LazyMedia type={'image'} className={styles.avatar} src={testimonial.image} alt="quote" />
                 <div className={styles.info}>
                   <div className={styles.name}>{testimonial.name}</div>
                   <div className={styles.role}>{testimonial.role}</div>

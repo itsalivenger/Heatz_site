@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback } from "react";
 // import { isValidEmail, isValidPassword, isValidPhoneNumber } from "../../components/other/formChecker";
 import { domain, serverDomain } from "../../components/other/variables";
 import { formValidation } from "../../components/other/usefulFunctions";
+import LazyMedia from "../../components/lazyMedia/LazyMedia";
 
 function SignupPage() {
   const [fullName, setFullName] = useState("");
@@ -164,9 +165,9 @@ function SignupPage() {
                 required
               />
               {visibility ? (
-                <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibilityOff.svg" alt="hide password" />
+                <LazyMedia type={'image'} src={'./images/icons/visibilityOff.svg'} onClick={() => setVisibility(!visibility)} className={styles["show-password"]} alt="hide password" />
               ) : (
-                <img onClick={() => setVisibility(!visibility)} className={styles["show-password"]} src="./images/icons/visibility.svg" alt="show password" />
+                <LazyMedia type={'image'} src={'./images/icons/visibility.svg'} onClick={() => setVisibility(!visibility)} className={styles["show-password"]} alt="show password" />
               )}
             </div>
           </div>

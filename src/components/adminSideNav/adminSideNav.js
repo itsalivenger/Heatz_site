@@ -5,6 +5,7 @@ import ProductManagement from '../ProductManagement/ProductManagement';
 import OrdersAdmin from '../../pages/OrdersAdmin/OrdersAdmin';
 import AddProductForm from '../addProductForm/addProductForm';
 import NewsletterDashboard from '../NewsletterDashboard/NewsletterDashboard';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 
 
@@ -34,7 +35,7 @@ function  AdminSideNav({ handleContent }) {
             </div>
 
             <div className={styles.logo}>
-                <img alt='Heatz logo' src='./images/logos/HeatzLogo.png' className={styles.logoText} />
+                <LazyMedia type={'image'} src='./images/logos/HeatzLogo.png' alt='Heatz logo' className={styles.logoText} />
                 <i className={`${styles.icon} material-symbols-outlined`}></i>
             </div>
             <nav className={styles.navMenu}>

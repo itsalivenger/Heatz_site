@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './searchBar.module.css';
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const SearchBar = ({ toggleSearchInput, isActive, handleSubmit }) => {
     const [searchVal, setSearchVal] = useState('');
@@ -93,11 +94,7 @@ const SearchBar = ({ toggleSearchInput, isActive, handleSubmit }) => {
 const SearchResultItem = ({ product, onClick }) => {
     return (
         <div className={styles.resultItem} onClick={() => onClick(product)}>
-            <img
-                src={product.imageUrls?.[0] || './images/products/item_view0.jpg'} // Fallback for missing image
-                alt={product.productName}
-                className={styles.resultImage}
-            />
+            <LazyMedia className={styles.resultImage} type={'image'} src={product.imageUrls?.[0] || './images/products/item_view0.jpg'} alt={product.productName} />
             <span className={styles.resultName}>{product.productName}</span>
         </div>
     );

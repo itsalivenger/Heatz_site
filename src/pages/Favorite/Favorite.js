@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Favorite.module.css';
 import { getFavoriteItems } from '../../components/other/usefulFunctions';
+import LazyMedia from '../../components/lazyMedia/LazyMedia';
 
 
 function Favorite() {
@@ -32,7 +33,7 @@ function Favorite() {
 function Item({ item }) {
     return (
         <div className={styles['favorite-item']}>
-            <img alt={item.productName} className={styles['favorite-item-image']} src="./images/products/item1.jpg" />
+            <LazyMedia alt={item.productName} className={styles['favorite-item-image']} src="./images/products/item1.jpg" />
             <div className={styles['favorite-text-container']}>
                 <div className={styles['favorite-text-content']}>
                     <div>
