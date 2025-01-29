@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './shippingFeature.module.css';
 import LazyMedia from '../lazyMedia/LazyMedia';
 
-export function ShippingFeatures() {
+function ShippingFeatures() {
     const features = [
         {
             icon: <LazyMedia type={'image'} src='./images/icons/truck.svg' className={styles.icon} alt='truck' />,
@@ -39,3 +39,5 @@ export function ShippingFeatures() {
         </div>
     );
 }
+
+export default ShippingFeatures;
