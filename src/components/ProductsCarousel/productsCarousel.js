@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProductCarousel.module.css';
 
-const ProductCarousel = ({ products, itemsToShow = 3, togglePopup }) => {
+const ProductCarousel = ({ products, itemsToShow = 5, togglePopup }) => {
   const settings = {
     dots: false,
     arrows: false,
@@ -13,6 +13,7 @@ const ProductCarousel = ({ products, itemsToShow = 3, togglePopup }) => {
     autoplay: true,
     autoplaySpeed: 3000,
     slidesToShow: itemsToShow,
+    infinite: true,
     slidesToScroll: 1,
     draggable: true,
     responsive: [

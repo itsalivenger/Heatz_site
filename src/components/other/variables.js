@@ -6,6 +6,6 @@ const clientDeploy = 'https://heatz.ma/';
 const serverDeploy = 'https://heatz-server.vercel.app';
 
 const domain = clientDeploy;
-const serverDomain = serverDeploy;
+const serverDomain = localhostBack;
 
 export { domain, serverDomain };
