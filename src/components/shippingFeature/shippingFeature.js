@@ -5,7 +5,7 @@ import LazyMedia from '../lazyMedia/LazyMedia';
 export function ShippingFeatures() {
     const features = [
         {
-            icon: <LazyMedia type={'image'} src='./images/icons/ytuck.svg' className={styles.icon} alt='truck' />,
+            icon: <LazyMedia type={'image'} src='./images/icons/truck.svg' className={styles.icon} alt='truck' />,
             title: 'Livraison Gratuite',
             description: 'Bénéficiez de la livraison gratuite pour toute commande supérieure à 50€.'
         },

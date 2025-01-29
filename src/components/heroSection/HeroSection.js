@@ -12,9 +12,9 @@ const HeroSection = () => {
   // Use provided items
   const items = [
     { type: 'video', src: './videos/heroVid.mp4' },
+    { type: 'video', src: './videos/miniVid.mp4' },
     { type: 'video', src: './videos/heroVid.mp4' },
-    { type: 'video', src: './videos/heroVid.mp4' },
-    { type: 'video', src: './videos/heroVid.mp4' },
+    { type: 'video', src: './videos/miniVid.mp4' },
     { type: 'video', src: './videos/heroVid.mp4' },
   ];
 
