@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import styles from './heroSection.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LazyMedia from '../lazyMedia/LazyMedia';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,15 +40,9 @@ const HeroSection = () => {
         {items.map((item, index) => (
           <div key={index} className={styles.carouselItem}>
             {item.type === 'image' ? (
-              <img src={item.src} alt={`carousel-img-${index}`} className={styles.image} />
+              <LazyMedia type={'Image'} src={item.src} alt={`carousel-img-${index}`} className={styles.image} />
             ) : (
-              <video
-                src={item.src}
-                autoPlay
-                loop
-                muted
-                className={styles.video}
-              />
+              <LazyMedia type={'Video'} src={item.src} alt={`carousel-video-${index}`} className={styles.video} />
             )}
           </div>
         ))}
@@ -63,15 +58,9 @@ const HeroSection = () => {
               className={`${styles.navItem} ${currentSlide === index ? styles.active : ''}`}
             >
               {item.type === 'image' ? (
-                <img onClick={() => handleNavClick(index)} src={item.src} alt={`nav-thumb-${index}`} className={styles.thumbImage} />
+                <LazyMedia type={'Image'} onClick={() => handleNavClick(index)} src={item.src} alt={`nav-thumb-${index}`} className={styles.thumbImage} />
               ) : (
-                <video
-                  src={item.src}
-                  onClick={() => handleNavClick(index)}
-                  muted
-                  loop
-                  className={styles.thumbVideo}
-                />
+                <LazyMedia type={'Video'} onClick={() => handleNavClick(index)} src={item.src} alt={`nav-thumb-${index}`} className={styles.thumbVideo} />
               )}
             </div>
           ))}

@@ -3,20 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import SearchBar from './searchBar';
 import { searchItems } from '../other/usefulFunctions';
+import sendRequest from '../other/sendRequest';
+import { serverDomain } from '../other/variables';
 
 function Navbar({ isAuthenticated, isAdmin, onLogout }) {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [menuIsToggled, setMenuIsToggled] = useState(false);
-  const [setDropdownItems] = useState([]);
   const location = useLocation();
 
-  const handleSubmit = async (val) => {
+  const handleSubmit = async (searchVal) => {
     // to submit value
-    console.log(val);
-    const response = await searchItems(val);
-    setDropdownItems(response);
-
-    // setDropdownItems(dropdownItems);
+    const response = await sendRequest(`${serverDomain}/products/searchItem`, 'POST', { searchVal });
+    return response
   }
 
   const toggleSearchInput = () => {

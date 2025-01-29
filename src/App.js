@@ -23,6 +23,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage/ProfilePage.jsx';
 import ParticlesBackground from './components/particles/Particle.js';
 import AboutPage from './pages/About/AboutPage.js';
 import PreviewProduct from './pages/PreviewProduct/PreviewProduct.js';
+import WhatsAppWidget from './components/whatsappWidget/whatsappWidget.js';
 
 // Protected Route wrapper for authenticated users
 const ProtectedRoute = ({ children, isAuthenticated }) => {
@@ -199,6 +200,7 @@ function App() {
           {/* Catch all route - 404 */}
           <Route path="/*" element={<NotFound />} />
         </Routes>
+        <WhatsAppWidget phoneNumber={contactInfo.phoneNumber} />
         <Footer />
       </Router>
     </div>

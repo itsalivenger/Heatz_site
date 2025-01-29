@@ -55,7 +55,6 @@ function Home() {
       if (response.error) {
         console.log(response.error);
       } else {
-        console.log(response);
         setProducts(response.products ? response.products : []);
       }
     }
