@@ -5,13 +5,25 @@
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 
-  <!-- Material Symbols -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0" />
+  <!-- Preload critical fonts -->
+  <link rel="preload" 
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0" 
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0">
+  </noscript>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
+  <!-- Preload Playfair Display font -->
+  <link rel="preload" 
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" 
+      rel="stylesheet">
+  </noscript>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta property="og:title" content="Heatz® | Protect & Power Your Mobile with Our Accessories" />
@@ -23,36 +35,21 @@
   <meta property="og:site_name" content="Heatz®" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Affordable, high-quality products designed to enhance your mobile experience." />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+  
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+  
+  <!-- Preload critical CSS -->
+  <script>
+    // Inline critical font loading
+    !function(e){if("fonts-loaded"!==localStorage.getItem("fonts-loaded")){var t=document.documentElement;t.className+=" fonts-loading",Promise.all([].map.call(document.querySelectorAll('link[rel="preload"][as="style"]'),function(e){return e.href})).then(function(){t.className=t.className.replace("fonts-loading"," fonts-loaded"),localStorage.setItem("fonts-loaded",!0)}).catch(function(){t.className=t.className.replace("fonts-loading"," fonts-failed")})}}();
+  </script>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
   <title>Heatz® Mobile Accessories</title>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
 </body>
 
 </html>

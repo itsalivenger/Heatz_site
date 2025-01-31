@@ -32,6 +32,21 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
     }
   };
 
+  function reformatCloudinaryUrl(url) {
+    const cloudinaryPattern = /https?:\/\/res\.cloudinary\.com\/.+\/image\/upload\/.+/;
+
+    // Check if the URL is a Cloudinary URL
+    // if (cloudinaryPattern.test(url)) {
+    //     const parts = url.split('/upload/');
+    //     // Add square transformations with quality set to best
+    //     const transformations = 'c_fill,w_300,h_300,q_auto:best';
+    //     return `${parts[0]}/upload/${transformations}/${parts[1]}`;
+    // }
+
+    // If it's not a Cloudinary URL, return the original URL
+    return url;
+}
+
   const shortenText = (text, maxLength = 100, suffix = '...') => {
     // Return original text if it's shorter than max length
     if (!text || text.length <= maxLength) {
@@ -52,7 +67,7 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -69,12 +84,12 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
         <Slider {...settings} className={styles.carousel}>
           {product.imageUrls && product.imageUrls.map((image, index) => (
             <div key={index} className={styles.carouselSlide}>
-              <LazyMedia type={'image'} src={image} alt={`${product.productName} ${index + 1}`} className={styles.productImage} />
+              <LazyMedia type={'image'} src={reformatCloudinaryUrl(image)} alt={`${product.productName} ${index + 1}`} className={styles.productImage} />
             </div>
           ))}
         </Slider>
         <div className={styles.iconsContainer}>
-          <span onClick={()=> addToFavorite(product._id, user_id, togglePopup)} className={`material-symbols-outlined ${styles.icon} ${styles.heartIcon}`}>
+          <span onClick={() => addToFavorite(product._id, user_id, togglePopup)} className={`material-symbols-outlined ${styles.icon} ${styles.heartIcon}`}>
             favorite
           </span>
           <span onClick={addToCart} className={`material-symbols-outlined ${styles.icon} ${styles.cartIcon}`}>

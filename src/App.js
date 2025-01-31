@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import "./App.css"
+import React, { useState, useEffect, Suspense } from 'react';
+import "./App.css";
 import { jwtDecode } from 'jwt-decode';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Nav/Navbar";
 import LoginPage from "./pages/Login/Login";
 import ResetPass from "./pages/ResetPass/ResetPass";
@@ -24,6 +23,7 @@ import ParticlesBackground from './components/particles/Particle.js';
 import AboutPage from './pages/About/AboutPage.js';
 import PreviewProduct from './pages/PreviewProduct/PreviewProduct.js';
 import WhatsAppWidget from './components/whatsappWidget/whatsappWidget.js';
+const Footer = React.lazy(() => import('./components/Footer/Footer'));
 
 // Protected Route wrapper for authenticated users
 const ProtectedRoute = ({ children, isAuthenticated }) => {
@@ -47,7 +47,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const launchDate = new Date('2025-02-05');
+  const launchDate = new Date('2025-02-20');
   const contactInfo = {
     email: 'contact@heatz.ma',
     phoneNumber: '+212 (020)-9850',
@@ -112,7 +112,9 @@ function App() {
 
   return (
     <div className="App">
-      <ParticlesBackground />
+      <Suspense fallback={null}>
+        <ParticlesBackground />
+      </Suspense>
       {content && <Popup onConfirm={() => redirectTo('login')} isOpen={isOpen} onClose={() => {
         setIsOpen(false);
         redirectTo('login');
@@ -125,7 +127,11 @@ function App() {
         />
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={
+            <Suspense fallback={<LoadingSpinner />}>
+            <Home />
+          </Suspense>} />
+
           <Route path="/contact" element={<Contact contactInfo={contactInfo} />} />
           <Route
             path="/login"
@@ -196,12 +202,14 @@ function App() {
             }
           />
 
-          
+
           {/* Catch all route - 404 */}
           <Route path="/*" element={<NotFound />} />
         </Routes>
         <WhatsAppWidget phoneNumber={contactInfo.phoneNumber} />
-        <Footer />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Footer />
+        </Suspense>
       </Router>
     </div>
   );

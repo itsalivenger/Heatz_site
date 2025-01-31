@@ -23,10 +23,11 @@ const slides = [
 ];
 
 
-const Slide = ({ title, description, buttonText, backgroundImage }) => {
+const Slide = ({ title, description, buttonText, backgroundImage, index }) => {
   return (
     <div className={styles.contentBlock}>
-      <LazyMedia type={'image'} src={backgroundImage} alt="Background" className={styles.backgroundImage} />
+      {/* <img src={backgroundImage} alt="Background" className={styles.backgroundImage} /> */}
+      <LazyMedia type={'image'} src={backgroundImage} preload={index === 0} alt="Background"  className={styles.backgroundImage} />
       <div className={styles.overlay}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.description}>{description}</p>
@@ -79,7 +80,7 @@ const HeroCarousel = () => {
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index} className={styles.slide}>
-            <Slide title={slide.title} description={slide.description} buttonText={slide.buttonText} backgroundImage={slide.backgroundImage} />
+            <Slide index={index} title={slide.title} description={slide.description} buttonText={slide.buttonText} backgroundImage={slide.backgroundImage} />
           </div>
         ))}
       </Slider>

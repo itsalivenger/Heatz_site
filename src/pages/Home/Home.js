@@ -1,11 +1,12 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import sendRequest from "../../components/other/sendRequest";
+import HeroSection from "../../components/heroSection/HeroSection";
+import HeroCarousel from "../../components/heroCarousel/herocarousel";
 import { serverDomain } from "../../components/other/variables";
+import LoadingSpinner from "../../components/LoadingSpinner/loadingSpinner";
 
 // Lazy load all components
 const ColoredDivider = lazy(() => import("../../components/coloredHr/coloredDivider"));
-const HeroCarousel = lazy(() => import("../../components/heroCarousel/herocarousel"));
-const HeroSection = lazy(() => import("../../components/heroSection/HeroSection"));
 const TitleAndText = lazy(() => import("../../components/TitleAndText/TitleAndText"));
 const ImageAndVideo = lazy(() => import("../../components/ImageAndVideo/imageAndVideo"));
 const ProductsCardsCarousel = lazy(() => import("../../components/ProductsCardsCarousel/productsCardsCarousel"));
@@ -50,7 +51,7 @@ function Home() {
       alignItems: 'center', 
       height: '100px' 
     }}>
-      Chargement...
+      <LoadingSpinner />
     </div>
   );
 

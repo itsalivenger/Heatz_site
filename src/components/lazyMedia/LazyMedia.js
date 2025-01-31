@@ -1,28 +1,30 @@
 import { useState, useEffect, useRef } from "react";
 
-const LazyMedia = ({ type, src, alt = "", className = "", poster = "", ...props }) => {
-  const [isInViewport, setIsInViewport] = useState(false);
+const LazyMedia = ({ type, src, alt = "", className = "", poster = "", preload = false, ...props }) => {
+  const [isInViewport, setIsInViewport] = useState(preload);
   const mediaRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInViewport(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
+    if (!preload) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsInViewport(true);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
 
-    if (mediaRef.current) {
-      observer.observe(mediaRef.current);
+      if (mediaRef.current) {
+        observer.observe(mediaRef.current);
+      }
+
+      return () => {
+        if (mediaRef.current) observer.unobserve(mediaRef.current);
+      };
     }
-
-    return () => {
-      if (mediaRef.current) observer.unobserve(mediaRef.current);
-    };
-  }, []);
+  }, [preload]);
 
   return (
     <>
@@ -52,5 +54,6 @@ const LazyMedia = ({ type, src, alt = "", className = "", poster = "", ...props 
     </>
   );
 };
+
 
 export default LazyMedia;

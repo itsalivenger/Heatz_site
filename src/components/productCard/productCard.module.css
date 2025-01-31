@@ -28,7 +28,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw !important; /* Force full viewport width */
 }
 
 .carousel {
@@ -70,6 +69,7 @@
 .cardContent {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 16px;
     flex-grow: 1;
     /* Makes sure the content area grows and takes remaining space */
@@ -101,9 +101,10 @@
 }
 
 .price {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 0;
+    color: #00ad5c;
     /* Pushes the price to the bottom */
 }
 
