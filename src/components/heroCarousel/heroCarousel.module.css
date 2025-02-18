@@ -178,8 +178,8 @@
 
 .button:hover {
   color: #111;
-  border: rgb(0, 228, 137) solid 1px;
-  background-color: rgb(0, 228, 137);;
+  border: var(--color-greenHover) solid 1px;
+  background-color: var(--color-greenHover);;
 }
 
 @media (max-width: 768px) {

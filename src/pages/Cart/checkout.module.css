@@ -24,7 +24,7 @@
 
 .secure-order-title {
     font-size: 25px;
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
 }
 
 .order-timeline {
@@ -32,7 +32,7 @@
 }
 
 .order-timeline-check {
-    background-color: rgb(0, 228, 137);
+    background-color: var(--color-green);
     padding: 2px;
     border-radius: 50%;
     margin-left: 10px;
@@ -83,7 +83,7 @@
 
 .billing-title,
 .coupon-title {
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 30px;
@@ -109,7 +109,7 @@
 
 .billing-input:focus,
 .other-notes:focus {
-    outline: 1px solid rgb(0, 178, 107);
+    outline: 1px solid var(--color-green);
 }
 
 .sub {
@@ -154,7 +154,7 @@
 .coupon-apply {
     height: 50px;
     width: 30%;
-    background-color: rgb(0, 228, 137);
+    background-color: var(--color-green);
     color: white;
     border: none;
     cursor: pointer;
@@ -164,7 +164,7 @@
 }
 
 .coupon-apply:hover {
-    background-color: rgb(0, 122, 73);
+    background-color: var(--color-greenHover);
 }
 
 

@@ -47,7 +47,7 @@
 
 .searchIcon,
 .closeIcon {
-  color: rgb(0, 228, 137);
+  color: var(--color-green);
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;

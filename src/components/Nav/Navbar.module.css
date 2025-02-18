@@ -1,6 +1,5 @@
 .navbar {
     /* background-color: #1b1b1a; */
-    background: linear-gradient(135deg, #3b3a3b 0%, #1b1b1a2d 10%, #1b1b1aac 90%, #3b3a3b 100%);
     border-radius: 40px;
     border: 1px solid rgb(200, 200, 200, 0.1);
     padding: 15px 30px;
@@ -16,6 +15,14 @@
     box-sizing: border-box;
 }
 
+.dark{
+    background: linear-gradient(135deg, #3b3a3b 0%, #1b1b1a2d 10%, #1b1b1aac 90%, #3b3a3b 100%);
+}
+
+.light{
+    background-color: rgb(49, 49, 49);
+}
+
 .navbar-home {
     left: 5%;
     position: absolute;
@@ -23,7 +30,7 @@
 
 .navbar-logo .logo-icon {
     font-size: 24px;
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
 }
 
 .mobile-logo {
@@ -40,7 +47,7 @@
 .navbar-links a,
 .navbar-icons a,
 .navbar-icons i {
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
@@ -95,7 +102,7 @@
 
 .closeIcon {
     display: none;
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
@@ -105,7 +112,7 @@
 
 
 .navbar-icons i {
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
     font-weight: lighter;
     font-size: 26px;
     cursor: pointer;
@@ -113,7 +120,7 @@
 
 .navbar-links a:hover,
 .navbar-icons a:hover {
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
 }
 
 .hamburger {
@@ -122,7 +129,7 @@
 
 .hamburger i {
     font-size: 30px;
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
     cursor: pointer;
     font-weight: bolder;
 }
@@ -162,7 +169,7 @@
     .mobile-logo {
         display: block;
         font-size: 24px;
-        color: rgb(0, 228, 137);
+        color: var(--color-green);
     }
 
     .mobile-logo img {

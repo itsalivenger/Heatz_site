@@ -40,7 +40,7 @@ export default function AboutTestimonials() {
             <div key={testimonial.name} className={styles.card}>
               <div className={styles.rating}>
                 {[...Array(5)].map((_, i) => {
-                    return <LazyMedia type={'image'} src={"./images/icons/star.svg"} alt="star" />;
+                    return <LazyMedia key={i} type={'image'} src={"./images/icons/star.svg"} alt="star" />;
                 })}
               </div>
               <blockquote className={styles.content}>

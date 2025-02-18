@@ -57,7 +57,7 @@
 }
 
 .registration-container .form-group label span {
-    color: #00ff9d;
+    color: var(--color-green);
 }
 
 .registration-container .form-group input {
@@ -65,7 +65,7 @@
     padding: 12px 15px;
     border-radius: 15px;
     background-color: transparent;
-    border: 1px solid #2a5a47;
+    border: 1px solid var(--color-green);
     color: white;
     font-size: 1rem;
     background: rgb(26, 26, 26);
@@ -75,7 +75,7 @@
 
 .registration-container .form-group input:focus {
     outline: none;
-    border-color: #01dc84;
+    border-color: var(--color-green);
 }
 
 .registration-container .mobile-input {
@@ -88,7 +88,7 @@
     align-items: center;
     gap: 5px;
     background-color: transparent;
-    border: 1px solid #00ff9d;
+    border: 1px solid var(--color-green);
     border-radius: 10px;
     padding: 0 15px;
 }
@@ -113,11 +113,11 @@
 .registration-container .terms input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #00ff9d;
+    accent-color: var(--color-green);
     appearance: none;
     -webkit-appearance: none;
     background-color: transparent;
-    border: 1px solid #00ff9d;
+    border: 1px solid var(--color-green);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -126,7 +126,7 @@
 }
 
 .registration-container .terms input[type="checkbox"]:checked {
-    background-color: #00ff9d;
+    background-color: var(--color-green);
     position: relative;
 }
 
@@ -144,7 +144,7 @@
 .registration-container .create-button {
     width: 100%;
     padding: 15px;
-    background-color: #00ff9d;
+    background-color: var(--color-green);
     border: none;
     border-radius: 10px;
     color: #fff;
@@ -160,7 +160,7 @@
 }
 
 .registration-container .login-link a {
-    color: #00ff9d;
+    color: var(--color-green);
     text-decoration: none;
 }
 

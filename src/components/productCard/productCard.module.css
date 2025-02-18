@@ -12,8 +12,6 @@
 
 .imageContainer {
     position: relative;
-    /* height: 200px; */
-
     overflow: hidden;
 }
 
@@ -47,7 +45,7 @@
 
 .icon {
     font-size: 28px;
-    background-color: whitesmoke;
+    background-color: white;
     padding: 6px;
     display: flex;
     justify-content: center;
@@ -98,6 +96,7 @@
 .description {
     font-size: 1rem;
     margin: 0 0 10px;
+    color: #111;
 }
 
 .price {

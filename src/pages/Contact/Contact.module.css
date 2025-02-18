@@ -18,7 +18,7 @@
 .flip-btn{
     background-color: rgb(26, 26, 26);
     color: #fff;
-    border: 1px solid rgb(0, 97, 58);
+    border: 1px solid var(--color-green);
     /* Green border */
     border-radius: 20px;
     padding: 15px;
@@ -29,7 +29,7 @@
 }
 
 .flip-btn:hover{
-    border-color: rgb(0, 192, 115);
+    border-color: var(--color-greenHover);
 }
 
 .front {
@@ -56,7 +56,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #333;
 }
 
 .feel-free-container {
@@ -70,14 +69,14 @@
 .send-us-email,
 .need-any-help {
     font-size: 20px;
-    color: rgb(0, 192, 115);
+    color: var(--color-green);
 }
 
 .feel-free-to-write,
 .get-in-touch-with-us {
     font-size: 40px;
     margin-bottom: 50px;
-    color: rgb(210, 210, 210);
+    /* color: rgb(210, 210, 210); */
 }
 
 .input-container {
@@ -92,13 +91,13 @@
     padding: 15px 25px;
     background: rgb(26, 26, 26);
     color: #fff;
-    border: 1px solid rgb(0, 97, 58);
+    border: 1px solid var(--color-green);
     border-radius: 20px;
     box-sizing: border-box;
 }
 
 .info-input:focus {
-    outline: 1px solid rgb(0, 192, 115);
+    outline: 1px solid var(--color-green);
 }
 
 .message-input {
@@ -126,10 +125,10 @@
 }
 
 .submitBtn {
-    background: #00ff9d;
+    background: var(--color-green);
     color: #000;
     border: none;
-    box-shadow: 0 0 10px #00ff9d7d,
+    box-shadow: 0 0 10px var(--color-green),
         0 0 20px rgba(0, 255, 157, 0.2),
         0 0 30px rgba(0, 255, 157, 0.1);
     position: relative;
@@ -137,8 +136,8 @@
 }
 
 .submitBtn:hover {
-    background: #00ff9d;
-    box-shadow: 0 0 20px #00ff9d,
+    background: var(--color-greenHover);
+    box-shadow: 0 0 20px var(--color-greenHover),
         0 0 40px rgba(0, 255, 157, 0.2),
         0 0 60px rgba(0, 255, 157, 0.1);
     transform: translateY(-2px);
@@ -146,7 +145,7 @@
 
 .submitBtn:active {
     transform: translateY(1px);
-    box-shadow: 0 0 10px #00ff9d;
+    box-shadow: 0 0 10px var(--color-greenHover);
 }
 
 /* Add pulsing animation */
@@ -191,13 +190,13 @@
 .flipButton {
     background: #0f0f0f;
     color: #ffffff;
-    border: 1px solid #00ff9d;
+    border: 1px solid var(--color-green);
     box-shadow: inset 0 0 10px #00ff9d25;
 }
 
 .flipButton:hover {
     background: #1a1a1a;
-    border-color: #00ff9d;
+    border-color: var(--color-green);
     box-shadow: inset 0 0 15px #00ff9d28;
 }
 
@@ -214,7 +213,7 @@
 
 .get-in-touch-paragraph {
     font-size: 15px;
-    color: rgb(150, 150, 150);
+    /* color: rgb(150, 150, 150); */
     width: 80%;
     line-height: 25px;
     margin-bottom: 30px;
@@ -229,15 +228,15 @@
     font-size: 35px;
     height: 60px;
     width: 60px;
-    color: white;
-    background-color: rgb(0, 97, 58);
+    /* color: white; */
+    background-color: var(--color-green);
     border-radius: 20px;
     margin-right: 20px;
     transition: background-color 0.3s ease-in-out;
 }
 
 .media-icons:hover {
-    background-color: rgb(0, 122, 73);
+    background-color: var(--color-greenHover);
 }
 
 .media-container {
@@ -254,12 +253,19 @@
 
 .get-in-touch-span0 {
     font-size: 20px;
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
 }
 
 .get-in-touch-span1 {
     font-size: 15px;
-    color: rgb(150, 150, 150);
+}
+
+.dark{
+    color: rgb(130, 130, 130);
+}
+
+.light{
+    color: rgb(32, 32, 32);
 }
 
 @media only screen and (max-width: 1000px) {

@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import SearchBar from './searchBar';
-import { searchItems } from '../other/usefulFunctions';
 import sendRequest from '../other/sendRequest';
 import { serverDomain } from '../other/variables';
-import LazyMedia from '../lazyMedia/LazyMedia';
+import ThemeToggle from './modeSwitch';
 
-function Navbar({ isAuthenticated, isAdmin, onLogout }) {
+function Navbar({ isAuthenticated, isAdmin, onLogout, theme, toggleTheme }) {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [menuIsToggled, setMenuIsToggled] = useState(false);
   const location = useLocation();
@@ -24,7 +23,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
 
   return (
     <>
-      <nav className={`${styles.navbar} ${location.pathname === '/' ? styles["navbar-home"] : ''}`}>
+      <nav className={`${theme === 'dark' ? styles.dark : styles.light} ${styles.navbar} ${location.pathname === '/' ? styles["navbar-home"] : ''}`}>
         <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'/'} className={styles["navbar-logo"]}>
           {/* <LazyMedia type={'image'} src={"./images/logos/Vector.svg"} alt='this is the company logo' /> */}
           <img src='./images/logos/Vector.svg' alt='this is the company logo' />
@@ -40,6 +39,7 @@ function Navbar({ isAuthenticated, isAdmin, onLogout }) {
 
           <div className={`${styles["navbar-icons"]} ${isSearchActive ? styles['inactive'] : ''}`}>
             {/* Cart Link */}
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
             <Link onClick={() => setMenuIsToggled(!menuIsToggled)} to={'cart'} className={styles["info-container"]}>
               {/* <i className="material-symbols-outlined">shopping_bag</i> */}
               {/* <LazyMedia type={'image'} src='./images/icons/cart.svg' alt='cart icon' /> */}

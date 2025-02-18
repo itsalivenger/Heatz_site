@@ -27,18 +27,17 @@
 
 .header span {
   font-size: 3rem;
-  color: #fff;
+  /* color: #fff; */
 }
 
 .header h1 {
   font-size: 3.75rem;
   font-weight: bold;
-  color: white;
 }
 
 .content p {
   font-size: 1.125rem;
   line-height: 1.75;
-  color: rgb(209, 213, 219);
+  /* color: rgb(209, 213, 219); */
   max-width: 42rem;
 }

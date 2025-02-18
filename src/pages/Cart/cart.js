@@ -111,7 +111,7 @@ function ProductInCart({ product, onQuantityChange, onRemoveItem }) {
     return (
         <div className={styles["order-summary-item"]}>
             <div className={styles["order-summary-image-container"]}>
-                <LazyMedia alt="product display" className={styles["order-summary-image"]} src={imageUrls[0]} />
+                <LazyMedia type={'image'} alt="product display" className={styles["order-summary-image"]} src={imageUrls[0]} />
             </div>
             <div className={styles["order-summary-item-details"]}>
                 <div className={styles["order-summary-item-text-content"]}>

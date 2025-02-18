@@ -17,7 +17,7 @@
 .subtitle {
   font-size: 1rem;
   font-weight: 600;
-  color: rgb(0, 228, 137);
+  color: var(--color-green);
 }
 
 .title {
@@ -25,14 +25,14 @@
   font-size: 2.25rem;
   font-weight: bold;
   line-height: 1.2;
-  color: white;
+  /* color: white; */
 }
 
 .description {
   margin-top: 1.5rem;
   font-size: 1.125rem;
   line-height: 1.75;
-  color: rgb(209, 213, 219);
+  /* color: rgb(209, 213, 219); */
 }
 
 .grid {
@@ -92,7 +92,7 @@
 }
 
 .iconTitle span {
-  color: rgb(0, 228, 137);
+  color: var(--color-green);
 }
 
 .iconTitle h3 {

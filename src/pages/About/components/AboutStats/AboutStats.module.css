@@ -32,14 +32,13 @@
 .label {
   font-size: 1rem;
   line-height: 1.75;
-  color: rgb(156, 163, 175);
 }
 
 .value {
   order: -1;
   font-size: 3rem;
   font-weight: 600;
-  color: rgb(0, 228, 137);
+  color: var(--color-green);
 }
 
 @media (min-width: 640px) {

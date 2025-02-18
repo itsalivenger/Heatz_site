@@ -1,6 +1,6 @@
 .trigger-button {
     padding: 12px 24px;
-    background-color: rgb(0, 228, 137);
+    background-color: var(--color-green);
     color: white;
     border: none;
     border-radius: 5px;
@@ -10,7 +10,7 @@
 }
 
 .trigger-button:hover {
-    background-color: rgb(0, 169, 101);
+    background-color: var(--color-greenHover);
 }
 
 .popup-overlay {
@@ -99,12 +99,12 @@
 }
 
 .confirm-button {
-    background-color: #4CAF50;
+    background-color: var(--color-green);
     color: white;
 }
 
 .confirm-button:hover {
-    background-color: #45a049;
+    background-color: var(--color-greenHover);
 }
 
 .cancel-button {

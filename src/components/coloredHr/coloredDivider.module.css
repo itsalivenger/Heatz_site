@@ -10,7 +10,7 @@
 
 .greenSection {
     width: 30%;
-    background-color: rgb(0, 228, 137);;
+    background-color: var(--color-green);
     height: 100%;
 }
 

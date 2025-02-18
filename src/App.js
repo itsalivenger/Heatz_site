@@ -23,6 +23,7 @@ import ParticlesBackground from './components/particles/Particle.js';
 import AboutPage from './pages/About/AboutPage.js';
 import PreviewProduct from './pages/PreviewProduct/PreviewProduct.js';
 import WhatsAppWidget from './components/whatsappWidget/whatsappWidget.js';
+import useTheme from './components/other/useTheme.js';
 const Footer = React.lazy(() => import('./components/Footer/Footer'));
 
 // Protected Route wrapper for authenticated users
@@ -47,7 +48,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const launchDate = new Date('2025-02-20');
+  const [theme, toggleTheme] = useTheme();
+
+
+  const launchDate = new Date('2025-03-20');
   const contactInfo = {
     email: 'contact@heatz.ma',
     phoneNumber: '+212 (020)-9850',
@@ -76,6 +80,8 @@ function App() {
         localStorage.removeItem('user');
       }
     }
+
+    document.body.setAttribute("data-theme", theme);
     setLoading(false);
   }, []);
 
@@ -111,9 +117,9 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <Suspense fallback={null}>
-        <ParticlesBackground />
+        <ParticlesBackground theme={theme} />
       </Suspense>
       {content && <Popup onConfirm={() => redirectTo('login')} isOpen={isOpen} onClose={() => {
         setIsOpen(false);
@@ -124,15 +130,17 @@ function App() {
           isAuthenticated={isAuthenticated}
           isAdmin={isAdmin}
           onLogout={handleLogout}
+          theme={theme}
+          toggleTheme={toggleTheme}
         />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={
             <Suspense fallback={<LoadingSpinner />}>
-            <Home />
-          </Suspense>} />
+              <Home />
+            </Suspense>} />
 
-          <Route path="/contact" element={<Contact contactInfo={contactInfo} />} />
+          <Route path="/contact" element={<Contact theme={theme} contactInfo={contactInfo} />} />
           <Route
             path="/login"
             element={
@@ -211,7 +219,7 @@ function App() {
           <Footer />
         </Suspense>
       </Router>
-    </div>
+    </div >
   );
 }
 

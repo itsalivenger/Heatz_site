@@ -23,7 +23,7 @@
 }
 
 .tab.active {
-  background-color: #00ff88;
+  background-color: var(--color-greenHover);
   color: #111;
   border-radius: 20px;
 }

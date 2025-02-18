@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import styles from './CategoriesSection.module.css';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import styles from './CategoriesSection.module.css';
 import LazyMedia from '../../components/lazyMedia/LazyMedia';
 
 const categories = [
@@ -22,43 +22,38 @@ function CategoriesSection({ handleCategories }) {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const categoryFromUrl = queryParams.get('category');
-    const [activeCategory, setActiveCategory] = useState(categoryFromUrl ?
-        categories.find((category) => category.name === categoryFromUrl).name : categories[0].name
-    );
+    
+    const defaultCategory = categories.find(cat => cat.name === categoryFromUrl)?.name || categories[0].name;
+    const [activeCategory, setActiveCategory] = useState(defaultCategory);
 
-    useState(() => {
+    useEffect(() => {
         handleCategories(activeCategory);
+    }, [activeCategory, handleCategories]); // Appel de handleCategories uniquement après le rendu
 
-        // Extract category from URL
-        const queryParams = new URLSearchParams(location.search);
-        const categoryFromUrl = queryParams.get('category');
-
+    useEffect(() => {
         if (categoryFromUrl) {
-            // Use setTimeout to defer execution until after rendering
             setTimeout(() => {
                 const element = document.getElementById('categories');
                 if (element) {
                     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                    console.warn(`Element with ID "${categoryFromUrl}" not found.`);
                 }
-            }, 0); // Delay ensures the DOM is fully updated
+            }, 0);
         }
-    }, [])
+    }, [categoryFromUrl]);
+
     const handleCategoryClick = (categoryName) => {
         setActiveCategory(categoryName);
-        handleCategories(categoryName);
     };
 
     return (
-        <div className={styles.container} id='categories'>
+        <div className={styles.container} id="categories">
             {categories.map((category, i) => (
                 <div
                     key={i}
-                    className={`${styles.category} ${(activeCategory === category.name) ? styles.active : ''}`}
+                    className={`${styles.category} ${activeCategory === category.name ? styles.active : ''}`}
                     onClick={() => handleCategoryClick(category.name)}
                 >
-                    <LazyMedia type={'image'} src={category.imgSrc} alt={category.name} className={`${styles.icon}`} />
+                    <LazyMedia type="image" src={category.imgSrc} alt={category.name} className={styles.icon} />
                     <span className={styles.name}>{category.name}</span>
                 </div>
             ))}

@@ -16,10 +16,6 @@ const Popup = lazy(() => import("../../components/popup/popup"));
 const HomeCategories = lazy(() => import("../../components/homeCategories/homeCategories"));
 const ShippingFeatures = lazy(() => import("../../components/shippingFeature/shippingFeature"));
 
-const productsMockup = [
-  // ... your existing mockup data
-];
-
 function Home() {
   const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -67,18 +63,18 @@ function Home() {
         <HeroCarousel />
         <ShippingFeatures />
         <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
-        <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
+        <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : []} />
         <ColoredDivider />
-        <ImageAndVideo img={"./images/flayers/gaming.jpeg"} vid={"./videos/watchLast.mp4"} />
+        <ImageAndVideo img={"./images/flayers/gaming.jpeg"} vid={"https://res.cloudinary.com/dkhvdihhj/video/upload/v1739022957/watchLast_rd2hpb.mp4"} />
         <TitleAndText 
           title={"Améliorez Votre Expérience de Jeu"} 
           text={`Optimisez votre expérience de jeu avec des accessoires performants, des casques audio immersifs et des périphériques conçus pour offrir précision et confort lors de vos sessions gaming.`} 
         />
         <HeroCarousel />
         <ProductsCardsCarousel categories={['Casque', 'Souris', 'Clavier', 'Offres 10%']} />
-        <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : productsMockup} />
+        <ProductsCarousel togglePopup={togglePopup} products={products.length ? products : []} />
         <ColoredDivider />
-        <ImageAndVideo img={"./images/flayers/watch.jpeg"} vid={"./videos/hero2.mp4"} />
+        <ImageAndVideo img={"./images/flayers/watch.jpeg"} vid={"https://res.cloudinary.com/dkhvdihhj/video/upload/v1739022991/hero2_cryi01.mp4"} />
         <TitleAndText 
           title={"Produits Tendance"} 
           text={`Découvrez notre sélection de produits innovants, des accessoires tech de qualité pour améliorer votre quotidien.`} 

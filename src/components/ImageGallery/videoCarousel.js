@@ -7,7 +7,6 @@ const VideoCarousel = () => {
   const settings = {
     dots: false,
     arrows: false,
-    infinite: true,
     speed: 500,
     slidesToShow: 4, // Show 4 videos per slide
     slidesToScroll: 4,
@@ -37,8 +36,9 @@ const VideoCarousel = () => {
   };
 
   const videos = [
-    { src: './videos/crossroad.mp4', title: 'Video 1' },
-    { src: './videos/watchLast.mp4', title: 'Video 4' }
+    { src: 'https://res.cloudinary.com/dkhvdihhj/video/upload/v1739023076/crossroad_jqszgd.mp4', title: 'Video 1' },
+    { src: 'https://res.cloudinary.com/dkhvdihhj/video/upload/v1739022957/watchLast_rd2hpb.mp4', title: 'Video 4' },
+    { src: 'https://res.cloudinary.com/dkhvdihhj/video/upload/v1739023076/crossroad_jqszgd.mp4', title: 'Video 1' }
   ];
 
   return (

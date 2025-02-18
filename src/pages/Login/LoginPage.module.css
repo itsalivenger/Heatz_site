@@ -7,7 +7,7 @@
 }
 
 .inputContainer span{
-    color: #00ff9d;
+    color: var(--color-green);
 }
 
 .pseudo-body {
@@ -70,7 +70,7 @@
     padding: 15px 25px;
     background: rgb(26, 26, 26);
     color: #fff;
-    border: 1px solid #2a5a47;
+    border: 1px solid var(--color-green);
     border-radius: 15px;
     margin: 15px 0px;
     width: 100%;
@@ -79,14 +79,14 @@
 }
 
 .form-container input:focus {
-    border-color: #01dc84;
-    outline: 1px solid rgb(0, 228, 137);
+    border-color: var(--color-green);
+    outline: 1px solid var(--color-green);
 }
 
 .login-btn {
     width: 90%;
     padding: 20px 0px;
-    background-color: rgb(0, 228, 137);
+    background-color: var(--color-green);
     color: white;
     border: none;
     border-radius: 20px;
@@ -97,7 +97,7 @@
 }
 
 .login-btn:hover {
-    background-color: rgb(0, 122, 73);
+    background-color: var(--color-greenHover);
 }
 
 .forgot-password-div {
@@ -107,7 +107,7 @@
 
 .reset,
 .create-account {
-    color: rgb(0, 228, 137);
+    color: var(--color-green);
     text-decoration: underline;
     cursor: pointer;
 }

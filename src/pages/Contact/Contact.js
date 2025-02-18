@@ -7,7 +7,7 @@ import Popup from '../../components/popup/popup';
 import SocialMedia from '../../components/socialMedia/socialMedia';
 import SellerForm from '../../components/contactSocieteForm/contactSocieteForm';
 
-function Contact({ contactInfo }) {
+function Contact({ contactInfo, theme }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
@@ -84,14 +84,14 @@ function Contact({ contactInfo }) {
                         <SellerForm flipCard={() => setIsFlipped(!isFlipped)} />
                     </div>
                 </div>
-                <GetInTouch contactInfo={contactInfo} />
+                <GetInTouch theme={theme} contactInfo={contactInfo} />
             </div>
             <Location />
         </div>
     );
 }
 
-function GetInTouch({ contactInfo }) {
+function GetInTouch({ contactInfo, theme }) {
     return (
         <div className={styles["get-in-touch-container"]}>
             <span className={styles["need-any-help"]}>Besoin d'aide ?</span>
@@ -104,14 +104,14 @@ function GetInTouch({ contactInfo }) {
                 <i className={`${styles["media-icons"]} material-symbols-outlined`}>call</i>
                 <div className={styles["media-text-container"]}>
                     <span className={styles["get-in-touch-span0"]}>Avez-vous des questions ?</span>
-                    <span className={styles["get-in-touch-span1"]}>Appel gratuit : {contactInfo.phoneNumber}</span>
+                    <span className={`${theme === 'dark' ? styles.dark : styles.light} ${styles["get-in-touch-span1"]}`}>Appel gratuit : {contactInfo.phoneNumber}</span>
                 </div>
             </div>
             <div className={styles["media-container"]} onClick={() => window.open(`mailto:${contactInfo.email}`, "_self")}>
                 <i className={`${styles["media-icons"]} material-symbols-outlined`}>mail</i>
                 <div className={styles["media-text-container"]}>
                     <span className={styles["get-in-touch-span0"]}>Écrivez-nous un e-mail</span>
-                    <span className={styles["get-in-touch-span1"]}>{contactInfo.email}</span>
+                    <span className={`${theme === 'dark' ? styles.dark : styles.light} ${styles["get-in-touch-span1"]}`}>{contactInfo.email}</span>
                 </div>
             </div>
 
@@ -122,7 +122,7 @@ function GetInTouch({ contactInfo }) {
                 <i className={`${styles["media-icons"]} material-symbols-outlined`}>location_on</i>
                 <div className={styles["media-text-container"]}>
                     <span className={styles["get-in-touch-span0"]}>Visitez-nous à tout moment</span>
-                    <span className={styles["get-in-touch-span1"]}>{contactInfo.address}</span>
+                    <span className={`${theme === 'dark' ? styles.dark : styles.light} ${styles["get-in-touch-span1"]}`}>{contactInfo.address}</span>
                 </div>
             </div>
 
