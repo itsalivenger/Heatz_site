@@ -26,7 +26,7 @@ async function sendRequest(url, method = 'GET', body = null, headers = {}, isFor
         return data;  // Return the data to the caller
     } catch (error) {
         console.error('Error:', error);
-        return error;
+        return {error, msg: 'error'};
     }
 }
 

@@ -8,12 +8,12 @@ function Cart({ cart, setCart }) {
 
     // Load cart data on component mount
     useEffect(() => {
-        // Assuming `getCart` fetches data from local storage or API
         const handleLoadCart = async () => {
             const cartData = await getCart();
             setCart(cartData.cart || []);
             updateTotal(cartData.cart || []);
-        }
+        };
+
         handleLoadCart();
     }, []);
 
@@ -35,7 +35,7 @@ function Cart({ cart, setCart }) {
 
         setCart(updatedCart);
         updateTotal(updatedCart);
-        updateCartInServer(updatedCart);
+        saveCart(updatedCart);
     };
 
     // Function to remove item from cart
@@ -43,13 +43,24 @@ function Cart({ cart, setCart }) {
         const updatedCart = cart.filter((item) => item._id !== productId);
         setCart(updatedCart);
         updateTotal(updatedCart);
-        updateCartInServer(updatedCart);
+        saveCart(updatedCart);
     };
 
+    // Function to clear the cart
     const handleClearCart = () => {
-        setCart([]); // Clear the cart
-        updateTotal([]); // Update the total to 0
-        updateCartInServer([]);
+        setCart([]);
+        updateTotal([]);
+        saveCart([]);
+    };
+
+    // Save cart to local storage or server
+    const saveCart = (updatedCart) => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user._id) {
+            updateCartInServer(updatedCart);
+        } else {
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+        }
     };
 
     return (
@@ -88,7 +99,6 @@ function Cart({ cart, setCart }) {
                                 ajouter une adresse de livraison dans la prochaine page.
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -100,7 +110,6 @@ function Cart({ cart, setCart }) {
                 <button onClick={handleClearCart} className={styles["vider-panier-btn"]}>
                     <i className={"material-symbols-outlined"}></i> Vider le Panier
                 </button>
-
             </div>
         </div>
     );
@@ -119,7 +128,9 @@ function ProductInCart({ product, onQuantityChange, onRemoveItem }) {
                     <span className={styles["order-summary-price"]}>{price} DH</span>
                 </div>
                 <div className={styles["order-summary-control"]}>
-                    <button className={styles["trash"]} onClick={() => onRemoveItem(_id)}><i className="material-symbols-outlined">delete</i></button>
+                    <button className={styles["trash"]} onClick={() => onRemoveItem(_id)}>
+                        <i className="material-symbols-outlined">delete</i>
+                    </button>
                     <div className={styles["quantity-container"]}>
                         <button className={styles["minus"]} onClick={() => onQuantityChange(_id, -1)}>-</button>
                         <input className={styles["order-summary-quantity"]} type="number" value={quantity} readOnly />

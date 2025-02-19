@@ -4,11 +4,17 @@ import { serverDomain } from "./variables";
 
 async function getCart() {
     const user = getUser();
-    const cart = await sendRequest(`${serverDomain}/cart/${user._id}`, 'GET');
 
-    // mochkil f connexion mora signup
-    return cart;
+    if (user._id) {
+        // Fetch cart from backend if user is logged in
+        const cart = await sendRequest(`${serverDomain}/cart/${user._id}`, 'GET');
+        return cart;
+    } 
+    
+    // Return local cart if user is not logged in
+    return { cart: JSON.parse(localStorage.getItem('cart')) || [] };
 }
+
 
 function getTotal(cart) {
     let total = 0;
@@ -96,20 +102,37 @@ function formValidation(formData) {
 
 const addToCart = async (user_id, togglePopup, product) => {
     if (!user_id) {
-        togglePopup({ title: 'Error', content: 'Vous devez vous connecter d\'abord.' });
-        return false;
-    };
+        // Save to localStorage if the user is not connected
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const productExists = cart.some(item => item._id === product._id);
 
+        if (!productExists) {
+            cart.push({ ...product, quantity: 1 });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            togglePopup({ title: 'Success', content: 'Produit ajouté au panier (hors ligne).' });
+        } else {
+            togglePopup({ title: 'Info', content: 'Le produit est déjà dans le panier.' });
+        }
+        return;
+    }
+
+    // Send request to backend
     const response = await sendRequest(`${serverDomain}/cart`, 'POST', { product_Id: product._id, user_id });
+
     if (!response.error) {
         togglePopup({ title: 'Success', content: response.message });
-        const user = JSON.parse(localStorage.getItem('user'));
-        user.cart.push({ ...product, quantity: 1 });
-        localStorage.setItem('user', JSON.stringify(user));
+
+        // Update local user cart
+        let user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            user.cart.push({ ...product, quantity: 1 });
+            localStorage.setItem('user', JSON.stringify(user));
+        }
     } else {
         togglePopup({ title: 'Error', content: response.error });
     }
 };
+
 
 const addToFavorite = async (product_Id, user_id, togglePopup) => {
     // if (!isConnected()) return;

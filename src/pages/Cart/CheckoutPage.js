@@ -50,7 +50,6 @@ function CheckoutPage() {
     }
 
     if (currentStep === 1 && !cart.length) {
-      console.log(cart);
       setIsOpen(true);
       setContent({
         title: 'Alerte.',
@@ -88,9 +87,8 @@ function CheckoutPage() {
     const response = await sendRequest(`${serverDomain}/checkout`, 'POST', { formData, user: getUser(), cart });
 
     if (!response.error) {
-      window.location.href = `${domain}/success`;
-      console.log('commande success');
       updateCartInServer([]);
+      window.location.href = `${domain}/success`;
     } else {
       console.log(response.error);
       setContent({

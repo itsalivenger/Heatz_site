@@ -146,13 +146,43 @@
     width: fit-content;
 }
 
+.check-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust spacing between checkbox and text */
+    cursor: pointer;
+}
+
 .check-input {
+    appearance: none;
     border: 2px solid var(--color-green);
     height: 15px;
     width: 15px;
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
+
+/* Add a custom checkmark when checked */
+.check-input:checked {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+}
+
+.check-input:checked::after {
+    content: "✔";
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 .condition-and-terms {
     color: var(--color-green);

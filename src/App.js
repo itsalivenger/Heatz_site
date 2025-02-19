@@ -140,6 +140,13 @@ function App() {
               <Home />
             </Suspense>} />
 
+          <Route
+            path="/cart"
+            element={
+              <CheckoutPage />
+            }
+          />
+
           <Route path="/contact" element={<Contact theme={theme} contactInfo={contactInfo} />} />
           <Route
             path="/login"
@@ -160,33 +167,16 @@ function App() {
             }
           />
           <Route path="/boutique" element={<Shop />} />
-
           <Route path="/resetPass" element={<ResetPass />} />
           <Route path='product' element={<ProductPage />} />
+          <Route path="/success" element={<Success />}/>
 
           {/* Protected Routes (require authentication) */}
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <CheckoutPage />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/favorite"
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
                 <Favorite />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/success"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Success />
               </ProtectedRoute>
             }
           />
