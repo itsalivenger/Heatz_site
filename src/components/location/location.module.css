@@ -9,8 +9,8 @@
 
 .map-wrapper {
     position: relative;
-    padding-bottom: 40%;
-    height: 0;
+    height: 80vh;
+    width: 100%;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -32,4 +32,10 @@
     margin-bottom: 20px;
     color: var(--color-green);
     font-family: Arial, sans-serif;
+}
+
+@media screen and (max-width: 400px) {
+    .map-container{
+        
+    }
 }

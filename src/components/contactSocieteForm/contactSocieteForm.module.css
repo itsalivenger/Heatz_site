@@ -61,6 +61,23 @@
     justify-content: space-around;
 }
 
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.buttonsContainer button {
+    padding: 12px 24px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .buttons button {
     padding: 12px 24px;
     font-weight: bold;

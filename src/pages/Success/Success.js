@@ -8,7 +8,7 @@ function Success() {
             <div className={styles.container}>
                 <section className={styles.orderConfirmation}>
                     <div className={styles.logo}>
-                        <LazyMedia type={'image'} src="./images/logos/heatz.png" alt="Company Logo" />
+                        <LazyMedia type={'image'} src="./images/logos/Heatz.png" alt="Company Logo" />
                     </div>
                     <div className={styles.confirmationIcon}>
                         <span className="material-symbols-outlined">check_circle</span>

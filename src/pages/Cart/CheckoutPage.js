@@ -34,13 +34,13 @@ function CheckoutPage() {
   const handleNext = () => {
     if (currentStep === 1) {
       // Validate form data before proceeding to the next step
-      const user = JSON.parse(localStorage.getItem('user'));
+      const user = getUser();
       user.cart = cart;
       localStorage.setItem('user', JSON.stringify(user));
     }
     if (currentStep === 2) {
       // Validate form data before proceeding to the next step
-      const user = JSON.parse(localStorage.getItem('user'));
+      const user = getUser();
       user.formData = formData;
       localStorage.setItem('user', JSON.stringify(user));
     }
@@ -57,7 +57,7 @@ function CheckoutPage() {
       })
       setCurrentStep(currentStep)
     }
-    
+
     if (currentStep === 2 && !isFormFilled(formData)) {
       setIsOpen(true);
       setContent({
@@ -89,6 +89,7 @@ function CheckoutPage() {
     if (!response.error) {
       updateCartInServer([]);
       window.location.href = `${domain}/success`;
+      console.log('donne');
     } else {
       console.log(response.error);
       setContent({
@@ -125,14 +126,20 @@ function CheckoutPage() {
           </div>
           <div className={styles["order-timeline"]}>
             {/* Step indicators with dynamic classes for active step */}
-            <span className={`${currentStep >= 1 ? styles["active"] : ''} ${styles["order-timeline-number"]}`}>1</span>
-            <span className={styles["order-timeline-info"]}>Informations Livraison</span>
-            <span className={styles["small-lines"]}>- - - - </span>
-            <span className={`${currentStep >= 2 ? styles["active"] : ''} ${styles["order-timeline-number"]}`}>2</span>
-            <span className={styles["order-timeline-info"]}>Informations Personnelles</span>
-            <span className={styles["small-lines"]}>- - - - </span>
-            <span className={`${currentStep >= 3 ? styles["active"] : ''} ${styles["order-timeline-number"]}`}>3</span>
-            <span className={styles["order-timeline-info"]}>Finaliser la commande</span>
+            <div className={styles.timelines_Container}>
+              <span className={`${currentStep >= 1 ? styles["active"] : ''} ${styles["order-timeline-number"]}`}>1</span>
+              <span className={styles["order-timeline-info"]}>Informations Livraison</span>
+              <span className={styles["small-lines"]}>- - - - </span>
+            </div>
+            <div className={styles.timelines_Container}>
+              <span className={`${currentStep >= 2 ? styles["active"] : ''} ${styles["order-timeline-number"]}`}>2</span>
+              <span className={styles["order-timeline-info"]}>Informations Personnelles</span>
+              <span className={styles["small-lines"]}>- - - - </span>
+            </div>
+            <div className={styles.timelines_Container}>
+              <span className={`${currentStep >= 3 ? styles["active"] : ''} ${styles["order-timeline-number"]}`}>3</span>
+              <span className={styles["order-timeline-info"]}>Finaliser la commande</span>
+            </div>
           </div>
         </div>
 

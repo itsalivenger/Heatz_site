@@ -288,7 +288,7 @@
 
 @media only screen and (max-width: 750px) {
     .container {
-        padding: 150px 20px;
+        padding: 100px 20px;
     }
 
     .container-of-all {
@@ -326,7 +326,18 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    .buttonsContainer{
+        flex-direction: column;
+        gap: 1em;
+    }
+}
+
 @media screen and (max-width: 350px) {
+    .container {
+        padding: 50px 20px;
+    }
+
     .buttonsContainer {
         flex-direction: column;
         gap: 10px;

@@ -26,25 +26,23 @@ function SellerForm({ flipCard }) {
       email,
       besoin,
     });
-    const response = await sendRequest(
-      `${serverDomain}/contactSociete`,
-      "POST",
-      {
-        societe,
-        ice,
-        ville,
-        numeroFix,
-        numeroTelephone,
-        email,
-        besoin,
-      }
-    );
-    // console.log(response);
-    if(response.error){
+
+    const response = await sendRequest(`${serverDomain}/contactSociete`, "POST", {
+      societe,
+      ice,
+      ville,
+      numeroFix,
+      numeroTelephone,
+      email,
+      besoin,
+    });
+
+    if (response.error) {
       console.log(response.error);
     } else {
       console.log(response);
     }
+
     resetInputs();
   };
 
@@ -62,8 +60,7 @@ function SellerForm({ flipCard }) {
     <div className={styles.container}>
       <h1 className={styles.title}>Formulaire pour les Vendeurs</h1>
       <p className={styles.subtitle}>
-        Remplissez ce formulaire pour nous fournir des informations sur votre
-        entreprise.
+        Remplissez ce formulaire pour nous fournir des informations sur votre entreprise.
       </p>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
@@ -120,10 +117,9 @@ function SellerForm({ flipCard }) {
           className={`${styles.input} ${styles.textarea}`}
           placeholder="Vos besoins"
           required
-        ></textarea>
+        />
         <p className={styles.explanation}>
-          Ce formulaire est destiné aux vendeurs souhaitant collaborer avec
-          nous. Merci de fournir des informations précises.
+          Ce formulaire est destiné aux vendeurs souhaitant collaborer avec nous. Merci de fournir des informations précises.
         </p>
         <div className={styles.buttons}>
           <button type="submit" className={styles.submitBtn}>
@@ -136,7 +132,12 @@ function SellerForm({ flipCard }) {
             Individuel
           </button>
         </div>
-        <Popup content={content.content} title={content.title} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <Popup
+          content={content.content}
+          title={content.title}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        />
       </form>
     </div>
   );

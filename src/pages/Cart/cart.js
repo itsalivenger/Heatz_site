@@ -1,145 +1,108 @@
-import { useEffect, useState } from 'react';
-import styles from './cart.module.css';
-import { getCart, getTotal, updateCartInServer } from '../../components/other/usefulFunctions';
-import LazyMedia from '../../components/lazyMedia/LazyMedia';
+import { useEffect, useState } from "react";
+import styles from "./cart.module.css";
+import {
+  getCart,
+  getTotal,
+  updateCartInServer,
+  getUser,
+} from "../../components/other/usefulFunctions";
+import LazyMedia from "../../components/lazyMedia/LazyMedia";
 
 function Cart({ cart, setCart }) {
-    const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(0);
 
-    // Load cart data on component mount
-    useEffect(() => {
-        const handleLoadCart = async () => {
-            const cartData = await getCart();
-            setCart(cartData.cart || []);
-            updateTotal(cartData.cart || []);
-        };
-
-        handleLoadCart();
-    }, []);
-
-    // Function to update total price
-    const updateTotal = (updatedCart) => {
-        const totalAmount = getTotal(updatedCart);
-        setTotal(totalAmount);
+  // Load cart on mount and update total
+  useEffect(() => {
+    const fetchCart = async () => {
+      const { cart: fetchedCart = [] } = await getCart();
+      setCart(fetchedCart);
+      setTotal(getTotal(fetchedCart));
     };
+    fetchCart();
+  }, []);
 
-    // Function to handle quantity change
-    const handleQuantityChange = (productId, change) => {
-        const updatedCart = cart.map((item) => {
-            if (item._id === productId) {
-                const newQuantity = item.quantity + change;
-                return { ...item, quantity: newQuantity > 0 ? newQuantity : 1 }; // Ensure quantity is at least 1
-            }
-            return item;
-        });
+  // Update cart and total
+  const updateCart = (updatedCart) => {
+    setCart(updatedCart);
+    setTotal(getTotal(updatedCart));
+    saveCart(updatedCart);
+  };
 
-        setCart(updatedCart);
-        updateTotal(updatedCart);
-        saveCart(updatedCart);
-    };
+  // Save to local storage or server
+  const saveCart = (updatedCart) => {
+    const user = getUser();
+    user._id ? updateCartInServer(updatedCart) : localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
 
-    // Function to remove item from cart
-    const handleRemoveItem = (productId) => {
-        const updatedCart = cart.filter((item) => item._id !== productId);
-        setCart(updatedCart);
-        updateTotal(updatedCart);
-        saveCart(updatedCart);
-    };
+  return (
+    <div>
+      <div className={styles["cart-container"]}>
+        <div className={styles["order-summary"]}>
+          <div className={styles["summary-header"]}>
+            <h2>Résumé de la Commande</h2>
+            <p>
+              Vérifiez votre article et sélectionnez votre méthode d'expédition
+              pour une meilleure expérience de commande.
+            </p>
+          </div>
 
-    // Function to clear the cart
-    const handleClearCart = () => {
-        setCart([]);
-        updateTotal([]);
-        saveCart([]);
-    };
-
-    // Save cart to local storage or server
-    const saveCart = (updatedCart) => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user._id) {
-            updateCartInServer(updatedCart);
-        } else {
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-        }
-    };
-
-    return (
-        <div>
-            <div className={styles["sub-container-of-all"]}>
-                <div className={styles["order-summary-container"]}>
-                    <div className={styles["order-summary-text-content"]}>
-                        <span className={styles["order-summary-title"]}>Résumé de la Commande</span>
-                        <span className={styles["order-summary-sub-title"]}>
-                            Vérifiez votre article et sélectionnez votre méthode d'expédition pour une meilleure expérience de commande.
-                        </span>
-                    </div>
-
-                    <div className={styles["order-summary-items-container"]}>
-                        {cart.length > 0 ? (
-                            cart.map((product, index) => (
-                                <ProductInCart
-                                    key={index}
-                                    product={product}
-                                    onQuantityChange={handleQuantityChange}
-                                    onRemoveItem={handleRemoveItem}
-                                />
-                            ))
-                        ) : (
-                            <div className={styles["order-summary-empty"]}>Votre panier est vide</div>
-                        )}
-                    </div>
-                </div>
-
-                <div className={styles["shipping-address-container"]}>
-                    <span className={styles["address-title"]}>Adresse de Livraison</span>
-                    <div className={styles["address-type-container"]}>
-                        <div className={styles["no-address-container"]}>
-                            Aucune adresse trouvée. <div className={styles["add-address"]}>
-                                Veuillez
-                                ajouter une adresse de livraison dans la prochaine page.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles["total-and-buttons-container"]}>
-                <div className={styles["total-container"]}>
-                    <span className={styles["total-title"]}>Total :</span>
-                    <span className={styles["total-amount"]}>{total} DH</span>
-                </div>
-                <button onClick={handleClearCart} className={styles["vider-panier-btn"]}>
-                    <i className={"material-symbols-outlined"}></i> Vider le Panier
-                </button>
-            </div>
+          <div className={styles["cart-items"]}>
+            {cart.length ? (
+              cart.map((product) => (
+                <ProductInCart key={product._id} product={product} updateCart={updateCart} cart={cart} />
+              ))
+            ) : (
+              <p className={styles["empty-cart"]}>Votre panier est vide</p>
+            )}
+          </div>
         </div>
-    );
+
+        <div className={styles["shipping-address"]}>
+          <h3>Adresse de Livraison</h3>
+          <p>Aucune adresse trouvée.</p>
+          <p className={styles["add-address"]}>Veuillez ajouter une adresse de livraison dans la prochaine page.</p>
+        </div>
+      </div>
+
+      <div className={styles["total-section"]}>
+        <span className={styles["total-price"]}>Total : {total} DH</span>
+        <button onClick={() => updateCart([])} className={styles["clear-cart"]}>
+          <i className="material-symbols-outlined">delete</i> Vider le Panier
+        </button>
+      </div>
+    </div>
+  );
 }
 
-function ProductInCart({ product, onQuantityChange, onRemoveItem }) {
-    const { _id, productName, price, quantity, imageUrls } = product;
-    return (
-        <div className={styles["order-summary-item"]}>
-            <div className={styles["order-summary-image-container"]}>
-                <LazyMedia type={'image'} alt="product display" className={styles["order-summary-image"]} src={imageUrls[0]} />
-            </div>
-            <div className={styles["order-summary-item-details"]}>
-                <div className={styles["order-summary-item-text-content"]}>
-                    <span className={styles["order-summary-item-title"]}>{productName}</span>
-                    <span className={styles["order-summary-price"]}>{price} DH</span>
-                </div>
-                <div className={styles["order-summary-control"]}>
-                    <button className={styles["trash"]} onClick={() => onRemoveItem(_id)}>
-                        <i className="material-symbols-outlined">delete</i>
-                    </button>
-                    <div className={styles["quantity-container"]}>
-                        <button className={styles["minus"]} onClick={() => onQuantityChange(_id, -1)}>-</button>
-                        <input className={styles["order-summary-quantity"]} type="number" value={quantity} readOnly />
-                        <button className={styles["plus"]} onClick={() => onQuantityChange(_id, 1)}>+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+function ProductInCart({ product, updateCart, cart }) {
+  const { _id, productName, price, quantity, imageUrls } = product;
+
+  const updateQuantity = (change) => {
+    const updatedCart = cart.map((item) =>
+      item._id === _id ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
     );
+    updateCart(updatedCart);
+  };
+
+  return (
+    <div className={styles["cart-item"]}>
+      <LazyMedia type="image" alt="product" className={styles["cart-image"]} src={imageUrls[0]} />
+      <div className={styles["item-details"]}>
+        <span className={styles["item-title"]}>{productName}</span>
+        <span className={styles["item-price"]}>{price} DH</span>
+      </div>
+      <div className={styles["item-actions"]}>
+        <button className={styles["delete-btn"]} onClick={() => updateCart(cart.filter((item) => item._id !== _id))}>
+          <i className="material-symbols-outlined">delete</i>
+        </button>
+        <div className={styles["quantity-controls"]}>
+          <button onClick={() => updateQuantity(-1)}>-</button>
+          <input type="number" value={quantity} readOnly />
+          <button onClick={() => updateQuantity(1)}>+</button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Cart;

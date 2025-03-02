@@ -1,6 +1,6 @@
 import styles from './Contact.module.css';
 import Location from '../../components/location/location';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import sendRequest from '../../components/other/sendRequest';
 import { serverDomain } from '../../components/other/variables';
 import Popup from '../../components/popup/popup';
@@ -8,79 +8,69 @@ import SocialMedia from '../../components/socialMedia/socialMedia';
 import SellerForm from '../../components/contactSocieteForm/contactSocieteForm';
 
 function Contact({ contactInfo, theme }) {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [subject, setSubject] = useState('');
-    const [phone, setPhone] = useState('');
-    const [message, setMessage] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        phone: '',
+        message: ''
+    });
     const [content, setContent] = useState({});
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
+    const [loading, setLoading] = useState(false);
 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-    const handleSubmit = async (e) => {
+    const validateForm = () => {
+        return formData.name && formData.email.includes('@') && formData.message;
+    };
+
+    const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
-        console.log(name, email, subject, phone, message);
-        const contact = { name, email, subject, phone, message };
-        const response = await sendRequest(`${serverDomain}/contact`, 'POST', contact);
-        // console.log(response);
-        if (response.status === 200) {
-            setContent({
-                title: "Success",
-                content: "Votre e-mail de contact a bien eté envoyé."
-            });
-            openPopup();
-        } else {
-            setContent({
-                title: "Error",
-                content: response.error
-            });
-            openPopup();
+        if (!validateForm()) {
+            setContent({ title: "Erreur", content: "Veuillez remplir tous les champs obligatoires." });
+            setIsPopupOpen(true);
+            return;
         }
-        resetInputs();
-    }
-
-    function resetInputs() {
-        setName('');
-        setEmail('');
-        setSubject('');
-        setPhone('');
-        setMessage('');
-    }
-
-
-    const openPopup = () => {
+        setLoading(true);
+        const response = await sendRequest(`${serverDomain}/contact`, 'POST', formData);
+        setLoading(false);
+        if (response.status === 200) {
+            setContent({ title: "Succès", content: "Votre e-mail a bien été envoyé." });
+        } else {
+            setContent({ title: "Erreur", content: response.error });
+        }
         setIsPopupOpen(true);
-    };
-
-    const closePopup = () => {
-        setIsPopupOpen(false);
-    };
+        setFormData({ name: '', email: '', subject: '', phone: '', message: '' });
+    }, [formData]);
 
     return (
         <div className={styles.container}>
-            {content && <Popup title={content.title} content={content.content} isOpen={isPopupOpen} onClose={closePopup} />}
+            {content && <Popup title={content.title} content={content.content} isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />}
             <div className={styles["container-of-all"]}>
                 <div className={`${styles["feel-free-container"]} ${isFlipped ? styles.flipped : ''}`}>
-                    <div className={`${styles.front}`}>
+                    <div className={styles.front}>
                         <span className={styles["send-us-email"]}>Envoyez-nous un email</span>
                         <span className={styles["feel-free-to-write"]}>N'hésitez pas à nous écrire</span>
                         <div className={styles["input-container"]}>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className={styles["info-input"]} type="text" placeholder="Entrez votre nom" required />
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className={styles["info-input"]} type="email" placeholder="Entrez votre e-mail" required />
+                            <input name="name" value={formData.name} onChange={handleChange} className={styles["info-input"]} type="text" placeholder="Entrez votre nom" required />
+                            <input name="email" value={formData.email} onChange={handleChange} className={styles["info-input"]} type="email" placeholder="Entrez votre e-mail" required />
                         </div>
                         <div className={styles["input-container"]}>
-                            <input value={subject} onChange={(e) => setSubject(e.target.value)} className={styles["info-input"]} type="text" placeholder="Entrez le sujet" required />
-                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className={styles["info-input"]} type="number" placeholder="Entrez votre téléphone" required />
+                            <input name="subject" value={formData.subject} onChange={handleChange} className={styles["info-input"]} type="text" placeholder="Entrez le sujet" required />
+                            <input name="phone" value={formData.phone} onChange={handleChange} className={styles["info-input"]} type="tel" placeholder="Entrez votre téléphone" required />
                         </div>
-                        <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={`${styles["info-input"]} ${styles["message-input"]}`} placeholder="Entrez votre message"></textarea>
+                        <textarea name="message" value={formData.message} onChange={handleChange} className={`${styles["info-input"]} ${styles["message-input"]}`} placeholder="Entrez votre message"></textarea>
                         <div className={styles["buttonsContainer"]}>
-                            <button onClick={handleSubmit} className={styles["submitBtn"]}>Envoyer</button>
-                            <button onClick={resetInputs} className={styles["resetBtn"]}>Réinitialiser</button>
-                            <button onClick={() => setIsFlipped(!isFlipped)} className={styles["flipButton"]}>professionnel</button>
+                            <button onClick={handleSubmit} className={styles["submitBtn"]} disabled={loading}>{loading ? "Envoi..." : "Envoyer"}</button>
+                            <button onClick={() => setFormData({ name: '', email: '', subject: '', phone: '', message: '' })} className={styles["resetBtn"]}>Réinitialiser</button>
+                            <button onClick={() => setIsFlipped(!isFlipped)} className={styles["flipButton"]}>Professionnel</button>
                         </div>
                     </div>
-                    <div className={styles["back"]}>
+                    <div className={styles.back}>
                         <SellerForm flipCard={() => setIsFlipped(!isFlipped)} />
                     </div>
                 </div>

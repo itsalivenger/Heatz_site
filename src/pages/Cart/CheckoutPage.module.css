@@ -48,7 +48,8 @@
     border-radius: 30px;
     border: 1px solid rgb(64, 64, 64);
     margin: 0 auto;
-    padding: 30px;
+    padding: 20px;
+    box-sizing: border-box;
     color: rgb(216, 216, 216);
     background-color: rgb(34, 34, 34);
 }
@@ -62,6 +63,15 @@
 .secure-order {
     display: flex;
     align-items: center;
+}
+
+.timelines_Container span {
+    margin: 0;
+}
+
+.timelines_Container{
+    display: flex;
+    gap: .5em;
 }
 
 .secure-order-title {
@@ -90,6 +100,9 @@
 
 .order-timeline {
     font-size: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
 }
 
 .order-timeline-info {
@@ -121,6 +134,7 @@
 
     .order-timeline {
         margin-top: 20px;
+        flex-wrap: wrap;
     }
 
 }
