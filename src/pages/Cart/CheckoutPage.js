@@ -30,6 +30,7 @@ function CheckoutPage() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   // Function to handle navigation to the next step
   const handleNext = () => {
     if (currentStep === 1) {
@@ -58,6 +59,7 @@ function CheckoutPage() {
       setCurrentStep(currentStep)
     }
 
+
     if (currentStep === 2 && !isFormFilled(formData)) {
       setIsOpen(true);
       setContent({
@@ -71,7 +73,7 @@ function CheckoutPage() {
 
   const applyPromo = (e) => {
     e.preventDefault();  // Prevents default form submission
-    console.log('Promo applied Submitted:', formData);
+    console.log('Promo Submitted:', formData);
   };
 
   // Function to handle navigation to the previous step

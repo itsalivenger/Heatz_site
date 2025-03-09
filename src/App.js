@@ -51,7 +51,7 @@ function App() {
   const [theme, toggleTheme] = useTheme();
 
 
-  const launchDate = new Date('2025-03-20');
+  const launchDate = new Date('2025-05-20');
   const contactInfo = {
     email: 'contact@heatz.ma',
     phoneNumber: '+212 (020)-9850',
@@ -67,7 +67,7 @@ function App() {
         const isTokenExpired = decoded.exp * 1000 < Date.now();
         if (!isTokenExpired) {
           setIsAuthenticated(true);
-          setIsAdmin(decoded.role === 'admin');
+          setIsAdmin(decoded.role === 'admin' || decoded.role === 'drendo');
         } else {
           localStorage.removeItem('token');
           localStorage.removeItem('userRole');

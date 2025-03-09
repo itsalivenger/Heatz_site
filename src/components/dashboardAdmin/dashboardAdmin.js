@@ -19,6 +19,8 @@ function DashboardAdmin() {
     }
     getData();
   }, [])
+
+  
   return (
     <div>
       <SalesSummary data={data} />
@@ -38,28 +40,28 @@ const SalesSummary = ({ data: { salesOfToday, numOfOrders, nombreDesProduitsVend
       icon: <i className='material-symbols-outlined'>attach_money</i>,
       value: salesOfToday,
       label: 'Ventes d\'aujourd\'hui',
-      change: '+10% from yesterday',
+      change: '+0% from yesterday',
       color: '#ffa726',
     },
     {
       icon: <i className='material-symbols-outlined'>list_alt</i>,
       value: numOfOrders,
       label: 'Commandes Totales',
-      change: '+8% from yesterday',
+      change: '+0% from yesterday',
       color: '#26c6da',
     },
     {
       icon: <i className='material-symbols-outlined'>inventory_2</i>,
       value: nombreDesProduitsVendus,
       label: 'Produits Vendus',
-      change: '+2% from yesterday',
+      change: '+0% from yesterday',
       color: '#ec407a',
     },
     {
       icon: <i className='material-symbols-outlined'>person</i>,
       value: usersThisLastWeek,
       label: 'Nouveau Clients',
-      change: '+3% from yesterday',
+      change: '+0% from yesterday',
       color: '#42a5f5',
     },
   ];

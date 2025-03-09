@@ -6,7 +6,7 @@ export const OrderItemCard = ({ item }) => {
   return (
     <div className={styles.itemCard}>
       <div className={styles.imageContainer}>
-        <LazyMedia type={'image'} src={item.imageUrl} alt={item.name} className={styles.image} />
+        <LazyMedia type={'image'} src={item.imageUrls && item.imageUrls[0]} alt={item.name} className={styles.image} />
       </div>
       <div className={styles.details}>
         <h3 className={styles.name}>{item.productName}</h3>

@@ -12,6 +12,27 @@
   --color-black: #000000af;
 }
 
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); /* Gray */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-greenHover);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-greenHover);
+}
+
 
 /* testing witht he problem of icons in material symbols */
 .material-icons {
@@ -44,6 +65,11 @@ body {
   margin: 0;
   width: 100%;
   font-family: 'Montserrat', sans-serif;
+  background-color: #111;
+  min-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  z-index: -1;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

@@ -1,4 +1,5 @@
 import sendRequest from "./sendRequest";
+import jsPDF from 'jspdf';
 import { serverDomain } from "./variables";
 
 
@@ -30,7 +31,15 @@ function getUser() {
 }
 
 const isFormFilled = function (formData) {
-    return Object.values(formData).every(val => val !== '')
+    return Object.entries(formData)
+        .filter(([key]) => key !== 'promoCode') // mat9lebcch promoCode hitach optionnel
+        .every(([, val]) => val !== '');
+};
+
+const calculatePromo = async function (formData, cart) {
+    const { promoCode } = formData;
+    const response = await sendRequest(`${serverDomain}/coupons/apply_Promo`, 'POST', { promoCode, cartTotal: getTotal(cart) });
+    return response;
 }
 
 const updateCartInServer = async function (cart) {
@@ -100,6 +109,102 @@ function formValidation(formData) {
     };
 }
 
+const downloadOrderAsPDF = (order, promo) => {
+    const doc = new jsPDF();
+    
+    // Title and Order ID
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text(`Commande #${order._id}`, 10, 15);
+
+    // Date
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`Date: ${new Date(order.createdAt).toLocaleDateString()}`, 10, 25);
+
+    // Customer Information
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Informations du client:', 10, 35);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`Nom Complet: ${order.userInfo.formData.firstName} ${order.userInfo.formData.lastName}`, 10, 45);
+    doc.text(`Email: ${order.userInfo.formData.email}`, 10, 53);
+    doc.text(`Téléphone: ${order.userInfo.formData.phone}`, 10, 61);
+    doc.text(`Message du client: ${order.userInfo.formData.notes || 'N/A'}`, 10, 69);
+
+    // Address
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Adresse de livraison:', 10, 80);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(order.userInfo.formData.address, 10, 90);
+    doc.text(`${order.userInfo.formData.city}, ${order.userInfo.formData.apartment} ${order.userInfo.formData.postalCode}`, 10, 98);
+
+    // Items List Header
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Articles:', 10, 110);
+
+    let yOffset = 120;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+
+    // Draw Table Header
+    doc.setFont("helvetica", "bold");
+    doc.text("Produit", 10, yOffset);
+    doc.text("Qté", 100, yOffset);
+    doc.text("Prix (DH)", 140, yOffset);
+
+    doc.setLineWidth(0.5);
+    doc.line(10, yOffset + 2, 200, yOffset + 2); // Header underline
+
+    yOffset += 10;
+
+    // List Items
+    order.cart.forEach((item, index) => {
+        doc.setFont("helvetica", "normal");
+        doc.text(item.productName, 10, yOffset);
+        doc.text(`${item.quantity}`, 100, yOffset);
+        doc.text(`${item.price.toFixed(2)} DH`, 140, yOffset);
+        yOffset += 8;
+    });
+
+    // Order Summary
+    yOffset += 15; // Extra spacing before the summary
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text('Résumé de la commande:', 10, yOffset);
+
+    // Adjusted box size with more padding
+    const boxX = 10;
+    const boxY = yOffset + 5;
+    const boxWidth = 120;
+    const boxHeight = 45;
+
+    doc.setLineWidth(0.5);
+    doc.rect(boxX, boxY, boxWidth, boxHeight); // Box around the summary
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    const textStartY = boxY + 10; // Start text inside the box with more padding
+
+    doc.text(`Sous-total: ${getTotal(order.cart).toFixed(2)} DH`, 15, textStartY);
+    doc.text(`Frais de livraison: 0 DH`, 15, textStartY + 8);
+    doc.text(`Reduction Coupon: ${promo.discount} DH`, 15, textStartY + 16);
+
+    doc.setFont("helvetica", "bold");
+    doc.text(`Total: ${promo.newTotal.toFixed(2)} DH`, 15, textStartY + 24);
+
+    // Save the PDF
+    doc.save(`Commande_${order._id}.pdf`);
+};
+
+
+
 const addToCart = async (user_id, togglePopup, product) => {
     if (!user_id) {
         // Save to localStorage if the user is not connected
@@ -149,5 +254,5 @@ const addToFavorite = async (product_Id, user_id, togglePopup) => {
 
 export {
     addToCart, addToFavorite, getCart, getTotal, getUser, isFormFilled, updateCartInServer,
-    getFavoriteItems, searchItems, formValidation, getDate
+    getFavoriteItems, searchItems, formValidation, getDate, downloadOrderAsPDF, calculatePromo
 };

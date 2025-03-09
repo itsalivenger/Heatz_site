@@ -29,7 +29,7 @@ function Checkout({ formData, handleChange, applyPromo }) {
                         <span className={styles["coupon-sub-title"]}>Entrez votre code promo si vous en avez un</span>
                         <div className={styles["coupon-inputs-container"]}>
                             <input name='promoCode' onChange={handleChange} value={formData.promoCode} className={`${styles["billing-input"]} ${styles["coupon-input"]}`} type="text" placeholder="Code Promo" />
-                            <button type='submit' className={styles["coupon-apply"]}>Appliquer</button>
+                            <button onClick={applyPromo} type='submit' className={styles["coupon-apply"]}>Appliquer</button>
                         </div>
                     </div>
                 </div>

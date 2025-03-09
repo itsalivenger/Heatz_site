@@ -20,7 +20,8 @@ export function OrderHistory({ orders }) {
 
             <div className={styles.orderItems}>
               {order.cart.map((item, index) => (
-                <LazyMedia type={'image'} key={index} className={styles.itemImage} src={item.imageUrl} alt={item.productName} />
+                (item.imageUrls && <LazyMedia type={'image'} key={index} className={styles.itemImage} src={item.imageUrls[0]} alt={item.productName} />
+                )
               ))}
             </div>
 

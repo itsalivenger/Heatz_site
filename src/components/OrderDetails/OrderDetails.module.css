@@ -6,6 +6,14 @@
   margin: 0 auto;
 }
 
+.orderDetails{
+  transition: transform 0.2s ease;
+}
+
+.orderDetails:hover{
+  transform: translateX(5px);
+}
+
 .header {
   display: flex;
   justify-content: space-between;

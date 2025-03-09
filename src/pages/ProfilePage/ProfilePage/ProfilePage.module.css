@@ -1,12 +1,15 @@
 .container {
+  margin-top: 2em;
   min-height: 100vh;
-  background-color: var(--color-black);
 }
 
 .wrapper {
   max-width: 64rem;
   margin: 0 auto;
   padding: 1.5rem;
+  border-radius: 10px;
+  background-color: var(--color-black);
+
 }
 
 .header {

@@ -6,6 +6,8 @@ import OrdersAdmin from '../../pages/OrdersAdmin/OrdersAdmin';
 import AddProductForm from '../addProductForm/addProductForm';
 import NewsletterDashboard from '../NewsletterDashboard/NewsletterDashboard';
 import LazyMedia from '../lazyMedia/LazyMedia';
+import HandleCoupons from '../handleCoupons/HandleCoupons';
+import UserManagement from '../usersManagement/userManagement';
 
 
 
@@ -65,7 +67,7 @@ function  AdminSideNav({ handleContent }) {
                         </a>
                     </div>
 
-                    <a href="#promotions" className={styles.navItem} onClick={() => { handleContent(<></>) }}>
+                    <a href="#promotions" className={styles.navItem} onClick={() => { handleContent(<HandleCoupons />) }}>
                         <i className={`${styles.icon} material-symbols-outlined`}>local_offer</i>
                         <span>Promotions</span>
                     </a>
@@ -73,9 +75,9 @@ function  AdminSideNav({ handleContent }) {
                         <i className={`${styles.icon} material-symbols-outlined`}>campaign</i>
                         <span>Promouvoir vos produits</span>
                     </a>
-                    <a href="#statements" className={`${styles.navItem}`} onClick={() => { handleContent(<></>) }}>
+                    <a href="#statements" className={`${styles.navItem}`} onClick={() => { handleContent(<UserManagement />) }}>
                         <i className={`${styles.icon} material-symbols-outlined`}>description</i>
-                        <span>Relevés de compte</span>
+                        <span>Management des utilisateurs</span>
                     </a>
                 </div>
             </nav>

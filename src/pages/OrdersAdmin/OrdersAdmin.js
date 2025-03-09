@@ -32,14 +32,23 @@ function OrdersAdmin() {
     }, []);
 
     async function submitSearch() {
-        const response = await sendRequest(`${serverDomain}/orders/search`, 'POST', { searchTerm, searchBy });
+        try {
+            const response = await sendRequest(`${serverDomain}/orders/search`, 'POST', {
+                searchTerm: searchTerm.trim(),
+                searchBy
+            });
 
-        if (response.error) {
-            console.log(response.error);
-            setContent({ title: "Error", content: response.error });
+            if (response.error) {
+                setContent({ title: "Erreur", content: response.error });
+                setIsOpen(true);
+            } else {
+                console.log(response);
+                setOrders(response.orders ? response.orders : []);
+            }
+        } catch (error) {
+            console.error("Erreur lors de la recherche:", error);
+            setContent({ title: "Erreur", content: "Erreur inattendue, veuillez réessayer." });
             setIsOpen(true);
-        } else {
-            setOrders(response.orders || []);
         }
     }
 
@@ -87,7 +96,7 @@ function OrdersAdmin() {
         setToggled(false);
     }
 
-    if(toggled){
+    if (toggled) {
         return (
             <OrderDetails toggleBack={toggleBack} order={orderPrev} />
         )
@@ -102,12 +111,19 @@ function OrdersAdmin() {
                         type="text"
                         placeholder="Chercher par Nom du client ou ID de commande..."
                         className={styles.searchInput}
+                        value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <button onClick={submitSearch} className={styles.searchButton}>Rechercher</button>
+                    <button
+                        onClick={submitSearch}
+                        className={styles.searchButton}
+                    >
+                        Rechercher
+                    </button>
                     <select
                         className={styles.searchSelect}
                         onChange={(e) => setSearchBy(e.target.value)}
+                        value={searchBy}
                     >
                         <option value="email">Email du client</option>
                         <option value="_id">ID de commande</option>
@@ -157,7 +173,7 @@ function Order({ order, handleRemove, handleStatusChange, handleOrderPrev }) {
     return (
         <tr>
             <td>{shortenId(order._id)}</td>
-            <td>{shortenEmail(order.userInfo.email)}</td>
+            <td>{shortenEmail(order.userInfo.formData && order.userInfo.formData.email)}</td>
             <td>{shortenDate(order.createdAt)}</td>
             <td>{getTotal(order.cart)} Dh</td>
             <td>

@@ -48,7 +48,7 @@ const EditPreview = ({ product, toggleBack }) => {
             </div>
             <div className={styles.productContainer}>
                 <div className={styles.productImage}>
-                    <LazyMedia type={'image'} src={product.imageUrl} alt="Wireless Noise-Canceling Headphones" />
+                    <LazyMedia type={'image'} src={product.imageUrls[0]} alt="Wireless Noise-Canceling Headphones" />
                 </div>
                 <div className={styles.productDetails}>
                     <div className={styles.productCategory}>{product.category}</div>
