@@ -25,7 +25,7 @@ const testimonials = [
   }
 ];
 
-export default function AboutTestimonials() {
+export default function AboutTestimonials({ theme }) {
   return (
     <div className={styles.testimonials}>
       <div className={styles.container}>
@@ -49,7 +49,7 @@ export default function AboutTestimonials() {
               <div className={styles.author}>
                 <LazyMedia type={'image'} className={styles.avatar} src={testimonial.image} alt="quote" />
                 <div className={styles.info}>
-                  <div className={styles.name}>{testimonial.name}</div>
+                  <div className={`${styles.name} ${theme == 'dark' ? 'dark' : 'light'}`}>{testimonial.name}</div>
                   <div className={styles.role}>{testimonial.role}</div>
                 </div>
               </div>

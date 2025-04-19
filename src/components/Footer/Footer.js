@@ -6,7 +6,7 @@ import Popup from "../../components/popup/popup";
 import SocialMedia from "../socialMedia/socialMedia";
 import LazyMedia from "../lazyMedia/LazyMedia";
 
-const Footer = () => {
+const Footer = ({ theme }) => {
     const currentYear = new Date().getFullYear();
     const [email, setEmail] = useState("");
     const [content, setContent] = useState(null);
@@ -43,7 +43,7 @@ const Footer = () => {
 
 
     return (
-        <footer className={styles["footer-container"]}>
+        <footer className={`${styles["footer-container"]} ${theme === 'dark' ? 'dark' : 'light'}`}>
             <div className={styles["footer-content"]}>
                 {content && <Popup isOpen={isOpen} onClose={closePopup} title={content.title} content={content.content} setContent={setContent} />}
                 <div className={styles["footer-top"]}>
@@ -54,7 +54,7 @@ const Footer = () => {
 
                         <SocialMedia />
 
-                        <p className={styles["footer-description"]}>
+                        <p className={`${styles["footer-description"]}`}>
                             Heatz® est une marque déposée, désormais fièrement disponible au Maroc. Connue pour sa large variété et ses produits de haute qualité, Heatz® a marqué sa présence à l'échelle mondiale, notamment au Moyen-Orient et en Afrique du Nord. Nos clients marocains peuvent découvrir des produits innovants Heatz® conçus pour améliorer chaque saison, des écouteurs de premier choix aux derniers accessoires technologiques.
                         </p>
                         <form onSubmit={handleSubmit} className={styles["newsletter-form"]}>

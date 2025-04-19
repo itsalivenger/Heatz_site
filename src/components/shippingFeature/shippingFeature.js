@@ -7,7 +7,7 @@ function ShippingFeatures() {
         {
             icon: <LazyMedia type={'image'} src='./images/icons/truck.svg' className={styles.icon} alt='truck' />,
             title: 'Livraison Gratuite',
-            description: 'Bénéficiez de la livraison gratuite pour toute commande supérieure à 50€.'
+            description: 'Bénéficiez de la livraison gratuite pour toute commande supérieure à 50 DH.'
         },
         {
             icon: <LazyMedia type={'image'} src='./images/icons/package.svg' className={styles.icon} alt='package' />,

@@ -54,7 +54,7 @@ function App() {
   const launchDate = new Date('2025-05-20');
   const contactInfo = {
     email: 'contact@heatz.ma',
-    phoneNumber: '+212 (020)-9850',
+    phoneNumber: '+212 70 74 59 147',
     address: 'Maroc - Casablanca'
   }
 
@@ -157,7 +157,7 @@ function App() {
             }
           />
           <Route path="/productPreview" element={<PreviewProduct />} />
-          <Route path='/about' element={<AboutPage />} />
+          <Route path='/about' element={<AboutPage theme={theme} />} />
           <Route
             path="/signup"
             element={
@@ -206,7 +206,7 @@ function App() {
         </Routes>
         <WhatsAppWidget phoneNumber={contactInfo.phoneNumber} />
         <Suspense fallback={<LoadingSpinner />}>
-          <Footer />
+          <Footer theme={theme} />
         </Suspense>
       </Router>
     </div >

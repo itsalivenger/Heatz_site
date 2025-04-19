@@ -6,7 +6,7 @@ import AboutInnovation from './components/AboutInnovation/AboutInnovation';
 import AboutTestimonials from './components/AboutTestimonials/AboutTestimonials';
 import ColoredDivider from '../../components/coloredHr/coloredDivider';
 
-function AboutPage() {
+function AboutPage({ theme }) {
     return (
         <div className={styles.container}>
             <AboutHero />
@@ -14,7 +14,7 @@ function AboutPage() {
             <AboutStats />
             <AboutFeatures />
             <AboutInnovation />
-            <AboutTestimonials />
+            <AboutTestimonials theme={theme} />
         </div>
     );
 }

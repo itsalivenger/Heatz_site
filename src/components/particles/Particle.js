@@ -20,7 +20,7 @@ const ParticlesBackground = ({ theme }) => {
                 width: 1,
             },
             number: {
-                value: 50,
+                value: theme === 'dark' ? 50 : 0,
                 density: {
                     enable: true,
                     value_area: 800,

@@ -115,7 +115,6 @@ function GetInTouch({ contactInfo, theme }) {
                     <span className={`${theme === 'dark' ? styles.dark : styles.light} ${styles["get-in-touch-span1"]}`}>{contactInfo.address}</span>
                 </div>
             </div>
-
         </div>
     )
 }
