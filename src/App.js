@@ -19,6 +19,7 @@ import Success from './pages/Success/Success';
 import ProductPage from './pages/Product/ProductPage.js';
 import AdminPage from './pages/AdminPage/AdminPage.js';
 import ProfilePage from './pages/ProfilePage/ProfilePage/ProfilePage.jsx';
+import PrivacyPolicyPage from './pages/PrivacyPolicy/PrivacyPolicy.js';
 import ParticlesBackground from './components/particles/Particle.js';
 import AboutPage from './pages/About/AboutPage.js';
 import PreviewProduct from './pages/PreviewProduct/PreviewProduct.js';

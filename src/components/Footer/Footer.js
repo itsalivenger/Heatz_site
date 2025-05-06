@@ -5,6 +5,7 @@ import { serverDomain } from "../../components/other/variables";
 import Popup from "../../components/popup/popup";
 import SocialMedia from "../socialMedia/socialMedia";
 import LazyMedia from "../lazyMedia/LazyMedia";
+import { Link } from 'react-router-dom';
 
 const Footer = ({ theme }) => {
     const currentYear = new Date().getFullYear();
@@ -98,16 +99,12 @@ const Footer = ({ theme }) => {
                     <div className={styles["footer-column"]}>
                         <h3>Aide & Support</h3>
                         <ul className={styles["footer-links"]}>
-                            <li><a href="./">Contactez-nous</a></li>
+                            <li><Link to="contact">Contactez-nous</Link></li>
                             <li><a href="./">FAQs</a></li>
                             <li><a href="./">Expédition & Retours</a></li>
                             <li><a href="./">Suivi de votre commande</a></li>
-                            <li><a href="./">À propos de nous</a></li>
-                            <li><a href="./">Politique de livraison</a></li>
-                            <li><a href="./">Politique d'annulation</a></li>
-                            <li><a href="./">Politique de retour</a></li>
-                            <li><a href="./">Politique de confidentialité</a></li>
-                            <li><a href="./">Conditions générales</a></li>
+                            <li><Link to="about">À propos de nous</Link></li>
+                            <li><Link to="https://www.termsfeed.com/live/7952c1ba-4474-4880-96dc-d1203e7fc4a9">Conditions générales</Link></li>
                         </ul>
                     </div>
                 </div>
