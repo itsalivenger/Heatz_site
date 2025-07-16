@@ -52,7 +52,7 @@ function AppContent() {
   const { theme, toggleTheme } = useTheme();
 
 
-  const launchDate = new Date('2025-08-20');
+  const launchDate = new Date('2025-07-30');
   const contactInfo = {
     email: 'contact@heatz.ma',
     phoneNumber: '+212 70 74 59 147',
