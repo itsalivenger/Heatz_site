@@ -5,8 +5,10 @@ import AboutFeatures from './components/AboutFeatures/AboutFeatures';
 import AboutInnovation from './components/AboutInnovation/AboutInnovation';
 import AboutTestimonials from './components/AboutTestimonials/AboutTestimonials';
 import ColoredDivider from '../../components/coloredHr/coloredDivider';
+import { useTheme } from '../../components/other/useTheme.js';
 
-function AboutPage({ theme }) {
+function AboutPage() {
+    const { theme } = useTheme();
     return (
         <div className={styles.container}>
             <AboutHero />

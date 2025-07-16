@@ -6,8 +6,9 @@ import { serverDomain } from '../../components/other/variables';
 import Popup from '../../components/popup/popup';
 import SocialMedia from '../../components/socialMedia/socialMedia';
 import SellerForm from '../../components/contactSocieteForm/contactSocieteForm';
+import { useTheme } from '../../components/other/useTheme.js';
 
-function Contact({ contactInfo, theme }) {
+function Contact({ contactInfo }) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -19,6 +20,7 @@ function Contact({ contactInfo, theme }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
     const [loading, setLoading] = useState(false);
+    const { theme } = useTheme();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

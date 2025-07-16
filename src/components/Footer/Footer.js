@@ -6,8 +6,10 @@ import Popup from "../../components/popup/popup";
 import SocialMedia from "../socialMedia/socialMedia";
 import LazyMedia from "../lazyMedia/LazyMedia";
 import { Link } from 'react-router-dom';
+import { useTheme } from "../other/useTheme.js";
 
-const Footer = ({ theme }) => {
+const Footer = () => {
+    const { theme } = useTheme();
     const currentYear = new Date().getFullYear();
     const [email, setEmail] = useState("");
     const [content, setContent] = useState(null);

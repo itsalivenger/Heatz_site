@@ -57,16 +57,30 @@ function Shop() {
     }
   
     setIsLoading(false);
-  }, []);
+  }, [products.length]);
   
-  useEffect(() => {
-    fetchProducts(categoryFromUrl);
-  }, [categoryFromUrl]);
-  
-
   useEffect(() => {
     fetchProducts(categoryFromUrl);
   }, [categoryFromUrl, fetchProducts]);
+
+  // Ensure Material Icons are loaded for shop page
+  useEffect(() => {
+    const ensureMaterialIcons = () => {
+      if (!document.querySelector('link[href*="Material+Symbols+Outlined"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0';
+        document.head.appendChild(link);
+      }
+    };
+    
+    // Ensure icons are loaded when shop page loads
+    ensureMaterialIcons();
+    
+    // Also check after a short delay to ensure they're applied
+    const timer = setTimeout(ensureMaterialIcons, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCategories = (category) => {
     if (category !== categoryFromUrl) {

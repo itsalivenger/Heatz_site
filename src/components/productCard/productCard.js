@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from './productCard.module.css';
 import { addToFavorite, addToCart } from "../other/usefulFunctions";
 import LazyMedia from "../lazyMedia/LazyMedia";
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product, user_id, togglePopup }) => {
 
@@ -53,8 +54,16 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
     variableWidth: false
   };
 
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onClick={() => navigate(`/productPreview?_id=${product._id}`)}
+      role="button"
+      tabIndex={0}
+      style={{ cursor: 'pointer' }}
+    >
       <div className={styles.imageContainer}>
         <Slider {...settings} className={styles.carousel}>
           {product.imageUrls && product.imageUrls.map((image, index) => (
@@ -64,18 +73,22 @@ const ProductCard = ({ product, user_id, togglePopup }) => {
           ))}
         </Slider>
         <div className={styles.iconsContainer}>
-          <span onClick={() => addToFavorite(product._id, user_id, togglePopup)} className={`material-symbols-outlined ${styles.icon} ${styles.heartIcon}`}>
+          <span
+            onClick={e => { e.stopPropagation(); addToFavorite(product._id, user_id, togglePopup); }}
+            className={`material-symbols-outlined ${styles.icon} ${styles.heartIcon}`}
+          >
             favorite
           </span>
-          <span onClick={()=> addToCart(user_id._id, togglePopup, product)} className={`material-symbols-outlined ${styles.icon} ${styles.cartIcon}`}>
+          <span
+            onClick={e => { e.stopPropagation(); addToCart(user_id._id, togglePopup, product); }}
+            className={`material-symbols-outlined ${styles.icon} ${styles.cartIcon}`}
+          >
             shopping_cart
           </span>
         </div>
       </div>
       <div className={styles.cardContent}>
-        <a href={`/productPreview?_id=${product._id}`} className={styles.title}>
-          {product.productName}
-        </a>
+        <div className={styles.title}>{product.productName}</div>
         <p className={styles.note}>{product.note}</p>
         <p className={styles.description}>{shortenText(product.description)}</p>
         <p className={styles.price}>{product.price} DH</p>

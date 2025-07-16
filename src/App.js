@@ -24,7 +24,7 @@ import ParticlesBackground from './components/particles/Particle.js';
 import AboutPage from './pages/About/AboutPage.js';
 import PreviewProduct from './pages/PreviewProduct/PreviewProduct.js';
 import WhatsAppWidget from './components/whatsappWidget/whatsappWidget.js';
-import useTheme from './components/other/useTheme.js';
+import { ThemeProvider, useTheme } from './components/other/useTheme.js';
 const Footer = React.lazy(() => import('./components/Footer/Footer'));
 
 // Protected Route wrapper for authenticated users
@@ -43,16 +43,16 @@ const AdminRoute = ({ children, isAdmin }) => {
   return children;
 };
 
-function App() {
+function AppContent() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, toggleTheme] = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
 
-  const launchDate = new Date('2025-05-20');
+  const launchDate = new Date('2025-08-20');
   const contactInfo = {
     email: 'contact@heatz.ma',
     phoneNumber: '+212 70 74 59 147',
@@ -84,6 +84,28 @@ function App() {
 
     document.body.setAttribute("data-theme", theme);
     setLoading(false);
+  }, [theme]);
+
+  // Ensure Material Icons are loaded
+  useEffect(() => {
+    const ensureMaterialIcons = () => {
+      if (!document.querySelector('link[href*="Material+Symbols+Outlined"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0';
+        document.head.appendChild(link);
+      }
+    };
+    
+    ensureMaterialIcons();
+    
+    // Also ensure on route changes
+    const handleRouteChange = () => {
+      setTimeout(ensureMaterialIcons, 100);
+    };
+    
+    window.addEventListener('popstate', handleRouteChange);
+    return () => window.removeEventListener('popstate', handleRouteChange);
   }, []);
 
   const handleLogin = (userData) => {
@@ -211,6 +233,14 @@ function App() {
         </Suspense>
       </Router>
     </div >
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

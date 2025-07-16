@@ -106,3 +106,13 @@ input:focus {
 .dark{
   color: #fff !important;
 }
+
+.light, .light body {
+  background-color: #fff !important;
+  color: #111 !important;
+}
+
+body.dark, .dark body {
+  background-color: #111 !important;
+  color: #fff !important;
+}

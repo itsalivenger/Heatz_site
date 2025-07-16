@@ -9,6 +9,7 @@ import { serverDomain } from '../../components/other/variables';
 import { addToCart, addToFavorite, getUser } from '../../components/other/usefulFunctions';
 import Popup from '../../components/popup/popup';
 import LazyMedia from '../../components/lazyMedia/LazyMedia';
+import { useTheme } from '../../components/other/useTheme.js';
 
 function PreviewProduct() {
   const [product, setProduct] = useState({});
@@ -17,6 +18,7 @@ function PreviewProduct() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams] = useSearchParams();
   const _id = searchParams.get('_id');
+  const { theme } = useTheme();
 
   useEffect(() => {
     const getItem = async () => {
@@ -51,9 +53,9 @@ function PreviewProduct() {
   }
 
   return (
-    <div className={styles["product-container"]}>
+    <div className={`${styles["product-container"]} ${theme}`}>
       <div onClick={() => window.history.back()} className={styles.goBackContainer}>
-        <button class={`${styles["go-back"]} material-symbols-outlined`}>arrow_back</button>
+        <button className={`${styles["go-back"]} material-symbols-outlined`}>arrow_back</button>
       </div>
       <div className={styles["product-category"]}>
         {product.category}

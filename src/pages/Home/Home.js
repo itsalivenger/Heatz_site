@@ -4,6 +4,7 @@ import HeroSection from "../../components/heroSection/HeroSection";
 import HeroCarousel from "../../components/heroCarousel/herocarousel";
 import { serverDomain } from "../../components/other/variables";
 import LoadingSpinner from "../../components/LoadingSpinner/loadingSpinner";
+import { useTheme } from '../../components/other/useTheme.js';
 
 // Lazy load all components
 const ColoredDivider = lazy(() => import("../../components/coloredHr/coloredDivider"));
@@ -20,6 +21,7 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState({});
+  const { theme } = useTheme();
 
   useEffect(() => {
     const getProductsSamples = async () => {
@@ -52,7 +54,7 @@ function Home() {
   );
 
   return (
-    <div>
+    <div className={theme}>
       <Suspense fallback={<LoadingFallback />}>
         <HeroSection />
         <HomeCategories />

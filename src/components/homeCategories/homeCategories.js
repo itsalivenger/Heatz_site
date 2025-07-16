@@ -1,5 +1,8 @@
 import styles from "./homeCategories.module.css";
 import LazyMedia from "../lazyMedia/LazyMedia";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const categories = [
     { name: "Chargeurs", imgSrc: "./images/categories/adaptors.png" },
@@ -21,14 +24,58 @@ function HomeCategories() {
         window.location.href = `/boutique?category=${encodeURIComponent(category)}`;
     };
 
+    const sliderSettings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 8,
+        slidesToScroll: 2,
+        arrows: true,
+        swipeToSlide: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
+        cssEase: 'ease-in-out',
+        adaptiveHeight: false,
+        centerMode: false,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 6,
+                    slidesToScroll: 2,
+                    arrows: true,
+                },
+            },
+            {
+                breakpoint: 900,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    arrows: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    arrows: false,
+                },
+            },
+        ],
+    };
+
     return (
-        <div className={styles.container}>
-            {categories.map(({ name, imgSrc }) => (
-                <div key={name} className={styles.category} onClick={() => handleClick(name)}>
-                    <LazyMedia type="image" src={imgSrc} alt={name} className={styles.icon} />
-                    <p className={styles.name}>{name}</p>
-                </div>
-            ))}
+        <div className={styles.sliderContainer}>
+            <Slider {...sliderSettings}>
+                {categories.map(({ name, imgSrc }) => (
+                    <div key={name} className={styles.category} onClick={() => handleClick(name)}>
+                        <LazyMedia type="image" src={imgSrc} alt={name} className={styles.icon} />
+                        <p className={styles.name}>{name}</p>
+                    </div>
+                ))}
+            </Slider>
         </div>
     );
 }

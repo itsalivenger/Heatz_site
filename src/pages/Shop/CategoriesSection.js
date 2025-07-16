@@ -31,7 +31,7 @@ function CategoriesSection({ handleCategories }) {
 
     useEffect(() => {
         handleCategories(activeCategory);
-    }, [activeCategory, handleCategories]); // Appel de handleCategories uniquement après le rendu
+    }, [activeCategory, handleCategories]);
 
     useEffect(() => {
         if (categoryFromUrl) {
@@ -50,15 +50,19 @@ function CategoriesSection({ handleCategories }) {
 
     const sliderSettings = {
         dots: false,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 6,
         slidesToScroll: 2,
         arrows: true,
         swipeToSlide: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
+        cssEase: 'ease-in-out',
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1200,
                 settings: {
                     slidesToShow: 4,
                     slidesToScroll: 2,
@@ -66,7 +70,7 @@ function CategoriesSection({ handleCategories }) {
                 },
             },
             {
-                breakpoint: 768,
+                breakpoint: 900,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
@@ -74,7 +78,7 @@ function CategoriesSection({ handleCategories }) {
                 },
             },
             {
-                breakpoint: 480,
+                breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
@@ -85,10 +89,10 @@ function CategoriesSection({ handleCategories }) {
     };
 
     return (
-        <div className={styles.container} id="categories">
+        <div className={styles.sliderContainer} id="categories">
             <Slider {...sliderSettings}>
-                {categories.map((category, i) => (
-                    <div key={i}>
+                {categories.map((category) => (
+                    <div key={category.name}>
                         <div
                             className={`${styles.category} ${activeCategory === category.name ? styles.active : ''}`}
                             onClick={() => handleCategoryClick(category.name)}

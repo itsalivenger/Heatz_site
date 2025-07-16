@@ -20,7 +20,7 @@
 }
 
 .light{
-    background-color: rgb(49, 49, 49);
+    background-color: #fff;
 }
 
 .navbar-home {
@@ -49,10 +49,10 @@
 .navbar-icons i {
     color: var(--color-green);
     text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: transform 0.3s ease-in-out;
+    font-size: 17px; /* was 14px */
+    font-weight: 500; /* was 400 */
+    letter-spacing: 0.5px;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), color 0.2s;
 }
 
 .info-container {
