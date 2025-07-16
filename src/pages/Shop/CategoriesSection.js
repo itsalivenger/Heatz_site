@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './CategoriesSection.module.css';
 import LazyMedia from '../../components/lazyMedia/LazyMedia';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 const categories = [
     { name: 'Chargeurs', imgSrc: './images/categories/adaptors.png' },
@@ -48,57 +45,18 @@ function CategoriesSection({ handleCategories }) {
         setActiveCategory(categoryName);
     };
 
-    const sliderSettings = {
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 2,
-        arrows: true,
-        swipeToSlide: true,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 2,
-                    arrows: true,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    arrows: false,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    arrows: false,
-                },
-            },
-        ],
-    };
-
     return (
         <div className={styles.container} id="categories">
-            <Slider {...sliderSettings}>
-                {categories.map((category, i) => (
-                    <div key={i}>
-                        <div
-                            className={`${styles.category} ${activeCategory === category.name ? styles.active : ''}`}
-                            onClick={() => handleCategoryClick(category.name)}
-                        >
-                            <LazyMedia type="image" src={category.imgSrc} alt={category.name} className={styles.icon} />
-                            <span className={styles.name}>{category.name}</span>
-                        </div>
-                    </div>
-                ))}
-            </Slider>
+            {categories.map((category, i) => (
+                <div
+                    key={i}
+                    className={`${styles.category} ${activeCategory === category.name ? styles.active : ''}`}
+                    onClick={() => handleCategoryClick(category.name)}
+                >
+                    <LazyMedia type="image" src={category.imgSrc} alt={category.name} className={styles.icon} />
+                    <span className={styles.name}>{category.name}</span>
+                </div>
+            ))}
         </div>
     );
 }
